@@ -86,6 +86,7 @@ public class Gui {
 				
 				if(!controller.Empty()) {
 					controller.InvokeAlly(e.getX(), e.getY());
+					ActualizarGrafica();
 				}
 			}
 		});
@@ -114,9 +115,12 @@ public class Gui {
 		int i = 0;
 		
 		for(Rectangle hb : controller.GetHitboxes())
-			objetos.get(i++).setBounds(hb);
+			try {
+				objetos.get(i++).setBounds(hb);
+			} catch( IndexOutOfBoundsException e) {}
 
 		panelMapa.repaint();
+		
 	}
 	
 	/**
@@ -124,7 +128,11 @@ public class Gui {
 	 * @param img sprite del objeto a insertar
 	 */
 	public void Insertar(ImageIcon img) {
-		objetos.add( new JLabel(img) );
+		JLabel jl = new JLabel(img);		
+		objetos.add( jl );
+		ActualizarGrafica();
+		System.out.println(jl.getBounds());
+		
 	}
 	
 	/**
@@ -134,8 +142,8 @@ public class Gui {
 	private class btn1AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(controller.CanPurchase(1)) {
-				controller.Purchase(1);
+			if(controller.CanPurchase(0)) {
+				controller.Purchase(0);
 			}
 		}
 	}
@@ -149,14 +157,12 @@ public class Gui {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			/* PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(2)) {
-					controller.Purchase(2);
+			   if(controller.CanPurchase(1)) {
+					controller.Purchase(1);
 				}
 			 */
 			
-			JLabel jl = new JLabel();
-			jl.setIcon(( controller.InvokeEnemy(0)));
-			objetos.add( jl );
+			controller.InvokeEnemy(0);
 			ActualizarGrafica();
 			
 		}
@@ -171,8 +177,8 @@ public class Gui {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			/* PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(3)) {
-					controller.Purchase(3);
+			   if(controller.CanPurchase(2)) {
+					controller.Purchase(2);
 				}
 			 */
 			
@@ -189,13 +195,13 @@ public class Gui {
 	private class btn4AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			/* PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(4)) {
-					controller.Purchase(4);
+			   if(controller.CanPurchase(3)) {
+					controller.Purchase(3);
 				}
 			 */
-			
+
 		}
 	}
 	
@@ -208,8 +214,8 @@ public class Gui {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			/* PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(5)) {
-					controller.Purchase(5);
+			   if(controller.CanPurchase(4)) {
+					controller.Purchase(4);
 				}
 			 */
 			

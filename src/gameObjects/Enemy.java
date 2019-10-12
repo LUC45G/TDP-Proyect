@@ -14,5 +14,7 @@ public abstract class Enemy extends Character {
 		super(sprite, hitbox);
 		
 	}
+	
+	protected Enemy() { }
 
 }

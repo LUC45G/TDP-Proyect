@@ -3,6 +3,7 @@ package logicas;
 import java.util.ArrayList;
 
 import gameObjects.Ally;
+import gameObjects.Ally1;
 
 /**
  * Store permitira al jugador comprar personajes.
@@ -10,15 +11,17 @@ import gameObjects.Ally;
  */
 public class Store {
 	
-	ArrayList<Ally> _alliesToClone;
+	private ArrayList<Ally> _alliesToClone;
+	private DataStorage 	_dataStorage;
 	
 	public Store() {
-		_alliesToClone = new ArrayList<Ally>();
-		
+		_alliesToClone  = new ArrayList<Ally>();
+		_dataStorage 	= DataStorage.GetInstance();
 		
 		/*
 		 * Inicializar los aliados clonables
 		 */
+		_alliesToClone.add(new Ally1(0, 0));
 	}
 
 	/**
@@ -29,8 +32,13 @@ public class Store {
 	 * @return Aliado creado
 	 */
 	public Ally CreateAlly(int i, int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		Ally aux = (Ally) _alliesToClone.get(i).Clone();
+		aux.SetX(x); aux.SetY((y/90)*90);
+		return aux;
+	}
+
+	public int GetCost(int i) {
+		return _alliesToClone.get(i).GetCost();
 	}
 
 	

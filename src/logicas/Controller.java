@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
+import gameObjects.Ally;
 
 /**
  * Clase que comunica la gui con la logica de atras del todo
@@ -14,7 +17,6 @@ import javax.swing.Icon;
 public class Controller {
 	
 	protected HiloDisparos 		_shoots;		 	// Hilo de los disparos
-	protected HiloEnemigos 		_enemies;	 		// Hilo de los enemigos
 	protected DataStorage  		_dataStorage;	 	// Donde se guardan los enemigos
 	protected Store		   		_store;				// Tienda para comprar aliados
 	protected Gui 		   		_gui;				// GUI
@@ -25,22 +27,14 @@ public class Controller {
 	
 	public Controller(Gui gui) {
 		_shoots  	 	= new HiloDisparos();
-		_enemies 	 	= new HiloEnemigos();
-		_gui 		 	= gui;
+		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
-		_dataStorage	= new DataStorage();
+		_gui 		 	= gui;
 		_currentIndex	= -1;
+		_enemyGenerator = new EnemyGenerator();
 		_roundEnded		= false;
 		
 		_shoots .start();
-		_enemies.start();
-	}
-	
-	/**
-	 * Actualiza la grafica
-	 */
-	public void Update() {
-		_gui.ActualizarGrafica();
 	}
 	
 	/**
@@ -49,8 +43,8 @@ public class Controller {
 	 */
 	public Iterable<Rectangle> GetHitboxes() {
 		ArrayList<Rectangle> aux = _shoots.GetDisparos();
-		aux.addAll(_enemies.GetEnemigos());
-		// addAll Allies.HitBoxes
+		aux.addAll(_enemyGenerator.GetEnemies());
+		aux.addAll(_dataStorage.GetAllies());
 		
 		return aux;
 	}
@@ -69,7 +63,9 @@ public class Controller {
 	 * @param y coordenada y
 	 */
 	public void InvokeAlly(int x, int y) {
-		_dataStorage.Store(_store.CreateAlly(_currentIndex, x, y));
+		Ally a = _store.CreateAlly(_currentIndex, x, y);
+		_dataStorage.Store(a.GetHitbox());
+		_gui.Insertar(a.GetSprite());
 		_currentIndex = -1;
 	}
 
@@ -79,7 +75,7 @@ public class Controller {
 	 * @return true si puede comprar, false caso contrario
 	 */
 	public boolean CanPurchase(int i) {
-		return _dataStorage.GetCurrentMoney() >= _dataStorage.GetAllies().get(i).GetCost();
+		return _dataStorage.GetCurrentMoney() >= _store.GetCost(i);
 	}
 
 	/**
@@ -95,8 +91,9 @@ public class Controller {
 	 * @param i indice del enemigo a invocar
 	 * @return la imagen del enemigo invocado
 	 */
-	public Icon InvokeEnemy(int i) {
-		return  _enemyGenerator.GetEnemy(i);
+	public void InvokeEnemy(int i) {
+		ImageIcon e = _enemyGenerator.GetEnemy(i);
+		_gui.Insertar(e);
 	}
 	
 	/**
@@ -110,9 +107,9 @@ public class Controller {
 			
 			rng = r.nextInt(10);
 			if( rng == 8 ) {
+				// Generar enemigo y spawnearlo en la grafica
 				// rng = r.nextInt( Cantidad De Enemigos );
 				// InvokeEnemy( rng );
-				// Generar enemigo y spawnearlo en la grafica
 				// _gui.Insertar( EnemigoCreado ); 
 			}
 			

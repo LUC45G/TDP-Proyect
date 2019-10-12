@@ -1,5 +1,6 @@
 package logicas;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import gameObjects.Ally;
 
@@ -11,12 +12,20 @@ import gameObjects.Ally;
  */
 public class DataStorage {
 	
-	protected int 				_currentMoney;
-	protected ArrayList<Ally>	_allies;
+	protected static DataStorage		INSTANCE = null;
+	protected int 						_currentMoney;
+	protected ArrayList<Rectangle>		_allies;
 	
-	public DataStorage() {
+	private DataStorage() {
 		_currentMoney 	= 0;
-		_allies 		= new ArrayList<Ally>();
+		_allies 		= new ArrayList<Rectangle>();
+	}
+	
+	public static DataStorage GetInstance() {
+		if (INSTANCE == null)
+			INSTANCE = new DataStorage();
+		
+		return INSTANCE;
 	}
 	
 	/**
@@ -31,16 +40,16 @@ public class DataStorage {
 	 * Consulta y devuelve la lista de aliados
 	 * @return la lista de aliados
 	 */
-	public ArrayList<Ally> GetAllies() {
+	public ArrayList<Rectangle> GetAllies() {
 		return _allies;
 	}
 
 	/**
 	 * Almacena un aliado
-	 * @param ally aliado a almacenar
+	 * @param r Hitbox del aliado a almacenar
 	 */
-	public void Store(Ally ally) {
-		_allies.add(ally);
+	public void Store(Rectangle r) {
+		_allies.add(r);
 	}
 	
 	/**

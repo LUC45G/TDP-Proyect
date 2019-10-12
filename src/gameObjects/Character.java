@@ -21,4 +21,13 @@ public abstract class Character extends GameObject implements Cloneable {
 	
 	protected Character() {}
 	
+	public Object Clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			System.out.println("Character not cloenable"); e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

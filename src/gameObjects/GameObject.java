@@ -13,6 +13,13 @@ public abstract class GameObject {
 	protected ImageIcon _sprite;
 	protected Rectangle _hitbox;
 	
+	protected GameObject() {}
+	
+	public GameObject(ImageIcon sprite, Rectangle hitbox) {
+		_sprite = sprite;
+		_hitbox = hitbox;
+	}
+	
 	public ImageIcon GetSprite() {
 		return _sprite;
 	}
@@ -20,12 +27,15 @@ public abstract class GameObject {
 	public Rectangle GetHitbox() {
 		return _hitbox;
 	}
-
-	public GameObject(ImageIcon sprite, Rectangle hitbox) {
-		_sprite = sprite;
-		_hitbox = hitbox;
+	
+	public void SetX(int value) {
+		_hitbox.x = value;
 	}
 	
-	protected GameObject() {}
+	public void SetY(int value) {
+		_hitbox.y = value;
+	}
+
+	
 
 }
