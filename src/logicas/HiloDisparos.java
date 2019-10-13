@@ -18,8 +18,8 @@ public class HiloDisparos extends Thread {
 		return _shoots;
 	}
 	
-	public void AgregarDisparo() {
-		// _shoots.add
+	public void AgregarDisparo(Rectangle r) {
+		_shoots.add(r);
 	}
 	
 	public void run() {

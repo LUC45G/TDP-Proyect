@@ -5,10 +5,10 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import gameObjects.Ally;
+import gameObjects.GameObject;
 
 /**
  * Clase que comunica la gui con la logica de atras del todo
@@ -16,16 +16,18 @@ import gameObjects.Ally;
  */
 public class Controller {
 	
-	protected HiloDisparos 		_shoots;		 	// Hilo de los disparos
-	protected DataStorage  		_dataStorage;	 	// Donde se guardan los enemigos
-	protected Store		   		_store;				// Tienda para comprar aliados
-	protected Gui 		   		_gui;				// GUI
-	protected int 		   		_currentIndex;		// Indice para control y realizacion de la compra
-	protected EnemyGenerator	_enemyGenerator;	// Genera enemigos
+	protected HiloDisparos 				_shoots;		 	// Hilo de los disparos
+	protected DataStorage  				_dataStorage;	 	// Donde se guardan los enemigos
+	protected Store				   		_store;				// Tienda para comprar aliados
+	protected Gui		 		   		_gui;				// GUI
+	protected int 		   				_currentIndex;		// Indice para control y realizacion de la compra
+	protected EnemyGenerator			_enemyGenerator;	// Genera enemigos
+	protected static Controller 		INSTANCE;			// Instancia Singleton
+	protected IntersectionController 	_intersecter;		// Controla las intersecciones
 	
-	protected boolean 			_roundEnded; 		// Controla si termina la ronda
+	protected boolean 					_roundEnded; 		// Controla si termina la ronda
 	
-	public Controller(Gui gui) {
+	private Controller(Gui gui) {
 		_shoots  	 	= new HiloDisparos();
 		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
@@ -37,16 +39,41 @@ public class Controller {
 		_shoots .start();
 	}
 	
+	public static Controller GetInstance(Gui gui) {
+		if (INSTANCE == null)
+			INSTANCE = new Controller(gui);
+		
+		return INSTANCE;
+	}
+	
 	/**
 	 * Junta todas las hitboxes que tiene que haber en el mapa
 	 * @return Todas las hitboxes
 	 */
-	public Iterable<Rectangle> GetHitboxes() {
+	public ArrayList<Rectangle> GetHitboxes() {
 		ArrayList<Rectangle> aux = _shoots.GetDisparos();
 		aux.addAll(_enemyGenerator.GetEnemies());
 		aux.addAll(_dataStorage.GetAllies());
 		
 		return aux;
+	}
+	
+	public void Intersection() {
+		int i = 0, j = 0;
+		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
+		for ( Rectangle source : GetHitboxes() ) {
+			for ( Rectangle destiny : GetHitboxes() ) {
+				if ( source != destiny ) {
+					if ( source.intersects(destiny) ) {
+						_intersecter.Intersect(all.get(i), all.get(j));
+					}
+				}
+				j++;
+			}
+			i++;
+		}
+		
+		
 	}
 
 	/**

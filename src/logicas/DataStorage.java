@@ -2,7 +2,11 @@ package logicas;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
+
 import gameObjects.Ally;
+import gameObjects.Disparo;
+import gameObjects.Enemy;
+import gameObjects.GameObject;
 
 /**
  * DataStorage tendra:
@@ -14,11 +18,18 @@ public class DataStorage {
 	
 	protected static DataStorage		INSTANCE = null;
 	protected int 						_currentMoney;
-	protected ArrayList<Rectangle>		_allies;
+	protected ArrayList<Rectangle>		_alliesHitboxes;
+	
+	protected ArrayList<Ally> 			_allies;
+	protected ArrayList<Enemy> 			_enemies;
+	protected ArrayList<Disparo> 		_shoots;
 	
 	private DataStorage() {
 		_currentMoney 	= 0;
-		_allies 		= new ArrayList<Rectangle>();
+		_alliesHitboxes	= new ArrayList<Rectangle>();
+		_allies 		= new ArrayList<Ally>();
+		_enemies 		= new ArrayList<Enemy>();
+		_shoots 		= new ArrayList<Disparo>();
 	}
 	
 	public static DataStorage GetInstance() {
@@ -41,7 +52,7 @@ public class DataStorage {
 	 * @return la lista de aliados
 	 */
 	public ArrayList<Rectangle> GetAllies() {
-		return _allies;
+		return _alliesHitboxes;
 	}
 
 	/**
@@ -49,7 +60,43 @@ public class DataStorage {
 	 * @param r Hitbox del aliado a almacenar
 	 */
 	public void Store(Rectangle r) {
-		_allies.add(r);
+		_alliesHitboxes.add(r);
+	}
+	
+	/**
+	 * Almacena un aliado
+	 * @param a aliado a almacenar
+	 */
+	public void Store(Ally a) {
+		_allies.add(a);
+	}
+	
+	/**
+	 * Almacena un enemigo
+	 * @param e enemigo a almacenar
+	 */
+	public void Store(Enemy e) {
+		_enemies.add(e);
+	}
+	
+	/**
+	 * Almacena un disparo
+	 * @param d disparo a almacenar
+	 */
+	public void Store(Disparo d) {
+		_shoots.add(d);
+	}
+	
+	/**
+	 * Devuelve una lista de todos los gameObjects 
+	 * @return lista de todo
+	 */
+	@SuppressWarnings("unchecked")
+	public ArrayList<GameObject> GetAllObjects() {
+		ArrayList<GameObject> aux = (ArrayList<GameObject>) _allies.clone();
+		aux.addAll(_enemies);
+		aux.addAll(_shoots);
+		return aux;
 	}
 	
 	/**

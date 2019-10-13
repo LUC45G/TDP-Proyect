@@ -45,7 +45,7 @@ public class Gui {
 	 */
 	private void initialize() {
 		
-		controller = new Controller(this);
+		controller = Controller.GetInstance(this);
 		
 		objetos = new ArrayList<JLabel>();
 		
