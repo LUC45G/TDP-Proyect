@@ -23,15 +23,21 @@ public class EnemyGenerator {
 		_enemyThread.start();
 	}
 	
-	public ArrayList<Rectangle> GetEnemies() {
-		return _enemyThread.GetEnemigos();
+	public ArrayList<Rectangle> GetHitboxes() {
+		return _enemyThread.GetHitboxes();
 	}
 	
-	public ImageIcon GetEnemy(int i) {
+	/**
+	 * Crea un enemigo y devuelve su sprite
+	 * @param i Indice del enemigo a crear
+	 * @param y Posicion en Y donde spawnear
+	 * @return Sprite del enemigo
+	 */
+	public ImageIcon GetEnemy(int i, int y) {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
 		_dataStorage.Store(e);
-		e.SetX(0); e.SetY(90); // Placeholders
-		_enemyThread.AgregarEnemigo(e.GetHitbox());
+		e.SetX(500); e.SetY(y*90); // Placeholders
+		_enemyThread.AgregarEnemigo(e);
 		return e.GetSprite();
 	}
 

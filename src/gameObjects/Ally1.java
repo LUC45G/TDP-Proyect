@@ -19,5 +19,11 @@ public class Ally1 extends Ally {
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 		
 	}
+	
+	public Character Clone() {
+		Character a = new Ally1(0, 0);
+		// Espacio por si hay que setear algun otro valor
+		return a;
+	}
 
 }

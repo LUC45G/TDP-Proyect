@@ -13,7 +13,6 @@ import javax.swing.border.LineBorder;
 import logicas.Controller;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 
 public class Gui {
 
@@ -112,14 +111,15 @@ public class Gui {
 	 */
 	public void ActualizarGrafica() {
 		
-		int i = 0;
+		panelMapa.removeAll();
+		JLabel jl;
 		
-		for(Rectangle hb : controller.GetHitboxes())
-			try {
-				panelMapa.add(objetos.get(i));
-				objetos.get(i++).setBounds(hb);
-			} catch( IndexOutOfBoundsException e) {}
-
+		for(int i = 0; i < controller.GetObjects().size(); i++) {
+			jl = new JLabel(controller.GetObjects().get(i).GetSprite());
+			jl.setBounds(controller.GetObjects().get(i).GetHitbox());
+			panelMapa.add(jl);
+		}
+		
 		panelMapa.repaint();
 		
 	}
@@ -132,8 +132,6 @@ public class Gui {
 		JLabel jl = new JLabel(img);		
 		objetos.add( jl );
 		ActualizarGrafica();
-		System.out.println(jl.getBounds());
-		
 	}
 	
 	/**
@@ -163,7 +161,8 @@ public class Gui {
 				}
 			 */
 			
-			controller.InvokeEnemy(0);
+			controller.ToggleRound();
+			controller.ToggleRound();
 			ActualizarGrafica();
 			
 		}

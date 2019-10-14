@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
  */
 public abstract class Character extends GameObject implements Cloneable {
 	
-	protected int _health;
-	protected Rectangle _boundingBox;
+	protected int 		_health; 		// Vida actual del personaje, quizas deba ir mas arriba
+	protected Rectangle _boundingBox; 	// Rectangulo que representa el alcance
 
 	public Character(ImageIcon sprite, Rectangle hitbox) {
 		super(sprite, hitbox);
@@ -21,13 +21,6 @@ public abstract class Character extends GameObject implements Cloneable {
 	
 	protected Character() {}
 	
-	public Object Clone() {
-		try {
-			return super.clone();
-		} catch (CloneNotSupportedException e) {
-			System.out.println("Character not cloenable"); e.printStackTrace();
-		}
-		return null;
-	}
+	public abstract Character Clone();
 	
 }

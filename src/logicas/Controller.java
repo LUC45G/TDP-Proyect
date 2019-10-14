@@ -23,7 +23,6 @@ public class Controller {
 	protected int 		   				_currentIndex;		// Indice para control y realizacion de la compra
 	protected EnemyGenerator			_enemyGenerator;	// Genera enemigos
 	protected static Controller 		INSTANCE;			// Instancia Singleton
-	protected IntersectionController 	_intersecter;		// Controla las intersecciones
 	
 	protected boolean 					_roundEnded; 		// Controla si termina la ronda
 	
@@ -36,9 +35,17 @@ public class Controller {
 		_enemyGenerator = new EnemyGenerator();
 		_roundEnded		= false;
 		
-		_shoots .start();
+		
+		_shoots.SetController(this);
+		_shoots.start();
 	}
 	
+	/** 
+	 * Devuelve la instancia si esta creada
+	 * Sino, la crea
+	 * @param gui Gui del juego
+	 * @return Instancia Controller
+	 */
 	public static Controller GetInstance(Gui gui) {
 		if (INSTANCE == null)
 			INSTANCE = new Controller(gui);
@@ -47,15 +54,33 @@ public class Controller {
 	}
 	
 	/**
+	 * Si la instancia esta creada, la devuelve.
+	 * @return
+	 */
+	public static Controller GetInstance() {
+		if (INSTANCE != null) 
+			return INSTANCE;
+		return null;
+	}
+	
+	public void Update() {
+		_gui.ActualizarGrafica();
+	}
+	
+	/**
 	 * Junta todas las hitboxes que tiene que haber en el mapa
 	 * @return Todas las hitboxes
 	 */
 	public ArrayList<Rectangle> GetHitboxes() {
-		ArrayList<Rectangle> aux = _shoots.GetDisparos();
-		aux.addAll(_enemyGenerator.GetEnemies());
-		aux.addAll(_dataStorage.GetAllies());
+		ArrayList<Rectangle> aux = _shoots.GetHitboxes();
+		aux.addAll(_enemyGenerator.GetHitboxes());
+		aux.addAll(_dataStorage.GetHitboxes());
 		
 		return aux;
+	}
+	
+	public ArrayList<GameObject> GetObjects() {
+		return _dataStorage.GetAllObjects();
 	}
 	
 	public void Intersection() {
@@ -65,7 +90,7 @@ public class Controller {
 			for ( Rectangle destiny : GetHitboxes() ) {
 				if ( source != destiny ) {
 					if ( source.intersects(destiny) ) {
-						_intersecter.Intersect(all.get(i), all.get(j));
+						all.get(i).GetVisitor().Visit(all.get(j));
 					}
 				}
 				j++;
@@ -112,35 +137,23 @@ public class Controller {
 	public void Purchase(int i) {
 		_currentIndex = i;
 	}
-
-	/**
-	 * Invoca un enemigo 
-	 * @param i indice del enemigo a invocar
-	 * @return la imagen del enemigo invocado
-	 */
-	public void InvokeEnemy(int i) {
-		ImageIcon e = _enemyGenerator.GetEnemy(i);
-		_gui.Insertar(e);
-	}
 	
 	/**
 	 * Spawnea enemigos mientras la ronda no haya terminado
 	 */
 	private void SpawnEnemies() {
 		Random r = new Random();
-		int rng;
+		int y;
 		
-		while(!_roundEnded) {
+		//while(!_roundEnded) {
+			// Iniciar el hilo de las hordas
+		// Generar enemigo y spawnearlo en la grafica
+		y = r.nextInt(6);
+		//rng = r.nextInt( Cantidad De Enemigos );
+		ImageIcon e = _enemyGenerator.GetEnemy(0, y);
+		_gui.Insertar( e ); 
 			
-			rng = r.nextInt(10);
-			if( rng == 8 ) {
-				// Generar enemigo y spawnearlo en la grafica
-				// rng = r.nextInt( Cantidad De Enemigos );
-				// InvokeEnemy( rng );
-				// _gui.Insertar( EnemigoCreado ); 
-			}
-			
-		}
+		//}
 	}
 	
 	/**
@@ -156,6 +169,15 @@ public class Controller {
 	 */
 	public void EndRound() {
 		_roundEnded = true;
+	}
+	
+	/**
+	 * Si la ronda esta iniciada, la termina.
+	 * Si esta terminada, la inicia.
+	 */
+	public void ToggleRound() {
+		//_roundEnded = !_roundEnded;
+		SpawnEnemies();
 	}
 
 }

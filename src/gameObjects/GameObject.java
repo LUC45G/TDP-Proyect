@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import logicas.Visitor;
+
 /**
  * Clase general que modela un objeto que puede estar presente dentro del mapa
  *
@@ -12,6 +14,7 @@ public abstract class GameObject {
 	
 	protected ImageIcon _sprite;
 	protected Rectangle _hitbox;
+	protected Visitor 	_visitor;
 	
 	protected GameObject() {}
 	
@@ -34,6 +37,10 @@ public abstract class GameObject {
 	
 	public void SetY(int value) {
 		_hitbox.y = value;
+	}
+	
+	public Visitor GetVisitor() {
+		return _visitor;
 	}
 
 	

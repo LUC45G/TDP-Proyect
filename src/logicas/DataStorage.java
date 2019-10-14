@@ -51,7 +51,7 @@ public class DataStorage {
 	 * Consulta y devuelve la lista de aliados
 	 * @return la lista de aliados
 	 */
-	public ArrayList<Rectangle> GetAllies() {
+	public ArrayList<Rectangle> GetHitboxes() {
 		return _alliesHitboxes;
 	}
 
