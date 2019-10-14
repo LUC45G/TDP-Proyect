@@ -99,8 +99,8 @@ public class Gui {
 		
 		JPanel panelScore = new JPanel();
 		panelScore.setBounds(0, 338, 141, 213);
-		frame.getContentPane().add(panelScore);
 		frame.getContentPane().add(panelMapa);
+		frame.getContentPane().add(panelScore);
 		
 		lblScore = new JLabel("Score: 0");
 		panelScore.add(lblScore);
@@ -116,6 +116,7 @@ public class Gui {
 		
 		for(Rectangle hb : controller.GetHitboxes())
 			try {
+				panelMapa.add(objetos.get(i));
 				objetos.get(i++).setBounds(hb);
 			} catch( IndexOutOfBoundsException e) {}
 

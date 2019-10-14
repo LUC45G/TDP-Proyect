@@ -26,7 +26,13 @@ public class IntersectionController {
 		} catch (ClassCastException e) { }
 		
 		/* Repetir para cada caso, y preguntar si hacer esto es legal */
-		
+		/*
+		 * para mi seria algo asi el chequeo de colisiones (seria igua para todos)
+		 *	if(g1.GetHitbox().intersects(g2.GetHitbox()))
+		 *		g1.getVisitor().visit(g2);
+		 *
+		 */
+				
 	}
 	
 	
