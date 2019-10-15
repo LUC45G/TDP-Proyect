@@ -33,11 +33,11 @@ public class HiloEnemigos extends Thread {
 				System.out.println("HiloEnemigos=>"); e.printStackTrace();
 			}
 			
-			for(Rectangle r : _enemiesHitboxes) 
-				r.x-=7;
-			
-			
-			
+			for(Rectangle r : _enemiesHitboxes) {
+				if(Controller.GetInstance().puedeAvanzar(r))
+					r.x-=7;
+				
+			}			
 		}
 	}
 	

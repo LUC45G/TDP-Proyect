@@ -71,8 +71,9 @@ public class Controller {
 	 * Junta todas las hitboxes que tiene que haber en el mapa
 	 * @return Todas las hitboxes
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<Rectangle> GetHitboxes() {
-		ArrayList<Rectangle> aux = _shoots.GetHitboxes();
+		ArrayList<Rectangle> aux = (ArrayList<Rectangle>) _shoots.GetHitboxes().clone();
 		aux.addAll(_enemyGenerator.GetHitboxes());
 		aux.addAll(_dataStorage.GetHitboxes());
 		
@@ -90,7 +91,7 @@ public class Controller {
 			for ( Rectangle destiny : GetHitboxes() ) {
 				if ( source != destiny ) {
 					if ( source.intersects(destiny) ) {
-						all.get(j).accept(all.get(j).GetVisitor());
+						all.get(j).accept(all.get(i).GetVisitor());
 						//aca necesito saber al si es un game object
 					}
 				}
@@ -98,6 +99,22 @@ public class Controller {
 			}
 			i++;
 		}
+		
+		
+	}
+	
+	
+	public boolean puedeAvanzar(Rectangle source) {
+		
+		for ( Rectangle destiny : GetHitboxes() ) {
+			if ( source != destiny ) {
+				if ( source.intersects(destiny) ) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
 		
 		
 	}

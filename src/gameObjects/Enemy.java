@@ -24,6 +24,7 @@ public abstract class Enemy extends Character {
 
 
 	public void receive_attack(Disparo miDisparo) {
+		System.out.println("Ally Visitado por: " + miDisparo.hashCode());
 		this.set_health(_health-miDisparo.get_strength());		
 	}
 	

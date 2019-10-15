@@ -42,9 +42,7 @@ public class HiloDisparos extends Thread {
 				r.x-=3;
 			
 			_controller.Update();
-			
-			System.out.println("Un tic -> size: " + _shootHitboxes.size());
-		 }
+		}
 	}
 
 }

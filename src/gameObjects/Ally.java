@@ -37,6 +37,7 @@ public abstract class Ally extends Character {
 
 	public void receive_attack(Disparo miDisparo) {
 		this.set_health(_health-miDisparo.get_strength());
+		System.out.println("Ally Visitado por: " + miDisparo.hashCode());
 		//este metodo es con fines funcionales no se si es la idea que sea asi
 	}
 	public void accept(Visitor v) {
