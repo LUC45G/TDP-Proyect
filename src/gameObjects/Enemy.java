@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import logicas.Visitor;
+import logicas.VisitorEnemy;
 
 /**
  * Clase que modela a los enemigos

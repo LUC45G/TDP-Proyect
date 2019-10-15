@@ -1,6 +1,6 @@
-package gameObjects;
+package logicas;
 
-import logicas.Visitor;
+import gameObjects.Enemy;
 
 public class VisitorEnemy extends Visitor {
 	private Enemy miEnemigo;

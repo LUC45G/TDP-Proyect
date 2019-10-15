@@ -1,6 +1,6 @@
-package gameObjects;
+package logicas;
 
-import logicas.Visitor;
+import gameObjects.Ally;
 
 public class VisitorAlly extends Visitor {
 

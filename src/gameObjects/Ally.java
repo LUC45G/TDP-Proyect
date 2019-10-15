@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import logicas.Visitor;
+import logicas.VisitorAlly;
 
 public abstract class Ally extends Character {
 	
