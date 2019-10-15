@@ -91,6 +91,7 @@ public class Controller {
 				if ( source != destiny ) {
 					if ( source.intersects(destiny) ) {
 						all.get(i).GetVisitor().Visit(all.get(j));
+						//aca necesito saber al si es un game object
 					}
 				}
 				j++;

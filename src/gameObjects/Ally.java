@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import logicas.Visitor;
+
 public abstract class Ally extends Character {
 	
 	protected int _cost;
@@ -22,4 +24,11 @@ public abstract class Ally extends Character {
 		return _cost;
 	}
 
+	public void receive_attack(Enemy e) {
+		this.set_health(_health-e.get_strength());
+		//este metodo es con fines funcionales no se si es la idea que sea asi
+	}
+	public void accept(Visitor v) {
+		v.VisitAlly(this);
+	}
 }

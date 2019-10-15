@@ -1,13 +1,14 @@
 package logicas;
 
-import gameObjects.GameObject;
+import gameObjects.Ally;
+import gameObjects.Enemy;
+import gameObjects.ImmovableObject;
 
 public abstract class Visitor {
-
-	public Visitor() {
-		
-	}
 	
-	public abstract void Visit(GameObject g);
+	public void VisitAlly(Ally a) {}
 
+	public void VisitEnemy(Enemy e) {}
+	
+	public void VisitImmovableObject(ImmovableObject i) {}
 }
