@@ -90,7 +90,7 @@ public class Controller {
 			for ( Rectangle destiny : GetHitboxes() ) {
 				if ( source != destiny ) {
 					if ( source.intersects(destiny) ) {
-						all.get(i).GetVisitor().Visit(all.get(j));
+						all.get(j).accept(all.get(j).GetVisitor());
 						//aca necesito saber al si es un game object
 					}
 				}

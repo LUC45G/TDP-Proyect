@@ -10,11 +10,22 @@ public abstract class Ally extends Character {
 	
 	protected int _cost;
 
-	public Ally(ImageIcon sprite, Rectangle hitbox) {
+	protected Ally() {
+		// TODO Auto-generated constructor stub
+	}
+
+	protected Ally(ImageIcon sprite, Rectangle hitbox) {
 		super(sprite, hitbox);
+	}	
+	
+	protected Ally(ImageIcon sprite, Rectangle hitbox, int fuerza) {
+		super(sprite, hitbox, fuerza);
+		_shoot=new Disparo(null,null,_strength); //esto esta como el tuje pero lo hice asi no mas
+		_visitor=new VisitorAlly(this);
+		
 	}
 	
-	protected Ally() {}
+	
 	
 	/**
 	 * Consulta y devuelve el costo del aliado
@@ -24,8 +35,8 @@ public abstract class Ally extends Character {
 		return _cost;
 	}
 
-	public void receive_attack(Enemy e) {
-		this.set_health(_health-e.get_strength());
+	public void receive_attack(Disparo miDisparo) {
+		this.set_health(_health-miDisparo.get_strength());
 		//este metodo es con fines funcionales no se si es la idea que sea asi
 	}
 	public void accept(Visitor v) {

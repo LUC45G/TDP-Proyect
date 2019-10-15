@@ -11,7 +11,6 @@ import logicas.Visitor;
  *
  */
 public abstract class GameObject {
-	
 	protected ImageIcon _sprite;
 	protected Rectangle _hitbox;
 	protected Visitor 	_visitor;
@@ -42,6 +41,8 @@ public abstract class GameObject {
 	public Visitor GetVisitor() {
 		return _visitor;
 	}
+
+	public void accept(Visitor V) {}
 
 	
 

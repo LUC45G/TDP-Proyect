@@ -16,9 +16,13 @@ public abstract class Character extends GameObject implements Cloneable {
 	protected int 		_health; 		// Vida actual del personaje, quizas deba ir mas arriba
 	protected Rectangle _boundingBox; 	// Rectangulo que representa el alcance
 	protected int		_strength;      // Fuerza del personaje
+	protected Disparo   _shoot;
 	
 	protected Character() {}
-
+	protected Character(ImageIcon sprite, Rectangle hitbox, int fuerza) {
+		super(sprite,hitbox);
+		_strength=fuerza;
+	}
 	public int get_health() {
 		return _health;
 	}
@@ -40,6 +44,7 @@ public abstract class Character extends GameObject implements Cloneable {
 		super(sprite, hitbox);
 		_health = 10;
 	}
+
 	public abstract void accept(Visitor v);
 	
 	public abstract Character Clone();

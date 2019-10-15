@@ -5,28 +5,32 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import logicas.Visitor;
-import logicas.VisitorEnemy;
 
 /**
  * Clase que modela a los enemigos
  *
  */
 public abstract class Enemy extends Character {
-	protected VisitorEnemy colisionator;
-	public Enemy(ImageIcon sprite, Rectangle hitbox) {
-		super(sprite, hitbox);
-		colisionator=new VisitorEnemy(this);
+	public Enemy(ImageIcon sprite, Rectangle hitbox, int fuerza) {
+		super(sprite, hitbox, fuerza);
+		_shoot=new Disparo(null,null,_strength); //esto esta como el tuje pero lo hice asi no mas
+		_visitor=new VisitorEnemy(this);
 	}
 	
-	protected Enemy() { }
-	
 
-	public void receive_attack(Ally a) {
-		this.set_health(_health-a.get_strength());		
+	protected Enemy() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public void receive_attack(Disparo miDisparo) {
+		this.set_health(_health-miDisparo.get_strength());		
 	}
 	
 	public void accept(Visitor v) {
 		v.VisitEnemy(this);
 	}
 
+			
 }
+
