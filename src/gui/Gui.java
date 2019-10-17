@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,7 +18,7 @@ import java.awt.Color;
 public class Gui {
 
 	private JFrame frame;
-	private JPanel panelMapa;
+	private BackgroundPanel panelMapa, panelGeneral;
 	private Controller controller;
 	private JLabel lblScore;
 	private ArrayList<JLabel> objetos;
@@ -45,15 +46,20 @@ public class Gui {
 	private void initialize() {
 		
 		controller = Controller.GetInstance(this);
-		
 		objetos = new ArrayList<JLabel>();
 		
+		Image bg = new ImageIcon(this.getClass().getResource("/img/BG.png")).getImage();
+		panelGeneral = new BackgroundPanel(bg);
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 700);
+		frame.setBounds(100, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setContentPane(panelGeneral);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panelPersonajes = new JPanel();
+		Image transparent = new ImageIcon(this.getClass().getResource("/img/transparent.png")).getImage();
+		
+		BackgroundPanel panelPersonajes = new BackgroundPanel(transparent);
 		panelPersonajes.setBounds(0, 0, 141, 318);
 		frame.getContentPane().add(panelPersonajes);
 		
@@ -77,8 +83,8 @@ public class Gui {
 		JButton btnPersonaje5 = new JButton("5");
 		btnPersonaje3.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
-		panelMapa = new JPanel();
-		
+		Image image = new ImageIcon(this.getClass().getResource("/img/Map.png")).getImage();
+		panelMapa = new BackgroundPanel(image);
 		
 		panelMapa.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -90,19 +96,18 @@ public class Gui {
 			}
 		});
 		
-		
-		
-		panelMapa.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelMapa.setBounds(192, 0, 782, 540);
 		panelMapa.setLayout(null);
 		
-		JPanel panelScore = new JPanel();
+		
+		BackgroundPanel panelScore = new BackgroundPanel(transparent);
 		panelScore.setBounds(0, 338, 141, 213);
 		frame.getContentPane().add(panelMapa);
 		frame.getContentPane().add(panelScore);
 		
 		lblScore = new JLabel("Score: 0");
 		panelScore.add(lblScore);
+		
 		
 	}
 	
