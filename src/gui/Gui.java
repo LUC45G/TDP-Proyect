@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import logicas.Controller;
@@ -52,16 +53,23 @@ public class Gui {
 		panelGeneral = new BackgroundPanel(bg);
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 600);
+		frame.setBounds(100, 100, 975, 570);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(panelGeneral);
 		frame.getContentPane().setLayout(null);
 		
 		Image transparent = new ImageIcon(this.getClass().getResource("/img/transparent.png")).getImage();
+		Image image = new ImageIcon(this.getClass().getResource("/img/Map.png")).getImage();
+		
+		BackgroundPanel panelIzq = new BackgroundPanel(transparent);
+		panelIzq.setBounds(0, 0, 180, 540);
+		panelGeneral.add(panelIzq);
+		panelIzq.setLayout(null);
 		
 		BackgroundPanel panelPersonajes = new BackgroundPanel(transparent);
-		panelPersonajes.setBounds(0, 0, 141, 318);
-		frame.getContentPane().add(panelPersonajes);
+		panelPersonajes.setBounds(5, 5, 160, 282);
+		panelIzq.add(panelPersonajes);
+		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
 		JButton btnPersonaje1 = new JButton("Seleccionar aliado");
 		btnPersonaje1.addActionListener(new btn1AL()); 
@@ -83,7 +91,14 @@ public class Gui {
 		JButton btnPersonaje5 = new JButton("5");
 		btnPersonaje3.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
-		Image image = new ImageIcon(this.getClass().getResource("/img/Map.png")).getImage();
+		
+		
+		BackgroundPanel panelScore = new BackgroundPanel(transparent);
+		panelScore.setBounds(0, 298, 183, 231);
+		panelIzq.add(panelScore);
+		
+		lblScore = new JLabel("Score: 0");
+		panelScore.add(lblScore);
 		panelMapa = new BackgroundPanel(image);
 		
 		panelMapa.addMouseListener(new MouseAdapter() {
@@ -96,17 +111,9 @@ public class Gui {
 			}
 		});
 		
-		panelMapa.setBounds(192, 0, 782, 540);
+		panelMapa.setBounds(180, 0, 782, 540);
 		panelMapa.setLayout(null);
-		
-		
-		BackgroundPanel panelScore = new BackgroundPanel(transparent);
-		panelScore.setBounds(0, 338, 141, 213);
 		frame.getContentPane().add(panelMapa);
-		frame.getContentPane().add(panelScore);
-		
-		lblScore = new JLabel("Score: 0");
-		panelScore.add(lblScore);
 		
 		
 	}
@@ -116,7 +123,8 @@ public class Gui {
 	 */
 	public void ActualizarGrafica() {
 		
-		panelMapa.removeAll();
+		try {
+			panelMapa.removeAll();
 		JLabel jl;
 		
 		for(int i = 0; i < controller.GetObjects().size(); i++) {
@@ -126,6 +134,9 @@ public class Gui {
 		}
 		
 		panelMapa.repaint();
+		} catch ( NullPointerException e ) {
+			//Esto esta porque el hilo arranca antes que el resto de cosas
+		}
 		
 	}
 	
