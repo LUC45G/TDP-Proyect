@@ -38,10 +38,9 @@ public class HiloDisparos extends Thread {
 				System.out.println("HiloDisparos=>"); e.printStackTrace();
 			}
 			 
-			for(Rectangle r : _shootHitboxes) 
-				r.x-=3;
 			
-			_controller.Update();
+			
+			
 		}
 	}
 

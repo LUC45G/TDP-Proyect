@@ -36,7 +36,7 @@ public class EnemyGenerator {
 	public ImageIcon GetEnemy(int i, int y) {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
 		_dataStorage.Store(e);
-		e.SetX(600); e.SetY(y*90); // Placeholders
+		e.SetX(700); e.SetY(y*90); // Placeholders
 		_enemyThread.AgregarEnemigo(e);
 		return e.GetSprite();
 	}

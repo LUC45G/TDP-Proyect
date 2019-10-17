@@ -15,7 +15,7 @@ public class Ally1 extends Ally {
 
 	public Ally1(int x, int y) {
 		super();
-		_sprite = new ImageIcon(this.getClass().getResource("/img/0.png"));
+		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy6.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 		
 	}

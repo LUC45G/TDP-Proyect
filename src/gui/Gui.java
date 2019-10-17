@@ -49,7 +49,7 @@ public class Gui {
 		objetos = new ArrayList<JLabel>();
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 900, 600);
+		frame.setBounds(100, 100, 1000, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -93,7 +93,7 @@ public class Gui {
 		
 		
 		panelMapa.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelMapa.setBounds(192, 0, 692, 551);
+		panelMapa.setBounds(192, 0, 782, 540);
 		panelMapa.setLayout(null);
 		
 		JPanel panelScore = new JPanel();

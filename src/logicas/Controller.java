@@ -37,7 +37,7 @@ public class Controller {
 		
 		
 		_shoots.SetController(this);
-		_shoots.start();
+		// _shoots.start();
 	}
 	
 	/** 

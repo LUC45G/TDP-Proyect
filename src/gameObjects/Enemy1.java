@@ -8,7 +8,8 @@ public class Enemy1 extends Enemy {
 
 	public Enemy1(int x, int y) {
 		super();
-		_sprite = new ImageIcon(this.getClass().getResource("/img/0.png"));
+		_velocidad = 7;
+		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy1.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	

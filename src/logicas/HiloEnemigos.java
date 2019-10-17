@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import gameObjects.Enemy;
+import gameObjects.GameObject;
 
 /**
  * Hilo encargado de mover a los enemigos
@@ -28,16 +29,20 @@ public class HiloEnemigos extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(450);
 			} catch (InterruptedException e) {
 				System.out.println("HiloEnemigos=>"); e.printStackTrace();
 			}
 			
-			for(Rectangle r : _enemiesHitboxes) {
-				if(Controller.GetInstance().puedeAvanzar(r))
-					r.x-=7;
-				
-			}			
+			ArrayList<GameObject> all = DataStorage.GetInstance().GetAllObjects();
+			
+			for(GameObject g : all) {
+				if(Controller.GetInstance().puedeAvanzar(g.GetHitbox()))
+					g.Move();
+			}
+			
+			Controller.GetInstance().Update();
+			
 		}
 	}
 	
