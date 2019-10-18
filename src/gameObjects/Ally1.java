@@ -17,7 +17,8 @@ public class Ally1 extends Ally {
 		super();
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
-		
+		_shoot = new DisparoAliado();
+		_delay = 7;
 	}
 	
 	public Character Clone() {

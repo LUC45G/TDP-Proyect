@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import gameObjects.Ally;
+import gameObjects.Disparo;
 import gameObjects.GameObject;
 
 /**
@@ -134,9 +135,20 @@ public class Controller {
 	 */
 	public void InvokeAlly(int x, int y) {
 		Ally a = _store.CreateAlly(_currentIndex, x, y);
+		a.SetController(INSTANCE);
 		_dataStorage.Store(a.GetHitbox());
 		_gui.Insertar(a.GetSprite());
 		_currentIndex = -1;
+	}
+	
+	/**
+	 * Agrega un disparo al mapa
+	 * @param d disparo
+	 */
+	public void AddDisparo(Disparo d) {
+		_dataStorage.Store(d);
+		_shoots.AgregarDisparo(d);
+		_gui.Insertar(d.GetSprite());
 	}
 
 	/**

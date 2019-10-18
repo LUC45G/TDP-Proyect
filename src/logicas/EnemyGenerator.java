@@ -8,7 +8,7 @@ import gameObjects.*;
 public class EnemyGenerator {
 	
 	protected ArrayList<Enemy>  _enemies;		 // Lista de enemigos a clonar
-	protected HiloEnemigos 		_enemyThread;	 // Hilo de los enemigos
+	protected HiloPrincipal 	_mainThread;	 // Hilo principal
 	protected DataStorage 		_dataStorage; 	 // Almacenamiento de cosas
 	
 	public EnemyGenerator() {
@@ -19,12 +19,16 @@ public class EnemyGenerator {
 		_enemies.add(new Enemy1(0, 0));
 		
 		/* Inicializo el hilo */
-		_enemyThread = new HiloEnemigos();
-		_enemyThread.start();
+		_mainThread = new HiloPrincipal();
+		_mainThread.start();
 	}
 	
 	public ArrayList<Rectangle> GetHitboxes() {
-		return _enemyThread.GetHitboxes();
+		ArrayList<Rectangle> tr = new ArrayList<Rectangle>();
+		for(Enemy e : _enemies) {
+			tr.add(e.GetHitbox());
+		}
+		return tr;
 	}
 	
 	/**
@@ -35,9 +39,9 @@ public class EnemyGenerator {
 	 */
 	public ImageIcon GetEnemy(int i, int y) {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
+		e.SetController(Controller.GetInstance());
 		_dataStorage.Store(e);
 		e.SetX(700); e.SetY(y*90); // Placeholders
-		_enemyThread.AgregarEnemigo(e);
 		return e.GetSprite();
 	}
 

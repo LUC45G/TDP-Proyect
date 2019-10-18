@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import logicas.Controller;
 import logicas.Visitor;
 
 /**
@@ -11,16 +12,19 @@ import logicas.Visitor;
  *
  */
 public abstract class GameObject {
-	protected ImageIcon _sprite;
-	protected Rectangle _hitbox;
-	protected Visitor 	_visitor;
-	protected int 		_velocidad;
+	protected ImageIcon  _sprite;
+	protected Rectangle  _hitbox;
+	protected Visitor 	 _visitor;
+	protected int 		 _velocidad;
+	protected Controller _controller;
+	protected boolean 	 _visible;
 	
 	protected GameObject() {}
 	
 	public GameObject(ImageIcon sprite, Rectangle hitbox) {
 		_sprite = sprite;
 		_hitbox = hitbox;
+		_visible = true;
 	}
 	
 	public ImageIcon GetSprite() {
@@ -45,6 +49,18 @@ public abstract class GameObject {
 	
 	public void Move() {
 		_hitbox.x -= _velocidad;
+	}
+	
+	public void SetController(Controller c) {
+		_controller = c;
+	}
+	
+	public void NotVisible() {
+		_visible = false;
+	}
+	
+	public boolean IsVisible() {
+		return _visible;
 	}
 
 	public void accept(Visitor V) {}

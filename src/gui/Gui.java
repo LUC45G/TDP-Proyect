@@ -128,6 +128,16 @@ public class Gui {
 		JLabel jl;
 		
 		for(int i = 0; i < controller.GetObjects().size(); i++) {
+			
+			if(	controller.GetObjects().get(i).GetHitbox().x > panelMapa.getWidth() 	||
+				controller.GetObjects().get(i).GetHitbox().x < 0 						||
+				controller.GetObjects().get(i).GetHitbox().y > panelMapa.getHeight() 	||  
+				controller.GetObjects().get(i).GetHitbox().y < 0 ) {
+				
+					controller.GetObjects().remove(i);
+					continue;
+			}
+			
 			jl = new JLabel(controller.GetObjects().get(i).GetSprite());
 			jl.setBounds(controller.GetObjects().get(i).GetHitbox());
 			panelMapa.add(jl);

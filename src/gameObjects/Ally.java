@@ -10,6 +10,8 @@ import logicas.VisitorAlly;
 public abstract class Ally extends Character {
 	
 	protected int _cost;
+	protected int _delay;
+	protected int _delta;
 
 	protected Ally() {
 		// TODO Auto-generated constructor stub
@@ -21,11 +23,21 @@ public abstract class Ally extends Character {
 	
 	protected Ally(ImageIcon sprite, Rectangle hitbox, int fuerza) {
 		super(sprite, hitbox, fuerza);
-		_shoot=new Disparo(null,null,_strength); //esto esta como el tuje pero lo hice asi no mas
 		_visitor=new VisitorAlly(this);
-		
 	}
 	
+	@Override
+	public void Move() {
+		if(++_delta%_delay==0)
+			_controller.AddDisparo(this.Disparar());
+	}
+	
+	public Disparo Disparar() {
+		Disparo d = _shoot.Clone();
+		d.SetX(_hitbox.x + (_hitbox.width+1));
+		d.SetY(_hitbox.y);
+		return d;
+	}
 	
 	
 	/**

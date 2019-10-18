@@ -14,7 +14,7 @@ import logicas.VisitorEnemy;
 public abstract class Enemy extends Character {
 	public Enemy(ImageIcon sprite, Rectangle hitbox, int fuerza) {
 		super(sprite, hitbox, fuerza);
-		_shoot=new Disparo(null,null,_strength); //esto esta como el tuje pero lo hice asi no mas
+		//_shoot=new Disparo1(0, 0); //esto esta como el tuje pero lo hice asi no mas
 		_visitor=new VisitorEnemy(this);
 	}
 	
@@ -26,7 +26,13 @@ public abstract class Enemy extends Character {
 
 	public void receive_attack(Disparo miDisparo) {
 		System.out.println("Ally Visitado por: " + miDisparo.hashCode());
-		this.set_health(_health-miDisparo.get_strength());		
+		this.set_health(_health-miDisparo.get_strength());	
+		
+		if(_health <= 0 ) {
+			// Remove
+			System.out.println(this.hashCode() + " Eliminado ");
+		}
+			
 	}
 	
 	public void accept(Visitor v) {

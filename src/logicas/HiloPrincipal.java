@@ -1,30 +1,14 @@
 package logicas;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import gameObjects.Enemy;
 import gameObjects.GameObject;
 
 /**
  * Hilo encargado de mover a los enemigos
  *
  */
-public class HiloEnemigos extends Thread {
-
-	private ArrayList<Rectangle>  _enemiesHitboxes;
-	
-	public HiloEnemigos() {
-		_enemiesHitboxes = new ArrayList<Rectangle>();
-	}
-	
-	public ArrayList<Rectangle> GetHitboxes() {
-		return _enemiesHitboxes;
-	}
-	
-	public void AgregarEnemigo(Enemy e) {
-		_enemiesHitboxes.add(e.GetHitbox());
-	}
+public class HiloPrincipal extends Thread {
 	
 	public void run() {
 		while(true) {
