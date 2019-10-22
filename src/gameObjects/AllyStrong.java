@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gameObjects;
 
 import java.awt.Rectangle;
@@ -8,21 +5,22 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 /**
- * Primer aliado
  * 
+ * @author matia
+ *	Aliado con el triple de vida/fuerza 
  */
-public class Ally1 extends Ally {
-
-	public Ally1(int x, int y) {
-		super();
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
-		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
-		_shoot = new DisparoAliado();
-		_delay = 7;
-	}
+public class AllyStrong extends Enemy {
 	
+	public AllyStrong(int x,int y) {
+		super();
+		_strength*=3;
+		_health*=3;
+		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally5.gif"));
+		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+	}
+	@Override
 	public Character Clone() {
-		Character a = new Ally1(0, 0);
+		Character a = new AllyStrong(0, 0);
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}

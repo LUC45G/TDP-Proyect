@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import gameObjects.Ally;
 import gameObjects.Disparo;
 import gameObjects.GameObject;
+import gameObjects.StateCharacter;
 
 /**
  * Clase que comunica la gui con la logica de atras del todo
@@ -24,7 +25,7 @@ public class Controller {
 	protected int 		   				_currentIndex;		// Indice para control y realizacion de la compra
 	protected EnemyGenerator			_enemyGenerator;	// Genera enemigos
 	protected static Controller 		INSTANCE;			// Instancia Singleton
-	
+	protected StateCharacter			_state;
 	protected boolean 					_roundEnded; 		// Controla si termina la ronda
 	
 	private Controller(Gui gui) {
@@ -35,7 +36,6 @@ public class Controller {
 		_currentIndex	= -1;
 		_enemyGenerator = new EnemyGenerator();
 		_roundEnded		= false;
-		
 		
 		_shoots.SetController(this);
 		// _shoots.start();

@@ -28,6 +28,14 @@ public abstract class Disparo extends GameObject implements Cloneable {
 	public void setVisitorDisparo(Visitor visitorDisparo) {
 		this.visitorDisparo = visitorDisparo;
 	}
+	
+	/**
+	 * desaparece graficamente y logicamente
+	 */
+	public void vanish() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
