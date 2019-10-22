@@ -15,11 +15,10 @@ public class ImmovableObject extends GameObject {
 
 	public void affect(Disparo miDisparo) {
 		//este metodo debe ser redefinido por cada sub_clase de ImmovableObject
-		
+		// miDisparo.vanish(); _health--;
 	}
 	public void affect(Character c) {
 		//este metodo debe ser redefinido por cada sub_clase de ImmovableObject
-		
 	}
 	public void accept(Visitor v) {
 		v.visitImmovableObject(this);

@@ -1,5 +1,6 @@
 package gameObjects;
 
+import logicas.Controller;
 import logicas.Visitor;
 
 public abstract class Disparo extends GameObject implements Cloneable {
@@ -32,8 +33,7 @@ public abstract class Disparo extends GameObject implements Cloneable {
 	 * desaparece graficamente y logicamente
 	 */
 	public void vanish() {
-		// TODO Auto-generated method stub
-		
+		Controller.GetInstance().Remove(this);
 	}
 
 

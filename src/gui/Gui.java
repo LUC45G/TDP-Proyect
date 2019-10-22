@@ -85,11 +85,11 @@ public class Gui {
 		panelPersonajes.add(btnPersonaje3);
 		
 		JButton btnPersonaje4 = new JButton("4");
-		btnPersonaje3.addActionListener(new btn4AL());
+		btnPersonaje4.addActionListener(new btn4AL());
 		panelPersonajes.add(btnPersonaje4);
 		
 		JButton btnPersonaje5 = new JButton("5");
-		btnPersonaje3.addActionListener(new btn5AL());
+		btnPersonaje5.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
 		
 		
@@ -134,8 +134,8 @@ public class Gui {
 				controller.GetObjects().get(i).GetHitbox().y > panelMapa.getHeight() 	||  
 				controller.GetObjects().get(i).GetHitbox().y < 0 ) {
 				
-					controller.GetObjects().remove(i);
-					continue;
+				controller.Remove(i);
+				continue;
 			}
 			
 			jl = new JLabel(controller.GetObjects().get(i).GetSprite());
@@ -202,6 +202,7 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
+			System.out.println("btn3");
 			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(2)) {
 					controller.Purchase(2);
@@ -221,12 +222,12 @@ public class Gui {
 	private class btn4AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
+			System.out.println("btn4");
 			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(3)) {
 					controller.Purchase(3);
 				}
-
+			   panelMapa.repaint();
 		}
 	}
 	
@@ -237,13 +238,13 @@ public class Gui {
 	private class btn5AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			System.out.println("btn5");
 			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(4)) {
 					controller.Purchase(4);
 				}
 			 
-			
+			   panelMapa.repaint();
 		}
 	}
 }

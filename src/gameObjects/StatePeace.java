@@ -1,4 +1,7 @@
 package gameObjects;
+
+import javax.swing.ImageIcon;
+
 /**
  * 
  * @author matia
@@ -6,10 +9,14 @@ package gameObjects;
  */
 public class StatePeace extends StateCharacter {
 
+	public StatePeace(Character c) {
+		super(c);
+		}
+
 	@Override
-	public void metSinNombre() {
+	public ImageIcon GetImage() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

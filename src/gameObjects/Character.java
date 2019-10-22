@@ -13,10 +13,11 @@ import logicas.Visitor;
  */
 public abstract class Character extends GameObject implements Cloneable {
 	
-	protected int 		_health; 		// Vida actual del personaje, quizas deba ir mas arriba
-	protected Rectangle _boundingBox; 	// Rectangulo que representa el alcance
-	protected int		_strength;      // Fuerza del personaje
-	protected Disparo   _shoot;			
+	protected int 			 _health; 		// Vida actual del personaje, quizas deba ir mas arriba
+	protected Rectangle 	 _boundingBox; 	// Rectangulo que representa el alcance
+	protected int			 _strength;      // Fuerza del personaje
+	protected Disparo   	 _shoot;	
+	protected StateCharacter _state;
 	
 	protected Character() {}
 	protected Character(ImageIcon sprite, Rectangle hitbox, int fuerza) {
@@ -43,6 +44,10 @@ public abstract class Character extends GameObject implements Cloneable {
 	public Character(ImageIcon sprite, Rectangle hitbox) {
 		super(sprite, hitbox);
 		_health = 10;
+	}
+	
+	public void SetState(StateCharacter sc) {
+		_sprite = sc.GetImage();
 	}
 
 	public abstract void accept(Visitor v);

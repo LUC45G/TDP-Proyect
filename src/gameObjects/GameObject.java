@@ -18,13 +18,17 @@ public abstract class GameObject {
 	protected int 		 _velocidad;
 	protected Controller _controller;
 	protected boolean 	 _visible;
+	protected boolean 	 _canMove;
 	
-	protected GameObject() {}
-	
+	protected GameObject() {
+		_visible = _canMove = true;
+	}
+
 	public GameObject(ImageIcon sprite, Rectangle hitbox) {
-		_sprite = sprite;
-		_hitbox = hitbox;
+		_sprite  = sprite;
+		_hitbox  = hitbox;
 		_visible = true;
+		_canMove = true;
 	}
 	
 	public ImageIcon GetSprite() {
@@ -61,6 +65,18 @@ public abstract class GameObject {
 	
 	public boolean IsVisible() {
 		return _visible;
+	}
+	
+	public void StopMoving() {
+		_canMove = false;
+	}
+	
+	public void StartMoving() {
+		_canMove = true;
+	}
+	
+	public boolean CanMove() {
+		return _canMove;
 	}
 
 	public void accept(Visitor V) {}

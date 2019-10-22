@@ -8,7 +8,7 @@ import logicas.Visitor;
 import logicas.VisitorAllyShoot;
 import logicas.VisitorEnemy;
 
-public class DisparoAliado extends Disparo{
+public class DisparoAliado extends Disparo {
 
 	public DisparoAliado() {
 		super();

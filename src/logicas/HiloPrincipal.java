@@ -21,7 +21,7 @@ public class HiloPrincipal extends Thread {
 			ArrayList<GameObject> all = DataStorage.GetInstance().GetAllObjects();
 			
 			for(GameObject g : all) {
-				if(Controller.GetInstance().puedeAvanzar(g.GetHitbox()))
+				if(g.CanMove())
 					g.Move();
 			}
 			

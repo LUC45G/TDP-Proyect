@@ -12,6 +12,7 @@ public class VisitorEnemy extends Visitor {
 	}
 	public void visitImmovableObject(ImmovableObject i) {
 		i.affect(miEnemigo);
+		miEnemigo.StopMoving();
 	}
 	public void visitAllyShoot(DisparoAliado d) {
 		d.vanish();

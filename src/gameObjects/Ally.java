@@ -46,6 +46,7 @@ public abstract class Ally extends Character {
 		Disparo d = _shoot.Clone();
 		d.SetX(_hitbox.x + (_hitbox.width+1));
 		d.SetY(_hitbox.y);
+		_delta = 0;
 		return d;
 	}
 	

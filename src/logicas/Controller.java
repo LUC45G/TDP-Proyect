@@ -89,6 +89,10 @@ public class Controller {
 		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
 	}
 	
+	public void Remove(GameObject go) {
+		_dataStorage.Remove( go );
+	}
+	
 	public void Intersection() {
 		int i = 0, j = 0;
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
@@ -104,22 +108,6 @@ public class Controller {
 			}
 			i++;
 		}
-		
-		
-	}
-	
-	
-	public boolean puedeAvanzar(Rectangle source) {
-		
-		for ( Rectangle destiny : GetHitboxes() ) {
-			if ( source != destiny ) {
-				if ( source.intersects(destiny) ) {
-					return false;
-				}
-			}
-		}
-		
-		return true;
 		
 		
 	}

@@ -1,4 +1,7 @@
 package gameObjects;
+
+import javax.swing.ImageIcon;
+
 /**
  * 
  * @author matia
@@ -6,10 +9,15 @@ package gameObjects;
  */
 public class StateAngry extends StateCharacter{
 
+	protected StateAngry(Character c) {
+		super(c);
+	}
+
 	@Override
-	public void metSinNombre() {
-		// TODO Auto-generated method stub
+	public ImageIcon GetImage() {
 		
+		return _bank.getAngry(miCh);
+	
 	}
 
 }
