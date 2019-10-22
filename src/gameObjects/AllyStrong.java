@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
  * @author matia
  *	Aliado con el triple de vida/fuerza 
  */
-public class AllyStrong extends Enemy {
+public class AllyStrong extends Ally {
 	
 	public AllyStrong(int x,int y) {
 		super();

@@ -144,8 +144,9 @@ public class Gui {
 		}
 		
 		panelMapa.repaint();
-		} catch ( NullPointerException e ) {
+		} catch ( NullPointerException | ArrayIndexOutOfBoundsException e ) {
 			//Esto esta porque el hilo arranca antes que el resto de cosas
+			System.out.println("GUI:: "+ e.getMessage());
 		}
 		
 	}
@@ -181,13 +182,13 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			/* PlaceHolder para el verdadero oyente
+			//PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(1)) {
 					controller.Purchase(1);
 				}
-			 */
+			 
 			
-			controller.ToggleRound();
+			//controller.ToggleRound();
 			ActualizarGrafica();
 			
 		}
@@ -201,11 +202,11 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			/* PlaceHolder para el verdadero oyente
+			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(2)) {
 					controller.Purchase(2);
 				}
-			 */
+			 
 			
 			//nivel.Eliminar(ObjetoDelJuego o);
 			// nivel.EliminarTodosLosEnemigos();
@@ -221,11 +222,10 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
-			/* PlaceHolder para el verdadero oyente
+			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(3)) {
 					controller.Purchase(3);
 				}
-			 */
 
 		}
 	}
@@ -238,11 +238,11 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			/* PlaceHolder para el verdadero oyente
+			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(4)) {
 					controller.Purchase(4);
 				}
-			 */
+			 
 			
 		}
 	}

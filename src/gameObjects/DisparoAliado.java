@@ -4,7 +4,9 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import logicas.Visitor;
 import logicas.VisitorAllyShoot;
+import logicas.VisitorEnemy;
 
 public class DisparoAliado extends Disparo{
 
@@ -18,6 +20,10 @@ public class DisparoAliado extends Disparo{
 	@Override
 	public Disparo Clone() {
 		return new DisparoAliado();
+	}
+	
+	public void accept(Visitor ve) {
+		ve.visitAllyShoot(this);
 	}
 
 }

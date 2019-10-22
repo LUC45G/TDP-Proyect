@@ -13,7 +13,7 @@ public class AllySlim extends Ally {
 	
 	public AllySlim(int x,int y) {
 		super();
-		_velocidad*=5;
+		_delay/=5;
 		_strength/=3;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally4.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());

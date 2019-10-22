@@ -22,7 +22,7 @@ public class ImmovableObject extends GameObject {
 		
 	}
 	public void accept(Visitor v) {
-		v.VisitImmovableObject(this);
+		v.visitImmovableObject(this);
 	}
 
 }

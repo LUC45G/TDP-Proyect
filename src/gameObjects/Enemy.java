@@ -46,7 +46,7 @@ public abstract class Enemy extends Character {
 	}
 	
 	public void accept(Visitor v) {
-		v.VisitEnemy(this);
+		v.visitEnemy(this);
 	}
 
 			
