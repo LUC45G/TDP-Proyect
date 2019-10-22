@@ -1,14 +1,22 @@
 package logicas;
 
 import gameObjects.Ally;
+import gameObjects.Disparo;
+import gameObjects.DisparoAliado;
 import gameObjects.Enemy;
 import gameObjects.ImmovableObject;
 
 public abstract class Visitor {
 	
-	public void VisitAlly(Ally a) {}
+	public void visitAlly(Ally a) {}
 
-	public void VisitEnemy(Enemy e) {}
+	public void visitEnemy(Enemy e) {}
 	
-	public void VisitImmovableObject(ImmovableObject i) {}
+	public void visitShoot(Disparo d) {}
+	
+	public void visitImmovableObject(ImmovableObject i) {}
+
+	public void visitAllyShoot(DisparoAliado disparoAliado) {}
+	
+	public void visitEnemyShoot(DisparoAliado disparoAliado) {}
 }

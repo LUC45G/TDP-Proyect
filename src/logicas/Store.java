@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import gameObjects.Ally;
 import gameObjects.Ally1;
+import gameObjects.AllyFast;
+import gameObjects.AllyFat;
+import gameObjects.AllySlim;
+import gameObjects.AllyStrong;
 
 /**
  * Store permitira al jugador comprar personajes.
@@ -21,6 +25,10 @@ public class Store {
 		 * Inicializar los aliados clonables
 		 */
 		_alliesToClone.add(new Ally1(0, 0));
+		_alliesToClone.add(new AllyFat(0, 0));
+		_alliesToClone.add(new AllyFast(0, 0));
+		_alliesToClone.add(new AllySlim(0, 0));
+		_alliesToClone.add(new AllyStrong(0, 0));
 	}
 
 	/**

@@ -14,16 +14,26 @@ public abstract class Ally extends Character {
 	protected int _delta;
 
 	protected Ally() {
-		// TODO Auto-generated constructor stub
+		_delay=7;
+		_velocidad=0;
+		_visitor=new VisitorAlly(this);
+		_shoot=new DisparoAliado();
+		
 	}
 
 	protected Ally(ImageIcon sprite, Rectangle hitbox) {
 		super(sprite, hitbox);
+		_visitor=new VisitorAlly(this);
+		_strength=3;
+		_shoot=new DisparoAliado();
+		_velocidad=0;
 	}	
 	
 	protected Ally(ImageIcon sprite, Rectangle hitbox, int fuerza) {
 		super(sprite, hitbox, fuerza);
 		_visitor=new VisitorAlly(this);
+		_shoot=new DisparoAliado();
+		_velocidad=0;
 	}
 	
 	@Override
@@ -54,6 +64,6 @@ public abstract class Ally extends Character {
 		//este metodo es con fines funcionales no se si es la idea que sea asi
 	}
 	public void accept(Visitor v) {
-		v.VisitAlly(this);
+		v.visitAlly(this);
 	}
 }

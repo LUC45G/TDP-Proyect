@@ -12,15 +12,25 @@ import logicas.VisitorEnemy;
  *
  */
 public abstract class Enemy extends Character {
+	protected StateCharacter situacion;
+	
 	public Enemy(ImageIcon sprite, Rectangle hitbox, int fuerza) {
 		super(sprite, hitbox, fuerza);
 		//_shoot=new Disparo1(0, 0); //esto esta como el tuje pero lo hice asi no mas
+		_health=10;
+		_velocidad=7;
+									//Bounding box (que onda nunca se setea????
+									//shoot como funciona??
 		_visitor=new VisitorEnemy(this);
 	}
 	
 
 	protected Enemy() {
-		// TODO Auto-generated constructor stub
+		super();
+		_strength=3; //4 disparos para un enemigo comun
+		_health=10;
+		_velocidad=7;
+		_visitor=new VisitorEnemy(this);
 	}
 
 
@@ -36,7 +46,7 @@ public abstract class Enemy extends Character {
 	}
 	
 	public void accept(Visitor v) {
-		v.VisitEnemy(this);
+		v.visitEnemy(this);
 	}
 
 			

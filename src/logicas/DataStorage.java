@@ -25,7 +25,7 @@ public class DataStorage {
 	protected ArrayList<Disparo> 		_shoots;
 	
 	private DataStorage() {
-		_currentMoney 	= 0;
+		_currentMoney 	= 444444440;
 		_alliesHitboxes	= new ArrayList<Rectangle>();
 		_allies 		= new ArrayList<Ally>();
 		_enemies 		= new ArrayList<Enemy>();

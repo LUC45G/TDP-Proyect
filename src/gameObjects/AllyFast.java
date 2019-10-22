@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gameObjects;
 
 import java.awt.Rectangle;
@@ -8,21 +5,21 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 /**
- * Primer aliado
  * 
+ * @author matia
+ *	aliado con el triple de velocidad de disparo
  */
-public class Ally1 extends Ally {
-
-	public Ally1(int x, int y) {
-		super();
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
-		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
-		_shoot = new DisparoAliado();
-		_delay = 7;
-	}
+public class AllyFast extends Ally {
 	
+	public AllyFast(int x,int y) {
+		super();
+		_delay/=3;
+		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
+		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+	}
+	@Override
 	public Character Clone() {
-		Character a = new Ally1(0, 0);
+		Character a = new AllyFast(0, 0);
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
