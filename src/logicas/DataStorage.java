@@ -99,6 +99,12 @@ public class DataStorage {
 		return aux;
 	}
 	
+	public void Remove(GameObject g) {
+		if(_allies.remove(g))  return;
+		if(_enemies.remove(g)) return;
+		if(_shoots.remove(g))  return;
+	}
+	
 	/**
 	 * Suma la cantidad de dinero 
 	 * @param q cantidad de dinero a sumar

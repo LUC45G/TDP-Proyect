@@ -85,6 +85,10 @@ public class Controller {
 		return _dataStorage.GetAllObjects();
 	}
 	
+	public void Remove(int i) {
+		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
+	}
+	
 	public void Intersection() {
 		int i = 0, j = 0;
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
