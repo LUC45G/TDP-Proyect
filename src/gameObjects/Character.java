@@ -47,7 +47,7 @@ public abstract class Character extends GameObject implements Cloneable {
 	}
 	
 	public void SetState(StateCharacter sc) {
-		_sprite = sc.GetImage();
+		_sprite = sc.GetImage(this);
 	}
 
 	public abstract void accept(Visitor v);

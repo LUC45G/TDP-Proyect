@@ -2,6 +2,7 @@ package logicas;
 
 import gameObjects.Ally;
 import gameObjects.Disparo;
+import gameObjects.DisparoAliado;
 import gameObjects.DisparoEnemigo;
 import gameObjects.ImmovableObject;
 
@@ -22,6 +23,9 @@ public class VisitorEnemyShoot extends Visitor {
 		i.affect(miDisparo);
 	}
 	
+	public void visitAllyShoot(DisparoAliado da) {
+		da.vanish();
+	}
 	public void visitEnemyShoot(DisparoEnemigo es) {
 		es.StartMoving();
 	}

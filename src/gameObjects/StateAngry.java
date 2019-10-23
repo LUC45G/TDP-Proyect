@@ -14,7 +14,7 @@ public class StateAngry extends StateCharacter{
 	}
 
 	@Override
-	public ImageIcon GetImage() {
+	public ImageIcon GetImage(Character c) {
 		
 		return _bank.getAngry(miCh);
 	

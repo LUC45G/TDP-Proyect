@@ -3,6 +3,7 @@ package logicas;
 import gameObjects.Ally;
 import gameObjects.Disparo;
 import gameObjects.DisparoAliado;
+import gameObjects.DisparoEnemigo;
 import gameObjects.Enemy;
 import gameObjects.ImmovableObject;
 
@@ -18,5 +19,5 @@ public abstract class Visitor {
 
 	public void visitAllyShoot(DisparoAliado disparoAliado) {}
 	
-	public void visitEnemyShoot(DisparoAliado disparoAliado) {}
+	public void visitEnemyShoot(DisparoEnemigo disparoAliado) {}
 }
