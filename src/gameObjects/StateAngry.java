@@ -11,10 +11,11 @@ public class StateAngry extends StateCharacter{
 
 	protected StateAngry(Character c) {
 		super(c);
+		_bank=new Bank();
 	}
 
 	@Override
-	public ImageIcon GetImage(Character c) {
+	public ImageIcon GetImage() {
 		
 		return _bank.getAngry(miCh);
 	

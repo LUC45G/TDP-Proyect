@@ -11,12 +11,13 @@ public class StatePeace extends StateCharacter {
 
 	public StatePeace(Character c) {
 		super(c);
+		_bank=new Bank();
 		}
 
 	@Override
-	public ImageIcon GetImage(Character c) {
+	public ImageIcon GetImage() {
 		// TODO Auto-generated method stub
-		return _bank.getPeace(c);
+		return _bank.getPeace(miCh);
 	}
 
 }
