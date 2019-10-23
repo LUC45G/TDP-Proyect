@@ -11,7 +11,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(Character e) {
-		return null;
+		return new ImageIcon(("/img/Ally1.gif"));
 	}
 	public ImageIcon getDead(Character e) {
 		return null;
@@ -21,7 +21,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(Enemy1 e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Enemy1.gif"));
 	}
 	public ImageIcon getDead(Enemy1 e) {
 		return null;
@@ -31,7 +31,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(EnemyBoss e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Enemy2.gif"));
 	}
 	public ImageIcon getDead(EnemyBoss e) {
 		return null;
@@ -41,7 +41,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(EnemyFast e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Enemy3.gif"));
 	}
 	public ImageIcon getDead(EnemyFast e) {
 		return null;
@@ -51,7 +51,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(EnemySlim e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Enemy4.gif"));
 	}
 	public ImageIcon getDead(EnemySlim e) {
 		return null;
@@ -61,7 +61,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(EnemyStrong e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Enemy5.gif"));
 	}
 	public ImageIcon getDead(EnemyStrong e) {
 		return null;
@@ -71,7 +71,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(Ally1 a) {
-		return null;
+		return new ImageIcon(("/img/Ally1.gif"));
 	}
 	public ImageIcon getDead(Ally1 a) {
 		return null;
@@ -81,7 +81,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(AllyFast e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
 	}
 	public ImageIcon getDead(AllyFast e) {
 		return null;
@@ -91,7 +91,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(AllySlim e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Ally3.gif"));
 	}
 	public ImageIcon getDead(AllySlim e) {
 		return null;
@@ -101,7 +101,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(AllyStrong e) {
-		return null;
+		return new ImageIcon(this.getClass().getResource("/img/Ally4.gif"));
 	}
 	public ImageIcon getDead(AllyStrong e) {
 		return null;

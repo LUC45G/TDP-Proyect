@@ -15,6 +15,7 @@ public abstract class Ally extends Character {
 
 	protected Ally() {
 		_delay=7;
+		_cost=0;
 		_velocidad=0;
 		_visitor=new VisitorAlly(this);
 		_shoot=new DisparoAliado();

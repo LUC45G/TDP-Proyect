@@ -14,9 +14,9 @@ public class StatePeace extends StateCharacter {
 		}
 
 	@Override
-	public ImageIcon GetImage() {
+	public ImageIcon GetImage(Character c) {
 		// TODO Auto-generated method stub
-		return null;
+		return _bank.getPeace(c);
 	}
 
 }

@@ -1,6 +1,10 @@
 package logicas;
 
 import gameObjects.Ally;
+import gameObjects.DisparoAliado;
+import gameObjects.DisparoEnemigo;
+import gameObjects.Enemy;
+import gameObjects.ImmovableObject;
 
 public class VisitorAlly extends Visitor {
 
@@ -9,5 +13,16 @@ public class VisitorAlly extends Visitor {
 		miAliado=ally;
 	}
 	//implementar metodos pertinentes
-
+	public void visitEnemyShoot(DisparoEnemigo de) {
+		de.vanish();
+	}
+	public void visitAllyShoot(DisparoAliado da) {
+		da.StartMoving();
+	}
+	public void visitEnemy(Enemy e) {
+		e.StopMoving();
+	}
+	public void visitImmovableObject(ImmovableObject i) {
+		i.affect(miAliado);
+	}
 }
