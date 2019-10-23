@@ -49,7 +49,14 @@ public abstract class Character extends GameObject implements Cloneable {
 	}
 	
 	public void SetState(StateCharacter sc) {
-		_sprite = sc.GetImage(this);
+		_sprite = sc.GetImage();
+		int x,y;
+		Rectangle h=sc.getCharacter().GetHitbox();
+		x=h.x; y=h.y;
+		setHitBox(x,y,_sprite.getIconHeight(),_sprite.getIconWidth());
+	}
+	public void setHitBox(int x , int y, int heigth, int width) {
+		_hitbox=new Rectangle(x,y,heigth,width);
 	}
 	
 	public void SetPowerUp(int i) {
@@ -65,7 +72,7 @@ public abstract class Character extends GameObject implements Cloneable {
 			_hasPowerUp = false;
 		}
 	}
-
+	
 	public abstract void accept(Visitor v);
 	
 	public abstract Character Clone();

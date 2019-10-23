@@ -68,4 +68,5 @@ public abstract class Ally extends Character {
 	public void accept(Visitor v) {
 		v.visitAlly(this);
 	}
+	
 }
