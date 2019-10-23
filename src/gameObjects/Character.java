@@ -18,6 +18,8 @@ public abstract class Character extends GameObject implements Cloneable {
 	protected int			 _strength;      // Fuerza del personaje
 	protected Disparo   	 _shoot;	
 	protected StateCharacter _state;
+	protected boolean 		 _hasPowerUp;
+	protected int 			 _powerUpLife;
 	
 	protected Character() {}
 	protected Character(ImageIcon sprite, Rectangle hitbox, int fuerza) {
@@ -49,9 +51,24 @@ public abstract class Character extends GameObject implements Cloneable {
 	public void SetState(StateCharacter sc) {
 		_sprite = sc.GetImage(this);
 	}
+	
+	public void SetPowerUp(int i) {
+		_hasPowerUp  = true;
+		_powerUpLife = i;
+	}
+	
+	public void ReducePowerUpLife() {
+		_powerUpLife--;
+		
+		if ( _powerUpLife <= 0 ) {
+			this.SetState( new StatePeace(this) );
+			_hasPowerUp = false;
+		}
+	}
 
 	public abstract void accept(Visitor v);
 	
 	public abstract Character Clone();
+	
 	
 }
