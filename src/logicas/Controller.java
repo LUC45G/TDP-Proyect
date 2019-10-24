@@ -74,9 +74,9 @@ public class Controller {
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Rectangle> GetHitboxes() {
-		ArrayList<Rectangle> aux = (ArrayList<Rectangle>) _shoots.GetHitboxes().clone();
+		ArrayList<Rectangle> aux = (ArrayList<Rectangle>) _dataStorage.GetHitboxes().clone();
 		aux.addAll(_enemyGenerator.GetHitboxes());
-		aux.addAll(_dataStorage.GetHitboxes());
+		aux.addAll(_shoots.GetHitboxes());
 		
 		return aux;
 	}
@@ -107,6 +107,7 @@ public class Controller {
 				j++;
 			}
 			i++;
+			j=0;
 		}
 		
 		
