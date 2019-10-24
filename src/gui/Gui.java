@@ -146,7 +146,7 @@ public class Gui {
 		panelMapa.repaint();
 		} catch ( NullPointerException | ArrayIndexOutOfBoundsException e ) {
 			//Esto esta porque el hilo arranca antes que el resto de cosas
-			System.out.println("GUI:: "+ e.getMessage());
+			System.out.println("GUI::"+ e.getMessage());
 		}
 		
 	}

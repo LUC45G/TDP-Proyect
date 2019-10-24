@@ -91,11 +91,11 @@ public class DataStorage {
 	 * Devuelve una lista de todos los gameObjects 
 	 * @return lista de todo
 	 */
-	@SuppressWarnings("unchecked")
 	public ArrayList<GameObject> GetAllObjects() {
-		ArrayList<GameObject> aux = (ArrayList<GameObject>) _allies.clone();
-		aux.addAll(_enemies);
+		ArrayList<GameObject> aux = new ArrayList<GameObject>();
 		aux.addAll(_shoots);
+		aux.addAll(_allies);
+		aux.addAll(_enemies);
 		return aux;
 	}
 	

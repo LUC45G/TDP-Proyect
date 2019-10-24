@@ -72,9 +72,9 @@ public class Controller {
 	 * Junta todas las hitboxes que tiene que haber en el mapa
 	 * @return Todas las hitboxes
 	 */
-	@SuppressWarnings("unchecked")
 	public ArrayList<Rectangle> GetHitboxes() {
-		ArrayList<Rectangle> aux = (ArrayList<Rectangle>) _dataStorage.GetHitboxes().clone();
+		ArrayList<Rectangle> aux = new ArrayList<Rectangle>();
+		aux.addAll(_shoots.GetHitboxes());
 		aux.addAll(_enemyGenerator.GetHitboxes());
 		aux.addAll(_shoots.GetHitboxes());
 		
