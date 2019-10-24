@@ -27,4 +27,16 @@ public class Ally1 extends Ally {
 		return a;
 	}
 
+	@Override
+	public void setPeace() {
+		_bank.getPeace(this);
+		
+	}
+
+	@Override
+	public void setAngry() {
+		_bank.getAngry(this);
+		
+	}
+
 }

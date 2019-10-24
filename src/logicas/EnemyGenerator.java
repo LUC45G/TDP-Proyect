@@ -42,8 +42,8 @@ public class EnemyGenerator {
 		e.SetController(Controller.GetInstance());
 		_dataStorage.Store(e);
 		e.SetX(700); e.SetY(y*90); // Placeholders
-		StateCharacter puto=new StatePeace(e);
-		e.SetState(puto);
+		//StateCharacter puto=new StatePeace(e);
+		e.setPeace();
 		return e.GetSprite();
 	}
 

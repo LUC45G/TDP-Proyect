@@ -23,5 +23,16 @@ public class AllyFast extends Ally {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
+	@Override
+	public void setPeace() {
+		_sprite=_bank.getPeace(this);
+		
+	}
+
+	@Override
+	public void setAngry() {
+		_sprite=_bank.getAngry(this);
+		
+	}
 
 }

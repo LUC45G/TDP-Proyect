@@ -20,6 +20,7 @@ public abstract class Character extends GameObject implements Cloneable {
 	protected StateCharacter _state;
 	protected boolean 		 _hasPowerUp;
 	protected int 			 _powerUpLife;
+	protected Bank			 _bank;
 	
 	protected Character() {}
 	protected Character(ImageIcon sprite, Rectangle hitbox, int fuerza) {
@@ -48,10 +49,6 @@ public abstract class Character extends GameObject implements Cloneable {
 		_health = 10;
 	}
 	
-	public void SetState(StateCharacter sc) {
-		_sprite = sc.GetImage();
-
-	}
 	public void setHitBox(int x , int y, int heigth, int width) {
 		_hitbox=new Rectangle(x,y,heigth,width);
 	}
@@ -65,7 +62,7 @@ public abstract class Character extends GameObject implements Cloneable {
 		_powerUpLife--;
 		
 		if ( _powerUpLife <= 0 ) {
-			this.SetState( new StatePeace(this) );
+			//this.SetState( new StatePeace(this) );
 			_hasPowerUp = false;
 		}
 	}
@@ -73,6 +70,12 @@ public abstract class Character extends GameObject implements Cloneable {
 	public abstract void accept(Visitor v);
 	
 	public abstract Character Clone();
+	
+	public abstract void setPeace();
+	
+	public abstract void setAngry();
+	
+	
 	
 	
 }

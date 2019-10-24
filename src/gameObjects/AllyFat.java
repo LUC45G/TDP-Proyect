@@ -25,5 +25,16 @@ public class AllyFat extends Ally {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
+	@Override
+	public void setPeace() {
+		_bank.getPeace(this);
+		
+	}
+
+	@Override
+	public void setAngry() {
+		_bank.getAngry(this);
+		
+	}
 
 }

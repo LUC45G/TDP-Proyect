@@ -9,7 +9,7 @@ import gameObjects.AllyFat;
 import gameObjects.AllySlim;
 import gameObjects.AllyStrong;
 import gameObjects.StateCharacter;
-import gameObjects.StatePeace;
+//import gameObjects.StatePeace;
 
 /**
  * Store permitira al jugador comprar personajes.
@@ -44,8 +44,8 @@ public class Store {
 		Ally aux = (Ally) _alliesToClone.get(i).Clone();
 		_dataStorage.Store(aux);
 		aux.SetX(x); aux.SetY((y/90)*90);
-		StateCharacter puto=new StatePeace(aux);
-		aux.SetState(puto);
+		//StateCharacter puto=new StatePeace(aux);
+		aux.setPeace();
 		return aux;
 	}
 

@@ -7,15 +7,6 @@ public class Bank {
 	public Bank() {
 		// TODO Auto-generated constructor stub
 	}
-	public ImageIcon getAngry(Character e) {
-		return null;
-	}
-	public ImageIcon getPeace(Character e) {
-		return new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
-	}
-	public ImageIcon getDead(Character e) {
-		return null;
-	}	
 	//enemy 1
 	public ImageIcon getAngry(Enemy1 e) {
 		return null;
@@ -34,6 +25,15 @@ public class Bank {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy2.gif"));
 	}
 	public ImageIcon getDead(EnemyBoss e) {
+		return null;
+	}
+	public ImageIcon getAngry(EnemyFat e) {
+		return null;
+	}
+	public ImageIcon getPeace(EnemyFat e) {
+		return new ImageIcon(this.getClass().getResource("/img/Enemy3.gif"));
+	}
+	public ImageIcon getDead(EnemyFat e) {
 		return null;
 	}
 	//enemy Fast
@@ -76,12 +76,22 @@ public class Bank {
 	public ImageIcon getDead(Ally1 a) {
 		return null;
 	}
+	//AllyFat
+	public ImageIcon getAngry(AllyFat e) {
+		return null;
+	}
+	public ImageIcon getPeace(AllyFat e) {
+		return new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
+	}
+	public ImageIcon getDead(AllyFat e) {
+		return null;
+	}
 	//AllyFast
 	public ImageIcon getAngry(AllyFast e) {
 		return null;
 	}
 	public ImageIcon getPeace(AllyFast e) {
-		return new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
+		return new ImageIcon("/img/Ally2.gif");
 	}
 	public ImageIcon getDead(AllyFast e) {
 		return null;
