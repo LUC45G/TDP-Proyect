@@ -20,7 +20,7 @@ public abstract class Character extends GameObject implements Cloneable {
 	protected StateCharacter _state;
 	protected boolean 		 _hasPowerUp;
 	protected int 			 _powerUpLife;
-	protected Bank			 _bank;
+	protected Bank			 _bank=new Bank();
 	
 	protected Character() {}
 	protected Character(ImageIcon sprite, Rectangle hitbox, int fuerza) {

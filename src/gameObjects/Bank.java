@@ -91,7 +91,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(AllyFast e) {
-		return new ImageIcon("/img/Ally2.gif");
+		return new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
 	}
 	public ImageIcon getDead(AllyFast e) {
 		return null;
