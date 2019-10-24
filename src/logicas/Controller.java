@@ -97,6 +97,18 @@ public class Controller {
 		int i = 0, j = 0;
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
 		//no seria mejor usar los objetos?
+		for(GameObject go : all) {
+			for(GameObject og:all) {
+				if(og!=go) {
+					if(og.GetHitbox().intersects(go.GetHitbox()))
+						og.accept(go.GetVisitor());
+				}
+			}
+		}
+		
+		
+		
+		/*
 		for ( Rectangle source : GetHitboxes() ) {
 			for ( Rectangle destiny : GetHitboxes() ) {
 				if ( source != destiny ) {
@@ -109,7 +121,7 @@ public class Controller {
 			i++;
 			j=0;
 		}
-		
+		*/
 		
 	}
 

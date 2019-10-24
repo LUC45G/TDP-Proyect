@@ -11,7 +11,7 @@ public abstract class Disparo extends GameObject implements Cloneable {
 	public Disparo() {
 		super();
 		_strength = 100;
-		_velocidad = -10;
+		_velocidad = -20;
 	}
 	
 	public abstract Disparo Clone();
@@ -22,12 +22,12 @@ public abstract class Disparo extends GameObject implements Cloneable {
 
 
 	public Visitor getVisitorDisparo() {
-		return visitorDisparo;
+		return _visitor;
 	}
 
 
 	public void setVisitorDisparo(Visitor visitorDisparo) {
-		this.visitorDisparo = visitorDisparo;
+		this._visitor = visitorDisparo;
 	}
 	/**
 	 * desaparece graficamente y logicamente

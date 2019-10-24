@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import logicas.Controller;
 import logicas.Visitor;
 import logicas.VisitorEnemy;
 
@@ -35,12 +36,10 @@ public abstract class Enemy extends Character {
 
 
 	public void receive_attack(Disparo miDisparo) {
-		System.out.println("Ally Visitado por: " + miDisparo.hashCode());
 		_health-=miDisparo.get_strength();	
 		
 		if(_health <= 0 ) {
-			// Remove
-			System.out.println(this.hashCode() + " Eliminado ");
+			Controller.GetInstance().Remove(this);
 		}
 			
 	}

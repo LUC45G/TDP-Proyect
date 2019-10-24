@@ -13,7 +13,7 @@ public class HiloPrincipal extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(450);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				System.out.println("HiloEnemigos=>"); e.printStackTrace();
 			}
