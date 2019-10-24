@@ -13,7 +13,7 @@ public class HiloPrincipal extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(100);
+				Thread.sleep(150);
 			} catch (InterruptedException e) {
 				System.out.println("HiloEnemigos=>"); e.printStackTrace();
 			}
@@ -23,7 +23,11 @@ public class HiloPrincipal extends Thread {
 			for(GameObject g : all) {
 				if(g.CanMove())
 					g.Move();
+				if(g.GetHitbox().getX()<=-10)
+					Controller.GetInstance().lose();
+					
 			}
+			
 			Controller.GetInstance().Intersection();
 			
 			Controller.GetInstance().Update();

@@ -82,9 +82,16 @@ public class Controller {
 	}
 	
 	public ArrayList<GameObject> GetObjects() {
-		return _dataStorage.GetAllObjects();
-	}
-	
+		ArrayList<GameObject> auxGo=_dataStorage.GetAllObjects();
+		for(GameObject go: auxGo) {
+			if(		
+				go.GetHitbox().getX() < -15 						||
+				go.GetHitbox().getY()< 0 ) {
+					Remove(go);
+			}
+		}
+		return auxGo;
+	}	
 	public void Remove(int i) {
 		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
 	}
@@ -143,6 +150,7 @@ public class Controller {
 		a.SetController(INSTANCE);
 		_dataStorage.Store(a.GetHitbox());
 		_gui.Insertar(a.GetSprite());
+		
 		_currentIndex = -1;
 	}
 	
@@ -213,6 +221,12 @@ public class Controller {
 	public void ToggleRound() {
 		//_roundEnded = !_roundEnded;
 		SpawnEnemies();
+	}
+
+	public void lose() {
+		_gui.showLose();
+		for(GameObject go:_dataStorage.GetAllObjects())
+			Remove(go);		
 	}
 
 }
