@@ -104,6 +104,9 @@ public class DataStorage {
 		if(_enemies.remove(g)) return;
 		if(_shoots.remove(g))  return;
 	}
+	public void Remove(Disparo d) {
+		_shoots.remove(d);
+	}
 	
 	/**
 	 * Suma la cantidad de dinero 

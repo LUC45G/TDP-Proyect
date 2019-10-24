@@ -24,6 +24,7 @@ public class HiloPrincipal extends Thread {
 				if(g.CanMove())
 					g.Move();
 			}
+			Controller.GetInstance().Intersection();
 			
 			Controller.GetInstance().Update();
 			

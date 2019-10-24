@@ -96,12 +96,12 @@ public class Controller {
 	public void Intersection() {
 		int i = 0, j = 0;
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
+		//no seria mejor usar los objetos?
 		for ( Rectangle source : GetHitboxes() ) {
 			for ( Rectangle destiny : GetHitboxes() ) {
 				if ( source != destiny ) {
 					if ( source.intersects(destiny) ) {
 						all.get(j).accept(all.get(i).GetVisitor());
-						//aca necesito saber al si es un game object
 					}
 				}
 				j++;

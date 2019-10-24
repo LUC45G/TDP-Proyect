@@ -27,13 +27,13 @@ public class EnemyFat extends Enemy {
 	}
 	@Override
 	public void setPeace() {
-		_bank.getPeace(this);
+		_sprite=_bank.getPeace(this);
 		
 	}
 
 	@Override
 	public void setAngry() {
-		_bank.getAngry(this);
+		_sprite=_bank.getAngry(this);
 		
 	}
 

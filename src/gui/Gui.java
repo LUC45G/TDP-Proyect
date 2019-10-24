@@ -188,7 +188,7 @@ public class Gui {
 				}
 			 
 			
-			//controller.ToggleRound();
+			controller.ToggleRound();
 			ActualizarGrafica();
 			
 		}
