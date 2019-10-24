@@ -202,7 +202,6 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			System.out.println("btn3");
 			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(2)) {
 					controller.Purchase(2);
@@ -222,7 +221,6 @@ public class Gui {
 	private class btn4AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("btn4");
 			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(3)) {
 					controller.Purchase(3);
@@ -238,7 +236,6 @@ public class Gui {
 	private class btn5AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("btn5");
 			// PlaceHolder para el verdadero oyente
 			   if(controller.CanPurchase(4)) {
 					controller.Purchase(4);

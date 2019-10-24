@@ -16,7 +16,6 @@ public class StatePeace extends StateCharacter {
 
 	@Override
 	public ImageIcon GetImage() {
-		// TODO Auto-generated method stub
 		return _bank.getPeace(miCh);
 	}
 

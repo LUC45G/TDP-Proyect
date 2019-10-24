@@ -9,7 +9,9 @@ public abstract class StateCharacter {
 		_bank=new Bank();
 		miCh=c;
 	}
+	
 	public abstract ImageIcon GetImage();
+	
 	public Character getCharacter() {
 		return miCh;
 	}

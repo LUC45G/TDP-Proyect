@@ -11,7 +11,7 @@ public class Bank {
 		return null;
 	}
 	public ImageIcon getPeace(Character e) {
-		return new ImageIcon(("/img/Ally1.gif"));
+		return new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
 	}
 	public ImageIcon getDead(Character e) {
 		return null;
