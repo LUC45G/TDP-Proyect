@@ -18,7 +18,8 @@ import gameObjects.StateCharacter;
  */
 public class Controller {
 	
-	protected HiloDisparos 				_shoots;		 	// Hilo de los disparos
+	protected HiloHordas				_enemies;		 	// Hilo de los disparos
+	protected HiloDisparos				_shoots;		 	// Hilo de los disparos
 	protected DataStorage  				_dataStorage;	 	// Donde se guardan los enemigos
 	protected Store				   		_store;				// Tienda para comprar aliados
 	protected Gui		 		   		_gui;				// GUI
@@ -29,7 +30,8 @@ public class Controller {
 	protected boolean 					_roundEnded; 		// Controla si termina la ronda
 	
 	private Controller(Gui gui) {
-		_shoots  	 	= new HiloDisparos();
+		_shoots			=new HiloDisparos();
+		_enemies  	 	= new HiloHordas();
 		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
 		_gui 		 	= gui;
@@ -38,7 +40,7 @@ public class Controller {
 		_roundEnded		= false;
 		
 		_shoots.SetController(this);
-		// _shoots.start();
+		_enemies.SetController(this);
 	}
 	
 	/** 
@@ -113,23 +115,6 @@ public class Controller {
 			}
 		}
 		
-		
-		
-		/*
-		for ( Rectangle source : GetHitboxes() ) {
-			for ( Rectangle destiny : GetHitboxes() ) {
-				if ( source != destiny ) {
-					if ( source.intersects(destiny) ) {
-						all.get(j).accept(all.get(i).GetVisitor());
-					}
-				}
-				j++;
-			}
-			i++;
-			j=0;
-		}
-		*/
-		
 	}
 
 	/**
@@ -185,9 +170,10 @@ public class Controller {
 	 * Spawnea enemigos mientras la ronda no haya terminado
 	 */
 	private void SpawnEnemies() {
-		Random r = new Random();
+		_enemies.crearHordas(3);
+		/**Random r = new Random();
 		int y;
-		
+		int i=0;
 		//while(!_roundEnded) {
 			// Iniciar el hilo de las hordas
 		// Generar enemigo y spawnearlo en la grafica
@@ -195,7 +181,7 @@ public class Controller {
 		//rng = r.nextInt( Cantidad De Enemigos );
 		ImageIcon e = _enemyGenerator.GetEnemy(0, y);
 		_gui.Insertar( e ); 
-			
+		*/
 		//}
 	}
 	
@@ -219,7 +205,7 @@ public class Controller {
 	 * Si esta terminada, la inicia.
 	 */
 	public void ToggleRound() {
-		//_roundEnded = !_roundEnded;
+		_roundEnded = !_roundEnded;
 		SpawnEnemies();
 	}
 
@@ -227,6 +213,18 @@ public class Controller {
 		_gui.showLose();
 		for(GameObject go:_dataStorage.GetAllObjects())
 			Remove(go);		
+		_enemies.stop();
+		_shoots.interrupt();
+	}
+
+	public EnemyGenerator getGenerator() {
+
+		return _enemyGenerator;
+	}
+
+	public void spawnEnemie(ImageIcon e) {
+		_gui.Insertar( e ); 
+		
 	}
 
 }

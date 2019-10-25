@@ -174,10 +174,10 @@ public class Gui {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			//PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(1)) {
+			  /* if(controller.CanPurchase(1)) {
 					controller.Purchase(1);
 				}
-			 
+			 */
 			
 			controller.ToggleRound();
 			ActualizarGrafica();
