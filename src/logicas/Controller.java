@@ -26,12 +26,11 @@ public class Controller {
 	protected int 		   				_currentIndex;		// Indice para control y realizacion de la compra
 	protected EnemyGenerator			_enemyGenerator;	// Genera enemigos
 	protected static Controller 		INSTANCE;			// Instancia Singleton
-	protected StateCharacter			_state;
+	protected int 						_mapWidth; 			// Ancho del mapa para controlar limites
 	protected boolean 					_roundEnded; 		// Controla si termina la ronda
 	
 	private Controller(Gui gui) {
-		_shoots			=new HiloDisparos();
-		_enemies  	 	= new HiloHordas();
+		_shoots			= new HiloDisparos();
 		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
 		_gui 		 	= gui;
@@ -40,7 +39,6 @@ public class Controller {
 		_roundEnded		= false;
 		
 		_shoots.SetController(this);
-		_enemies.SetController(this);
 	}
 	
 	/** 
@@ -70,6 +68,15 @@ public class Controller {
 		_gui.ActualizarGrafica();
 	}
 	
+	
+	/**
+	 * Setea el ancho del mapa para controlar limites
+	 * @param w ancho
+	 */
+	public void SetMapWidth(int w) {
+		_mapWidth = w;
+	}
+	
 	/**
 	 * Junta todas las hitboxes que tiene que haber en el mapa
 	 * @return Todas las hitboxes
@@ -83,17 +90,21 @@ public class Controller {
 		return aux;
 	}
 	
-	public ArrayList<GameObject> GetObjects() {
+	public void ControlBounds() {
 		ArrayList<GameObject> auxGo=_dataStorage.GetAllObjects();
-		for(GameObject go: auxGo) {
-			if(		
-				go.GetHitbox().getX() < -15 						||
-				go.GetHitbox().getY()< 0 ) {
-					Remove(go);
-			}
-		}
-		return auxGo;
-	}	
+		for(GameObject go: auxGo) 
+			if(	go.GetHitbox().getX() < -15 || go.GetHitbox().getX() > _mapWidth ) 
+				Remove(go);
+	}
+	
+	public int Size() {
+		return _dataStorage.GetAllObjects().size();
+	}
+	
+	public Pair<ImageIcon, Rectangle> GetSpriteAndHitbox(int i) {
+		return new Pair<ImageIcon, Rectangle>(_dataStorage.GetAllObjects().get(i).GetSprite(), _dataStorage.GetAllObjects().get(i).GetHitbox());
+	}
+	
 	public void Remove(int i) {
 		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
 	}
@@ -103,7 +114,6 @@ public class Controller {
 	}
 	
 	public void Intersection() {
-		int i = 0, j = 0;
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
 		//no seria mejor usar los objetos?
 		for(GameObject go : all) {
@@ -167,54 +177,19 @@ public class Controller {
 	}
 	
 	/**
-	 * Spawnea enemigos mientras la ronda no haya terminado
-	 */
-	private void SpawnEnemies() {
-		_enemies.crearHordas(3);
-		/**Random r = new Random();
-		int y;
-		int i=0;
-		//while(!_roundEnded) {
-			// Iniciar el hilo de las hordas
-		// Generar enemigo y spawnearlo en la grafica
-		y = r.nextInt(6);
-		//rng = r.nextInt( Cantidad De Enemigos );
-		ImageIcon e = _enemyGenerator.GetEnemy(0, y);
-		_gui.Insertar( e ); 
-		*/
-		//}
-	}
-	
-	/**
-	 * Da inicio a la ronda
-	 */
-	public void StartRound() {
-		_roundEnded = false;
-		SpawnEnemies();
-	}
-	
-	/**
-	 * Da fin a la ronda
-	 */
-	public void EndRound() {
-		_roundEnded = true;
-	}
-	
-	/**
-	 * Si la ronda esta iniciada, la termina.
-	 * Si esta terminada, la inicia.
+	 * Da inicio a la ronda de enemigos
 	 */
 	public void ToggleRound() {
-		_roundEnded = !_roundEnded;
-		SpawnEnemies();
+		_enemies = new HiloHordas();
+		_enemies.SetController(this);
+		_enemies.crearHordas(3);
 	}
 
 	public void lose() {
+		_enemies.End();
 		_gui.showLose();
 		for(GameObject go:_dataStorage.GetAllObjects())
-			Remove(go);		
-		_enemies.stop();
-		_shoots.interrupt();
+			Remove(go);
 	}
 
 	public EnemyGenerator getGenerator() {

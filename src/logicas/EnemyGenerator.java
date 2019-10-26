@@ -17,6 +17,11 @@ public class EnemyGenerator {
 		
 		/* Inicializar la lista */
 		_enemies.add(new Enemy1(0, 0));
+		_enemies.add(new EnemyBoss(0, 0));
+		_enemies.add(new EnemyFast(0, 0));
+		_enemies.add(new EnemyFat(0, 0));
+		_enemies.add(new EnemySlim(0, 0));
+		_enemies.add(new EnemyStrong(0, 0));
 		
 		/* Inicializo el hilo */
 		_mainThread = new HiloPrincipal();

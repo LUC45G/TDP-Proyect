@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,9 +13,12 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import gameObjects.GameObject;
 import logicas.Controller;
+import logicas.Pair;
 
 import java.awt.Color;
+import java.awt.Font;
 
 public class Gui {
 
@@ -23,6 +27,7 @@ public class Gui {
 	private Controller controller;
 	private JLabel lblScore;
 	private ArrayList<JLabel> objetos;
+	JButton btnPlay;
 
 	/**
 	 * Launch the application.
@@ -67,7 +72,7 @@ public class Gui {
 		panelIzq.setLayout(null);
 		
 		BackgroundPanel panelPersonajes = new BackgroundPanel(transparent);
-		panelPersonajes.setBounds(5, 5, 160, 282);
+		panelPersonajes.setBounds(0, 0, 170, 300);
 		panelIzq.add(panelPersonajes);
 		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
@@ -94,13 +99,36 @@ public class Gui {
 		
 		
 		BackgroundPanel panelScore = new BackgroundPanel(transparent);
-		panelScore.setBounds(0, 298, 183, 231);
-		panelIzq.add(panelScore);
+		panelScore.setBounds(0, 300, 170, 200);
 		
 		lblScore = new JLabel("Score: 0");
-		panelScore.add(lblScore);
-		panelMapa = new BackgroundPanel(image);
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScore.setForeground(Color.WHITE);
+		lblScore.setBounds(0, 0, 170, 40);
+		panelScore.add(lblScore);		
+		JLabel lblGold = new JLabel("Gold: 4400");
+		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblGold.setForeground(Color.WHITE);
+		lblGold.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGold.setBounds(0, 40, 170, 40);
+		panelScore.add(lblGold);
 		
+		panelIzq.add(panelScore);
+		
+		BackgroundPanel panelPlay = new BackgroundPanel(transparent);
+		panelPlay.setSize(170, 30);
+		panelPlay.setLocation(0, 500);
+		panelScore.setBounds(0, 300, 170, 200);
+		btnPlay = new JButton("Play");
+		btnPlay.setLocation(0, 0);
+		btnPlay.setSize(170, 30);
+		btnPlay.addActionListener(new btnPlayAL());
+		panelPlay.add(btnPlay);
+		panelIzq.add(panelPlay);
+		
+		
+		panelMapa = new BackgroundPanel(image);
 		panelMapa.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				
@@ -111,8 +139,9 @@ public class Gui {
 			}
 		});
 		
-		panelMapa.setBounds(180, 0, 782, 540);
+		panelMapa.setBounds(180, 0, 780, 540);
 		panelMapa.setLayout(null);
+		controller.SetMapWidth(panelMapa.getWidth());
 		frame.getContentPane().add(panelMapa);
 		
 		
@@ -125,15 +154,17 @@ public class Gui {
 		
 		try {
 			panelMapa.removeAll();
-		JLabel jl;
+			JLabel jl;
 		
-		for(int i = 0; i < controller.GetObjects().size(); i++) {
+		for(int i = 0; i < controller.Size(); i++) {
 			
-			jl = new JLabel(controller.GetObjects().get(i).GetSprite());
-			jl.setBounds(controller.GetObjects().get(i).GetHitbox());
+			Pair<ImageIcon, Rectangle> p = controller.GetSpriteAndHitbox(i);
+			jl = new JLabel(p.getX());
+			jl.setBounds(p.getY());
 			panelMapa.add(jl);
 		}
 		
+		controller.ControlBounds();
 		panelMapa.repaint();
 		} catch ( NullPointerException | ArrayIndexOutOfBoundsException e ) {
 			//Esto esta porque el hilo arranca antes que el resto de cosas
@@ -174,14 +205,9 @@ public class Gui {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			//PlaceHolder para el verdadero oyente
-			  /* if(controller.CanPurchase(1)) {
-					controller.Purchase(1);
-				}
-			 */
-			
-			controller.ToggleRound();
-			ActualizarGrafica();
-			
+			if(controller.CanPurchase(1)) {
+				controller.Purchase(1);
+			}
 		}
 	}
 	
@@ -235,8 +261,20 @@ public class Gui {
 			   panelMapa.repaint();
 		}
 	}
+	
+	private class btnPlayAL implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			controller.ToggleRound();
+			btnPlay.setEnabled(false);
+			ActualizarGrafica();
+		}
+		
+	}
 
 	public void showLose() {
 		JOptionPane.showMessageDialog(new JFrame(), "Perdiste la partida","Perdedor",JOptionPane.ERROR_MESSAGE);
+		btnPlay.setEnabled(true);
 	}
 }

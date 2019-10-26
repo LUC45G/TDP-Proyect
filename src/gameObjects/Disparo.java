@@ -6,11 +6,11 @@ import logicas.Visitor;
 public abstract class Disparo extends GameObject implements Cloneable {
 	
 	protected Visitor visitorDisparo;
-	private int _strength;
+	protected int _strength;
 	
-	public Disparo() {
+	public Disparo(int s) {
 		super();
-		_strength = 100;
+		_strength = s;
 		_velocidad = -20;
 	}
 	

@@ -13,9 +13,10 @@ public class AllyFast extends Ally {
 	
 	public AllyFast(int x,int y) {
 		super();
-		_delay/=3;
+		_delay-=5;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+		_shoot=new DisparoAliado(_strength);
 	}
 	@Override
 	public Character Clone() {

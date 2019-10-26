@@ -8,8 +8,8 @@ import logicas.VisitorEnemyShoot;
 
 public class DisparoEnemigo extends Disparo{
 
-	public DisparoEnemigo() {
-		super();
+	public DisparoEnemigo(int s) {
+		super(s);
 		visitorDisparo=new VisitorEnemyShoot(this);
 		//_sprite = new ImageIcon(this.getClass().getResource("/img/Shoot1.gif"));
 		//_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
@@ -17,7 +17,7 @@ public class DisparoEnemigo extends Disparo{
 
 	@Override
 	public Disparo Clone() {
-		return new DisparoEnemigo();
+		return new DisparoEnemigo(_strength);
 	}
 
 }

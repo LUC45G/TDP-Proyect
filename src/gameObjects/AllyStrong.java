@@ -17,6 +17,7 @@ public class AllyStrong extends Ally {
 		_health*=3;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally5.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+		_shoot=new DisparoAliado(_strength);
 	}
 	@Override
 	public Character Clone() {

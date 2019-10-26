@@ -52,7 +52,7 @@ public abstract class GameObject {
 	}
 	
 	public void Move() {
-		_hitbox.x -= _velocidad;
+		_hitbox.x -= (_velocidad/2);
 	}
 	
 	public void SetController(Controller c) {

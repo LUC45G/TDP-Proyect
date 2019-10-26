@@ -18,6 +18,8 @@ import gameObjects.Enemy;
 		private EnemyGenerator       _generator;
 		private int					 _dificultad;
 		private int 				 _freno;		
+		private boolean 			 _end;
+		private boolean				 _alreadyStarted;
 		public HiloHordas() {
 			_enemiesHitboxes 	= new ArrayList<Rectangle>();
 			_controller = null;
@@ -35,46 +37,45 @@ import gameObjects.Enemy;
 			return _enemiesHitboxes;
 		}
 		
+		public void End() {
+			_end = true;
+		}
+		
 		public void crearHordas(int dificultad) {
-			_dificultad=dificultad;
-			if(this.isInterrupted())
-				this.resume();
-				//des interrupir but no se xq no anda
-			else
+			_dificultad = dificultad;
+			_end 		= false;
+			
+			if(!_alreadyStarted) {
+				_alreadyStarted = true;
 				this.start();
+			}
+			else
+				this.run();
 		}
 		public void AgregarEnemigo(Enemy e) {
 			_enemiesHitboxes.add(e.GetHitbox());
 		}
 		private void SpawnEnemies() {
 			Random r = new Random();
-			int y;
 			// Generar enemigo y spawnearlo en la grafica
-			y = r.nextInt(6);
-			//rng = r.nextInt( Cantidad De Enemigos );
-			ImageIcon e = _generator.GetEnemy(0, y);
+			int y = r.nextInt(6);
+			int rng = r.nextInt(6);
+			ImageIcon e = _generator.GetEnemy(rng, y);
 			_controller.spawnEnemie(e);
 			
 		}
 		
 		public void run() {
-			while(true) {
+			while(_freno<_dificultad*5 && !_end) {
 				 try {
-					while(_freno<_dificultad*5) {
-						Thread.sleep(1000);
-						this.SpawnEnemies();
-						_freno++;
-					}
-					
-				} catch (InterruptedException e) {
-					System.out.println("HiloDisparos=>"); e.printStackTrace();
+					this.SpawnEnemies();
+					_freno++;
+					Thread.sleep(1500);
+				} catch (InterruptedException e) { 
+					_end = true;
+				}
 			}
-				 
-				
-				
-				
 		}
-	}
 
 }
 
