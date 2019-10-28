@@ -41,13 +41,11 @@ public abstract class Ally extends Character {
 		return _cost;
 	}
 
-	public void receive_attack(Enemy e) {
-		_health-=e.get_strength();
-		e.StopMoving();
-		System.out.println("Ally Visitado por: " + e);
+	public void receive_attack(Disparo d) {
+		_health-=d.get_strength();
+		System.out.println("Ally Visitado por: " + d);
 		if(_health <= 0 ) {
 			Controller.GetInstance().Remove(this);
-			e.StartMoving();
 		}
 	}
 	public void accept(Visitor v) {

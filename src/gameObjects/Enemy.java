@@ -48,6 +48,12 @@ public abstract class Enemy extends Character {
 		v.visitEnemy(this);
 	}
 
+
+	public void startShooting() {
+		// TODO Auto-generated method stub
+		
+	}
+
 			
 }
 

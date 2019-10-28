@@ -23,6 +23,6 @@ public class VisitorEnemy extends Visitor {
 		de.StartMoving();
 	}
 	public void visitAlly(Ally a) {
-		a.receive_attack(miEnemigo);
+		miEnemigo.startShooting();
 	}
 }
