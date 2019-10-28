@@ -1,5 +1,6 @@
 package logicas;
 
+import gameObjects.Ally;
 import gameObjects.DisparoAliado;
 import gameObjects.DisparoEnemigo;
 import gameObjects.Enemy;
@@ -20,5 +21,8 @@ public class VisitorEnemy extends Visitor {
 	}
 	public void visitEnemyShoot(DisparoEnemigo de) {
 		de.StartMoving();
+	}
+	public void visitAlly(Ally a) {
+		a.receive_attack(miEnemigo);
 	}
 }
