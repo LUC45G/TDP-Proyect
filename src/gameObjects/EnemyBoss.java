@@ -14,8 +14,8 @@ public class EnemyBoss extends Enemy {
 	public EnemyBoss(int x,int y) {
 		super();
 		_velocidad*=3;
-		_strength*=3;
-		_health*=10;
+		_shoot  = new DisparoEnemigo(_strength*3);
+		_health*= 10;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy6.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}

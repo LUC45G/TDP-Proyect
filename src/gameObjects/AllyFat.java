@@ -17,7 +17,6 @@ public class AllyFat extends Ally {
 		_health*=5;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally3.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
-		_shoot=new DisparoAliado(_strength);
 	}
 	
 	@Override

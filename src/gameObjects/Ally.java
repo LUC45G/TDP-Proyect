@@ -11,7 +11,7 @@ public abstract class Ally extends Character {
 	protected int _delta;
 
 	protected Ally() {
-		_strength = 10;
+		_shoot = new DisparoAliado(_strength);
 		_delay=20;
 		_cost=10;
 		_velocidad=0;

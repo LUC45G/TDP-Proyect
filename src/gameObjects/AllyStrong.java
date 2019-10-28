@@ -13,11 +13,10 @@ public class AllyStrong extends Ally {
 	
 	public AllyStrong(int x,int y) {
 		super();
-		_strength*=3;
 		_health*=3;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally5.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
-		_shoot=new DisparoAliado(_strength);
+		_shoot=new DisparoAliado(_strength*3);
 	}
 	@Override
 	public Character Clone() {

@@ -15,6 +15,7 @@ public class EnemyFat extends Enemy {
 		super();
 		_velocidad/=3;
 		_health*=5;
+		_shoot=new DisparoEnemigo(_strength);
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy4.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}

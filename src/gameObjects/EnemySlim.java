@@ -14,7 +14,7 @@ public class EnemySlim extends Enemy {
 	public EnemySlim(int x,int y) {
 		super();
 		_velocidad*=5;
-		_strength/=3;
+		_shoot=new DisparoEnemigo(_strength/3);
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy5.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}

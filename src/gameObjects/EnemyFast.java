@@ -16,6 +16,7 @@ public class EnemyFast extends Enemy {
 		_velocidad*=3;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy2.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+		_shoot = new DisparoEnemigo(_strength);
 	}
 	@Override
 	public Character Clone() {
