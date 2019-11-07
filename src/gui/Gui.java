@@ -107,7 +107,7 @@ public class Gui {
 		lblScore.setForeground(Color.WHITE);
 		lblScore.setBounds(0, 0, 170, 40);
 		panelScore.add(lblScore);		
-		JLabel lblGold = new JLabel("Gold: 4400");
+		JLabel lblGold = new JLabel("Gold: " + controller.GetCurrentMoney());
 		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblGold.setForeground(Color.WHITE);
 		lblGold.setHorizontalAlignment(SwingConstants.CENTER);
@@ -134,6 +134,7 @@ public class Gui {
 				
 				if(!controller.Empty()) {
 					controller.InvokeAlly(e.getX(), e.getY());
+					lblGold.setText("Gold: " + controller.GetCurrentMoney());
 					ActualizarGrafica();
 				}
 			}
@@ -156,7 +157,7 @@ public class Gui {
 			panelMapa.removeAll();
 			JLabel jl;
 		
-		for(int i = 0; i < controller.Size(); i++) {
+		for(int i = controller.Size() - 1; i >= 0 ; i--) {
 			
 			Pair<ImageIcon, Rectangle> p = controller.GetSpriteAndHitbox(i);
 			jl = new JLabel(p.getX());
@@ -180,7 +181,6 @@ public class Gui {
 	public void Insertar(ImageIcon img) {
 		JLabel jl = new JLabel(img);		
 		objetos.add( jl );
-		ActualizarGrafica();
 	}
 	
 	/**
@@ -270,6 +270,10 @@ public class Gui {
 			btnPlay.setEnabled(false);
 			ActualizarGrafica();
 		}
+		
+	}
+	
+	public void ShowWin() {
 		
 	}
 

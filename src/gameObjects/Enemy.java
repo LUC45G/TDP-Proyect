@@ -7,33 +7,38 @@ import javax.swing.ImageIcon;
 import logicas.Controller;
 import logicas.Visitor;
 import logicas.VisitorEnemy;
+import logicas.VisitorRangeEnemigo;
 
 /**
  * Clase que modela a los enemigos
  *
  */
 public abstract class Enemy extends Character {
-	protected StateCharacter situacion;
+	
 	
 	public Enemy(ImageIcon sprite, Rectangle hitbox) {
 		super(sprite, hitbox);
-		//_shoot=new Disparo1(0, 0); //esto esta como el tuje pero lo hice asi no mas
-		_health=10;
-		_velocidad=7;
-											//Bounding box 
-		_shoot  = new DisparoEnemigo(3);
-		_visitor= new VisitorEnemy(this);
+		Init();
+	}
+	
+	public void Init() {
+		_health		= 10;
+		_shoot  	= new DisparoEnemigo(15, 150);
+		_visitor	= new VisitorEnemy(this);
+		_range		= 150;
+		_boundingBox= new VisitorRangeEnemigo();
 	}
 	
 
 	protected Enemy() {
 		super();
-		_shoot = new DisparoEnemigo(3); //4 disparos para un enemigo comun
-		_health=10;
-		_velocidad=7;
-		_visitor=new VisitorEnemy(this);
+		Init();
 	}
-
+	
+	@Override
+	public void Update() {
+		_state.update();	
+	}
 
 	public void receive_attack(Disparo miDisparo) {
 		_health-=miDisparo.get_strength();	
@@ -46,12 +51,6 @@ public abstract class Enemy extends Character {
 	
 	public void accept(Visitor v) {
 		v.visitEnemy(this);
-	}
-
-
-	public void startShooting() {
-		// TODO Auto-generated method stub
-		
 	}
 
 			

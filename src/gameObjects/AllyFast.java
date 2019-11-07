@@ -13,7 +13,7 @@ public class AllyFast extends Ally {
 	
 	public AllyFast(int x,int y) {
 		super();
-		_delay-=5;
+		_state = new NormalState(this, 13, 35, 0);
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
@@ -22,17 +22,6 @@ public class AllyFast extends Ally {
 		Character a = new AllyFast(0, 0);
 		// Espacio por si hay que setear algun otro valor
 		return a;
-	}
-	@Override
-	public void setPeace() {
-		_sprite=_bank.getPeace(this);
-		
-	}
-
-	@Override
-	public void setAngry() {
-		_sprite=_bank.getAngry(this);
-		
 	}
 
 }

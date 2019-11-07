@@ -3,35 +3,25 @@ package gameObjects;
 import logicas.Controller;
 import logicas.Visitor;
 import logicas.VisitorAlly;
+import logicas.VisitorRangeAliado;
 
 public abstract class Ally extends Character {
 	
 	protected int _cost;
-	protected int _delay;
-	protected int _delta;
+	
 
 	protected Ally() {
-		_shoot = new DisparoAliado(_strength);
-		_delay=20;
+		_shoot = new DisparoAliado(20, 150);
 		_cost=10;
-		_velocidad=0;
+		_range=300;
 		_visitor=new VisitorAlly(this);
+		_boundingBox= new VisitorRangeAliado();
 	}
 	
 	@Override
-	public void Move() {
-		if(++_delta%_delay==0)
-			_controller.AddDisparo(this.Disparar());
+	public void Update() {
+		_state.update();
 	}
-	
-	public Disparo Disparar() {
-		Disparo d = _shoot.Clone();
-		d.SetX(_hitbox.x + (_hitbox.width+1));
-		d.SetY(_hitbox.y);
-		_delta = 0;
-		return d;
-	}
-	
 	
 	/**
 	 * Consulta y devuelve el costo del aliado
@@ -43,7 +33,6 @@ public abstract class Ally extends Character {
 
 	public void receive_attack(Disparo d) {
 		_health-=d.get_strength();
-		System.out.println("Ally Visitado por: " + d);
 		if(_health <= 0 ) {
 			Controller.GetInstance().Remove(this);
 		}

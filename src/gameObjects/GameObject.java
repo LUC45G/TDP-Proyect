@@ -6,29 +6,36 @@ import javax.swing.ImageIcon;
 
 import logicas.Controller;
 import logicas.Visitor;
+import logicas.VisitorRangeEnemigo;
 
 /**
  * Clase general que modela un objeto que puede estar presente dentro del mapa
  *
  */
 public abstract class GameObject {
-	protected ImageIcon  _sprite;
-	protected Rectangle  _hitbox;
-	protected Visitor 	 _visitor;
-	protected int 		 _velocidad;
-	protected Controller _controller;
-	protected boolean 	 _visible;
-	protected boolean 	 _canMove;
+	protected ImageIcon  	_sprite;
+	protected Rectangle  	_hitbox;
+	protected Visitor 	 	_visitor;
+	protected int 		 	_range;
+	protected Visitor 		_boundingBox; 	// Rectangulo que representa el alcance
+	protected Controller 	_controller;
+	protected boolean 	 	_visible;
+	protected boolean 	 	_canMove;
 	
 	protected GameObject() {
-		_visible = _canMove = true;
+		Init();
 	}
 
 	public GameObject(ImageIcon sprite, Rectangle hitbox) {
-		_sprite  = sprite;
-		_hitbox  = hitbox;
-		_visible = true;
-		_canMove = true;
+		_sprite  	= sprite;
+		_hitbox  	= hitbox;
+		Init();
+	}
+	
+	private void Init() {
+		_visible 	= true;
+		_canMove 	= true;
+		_boundingBox= new VisitorRange();
 	}
 	
 	public ImageIcon GetSprite() {
@@ -51,9 +58,11 @@ public abstract class GameObject {
 		return _visitor;
 	}
 	
-	public void Move() {
-		_hitbox.x -= (_velocidad/2);
+	public Visitor GetVisitorRange() {
+		return _boundingBox;
 	}
+	
+	public abstract void Update();
 	
 	public void SetController(Controller c) {
 		_controller = c;
@@ -80,6 +89,12 @@ public abstract class GameObject {
 	}
 
 	public void accept(Visitor V) {}
+
+	public boolean inRange(Rectangle box) {
+		return ( _hitbox.getY() == box.getY() ) && (Math.abs(_hitbox.getX() - box.getX()) < _range);
+	}
+
+	public void startAction() {}
 
 	
 

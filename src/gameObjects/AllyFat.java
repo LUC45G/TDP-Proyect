@@ -13,7 +13,7 @@ public class AllyFat extends Ally {
 	
 	public AllyFat(int x,int y) {
 		super();
-		_delay-=10;
+		_state = new NormalState(this, 40, 20, 0);
 		_health*=5;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally3.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
@@ -25,16 +25,4 @@ public class AllyFat extends Ally {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
-	@Override
-	public void setPeace() {
-		_sprite=_bank.getPeace(this);
-		
-	}
-
-	@Override
-	public void setAngry() {
-		_sprite=_bank.getAngry(this);
-		
-	}
-
 }

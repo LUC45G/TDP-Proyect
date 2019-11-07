@@ -17,4 +17,14 @@ public class ImmovableObject extends GameObject {
 		v.visitImmovableObject(this);
 	}
 
+	@Override
+	public void Update() {
+		
+	}
+
+	public ImmovableObject Clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

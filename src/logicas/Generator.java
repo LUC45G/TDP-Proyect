@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import gameObjects.*;
 
-public class EnemyGenerator {
+public class Generator {
 	
 	protected ArrayList<Enemy>  _enemies;		 // Lista de enemigos a clonar
+	protected ArrayList<ImmovableObject> _powerUps;
 	protected HiloPrincipal 	_mainThread;	 // Hilo principal
 	protected DataStorage 		_dataStorage; 	 // Almacenamiento de cosas
 	
-	public EnemyGenerator() {
+	public Generator() {
 		_enemies 	= new ArrayList<Enemy>();
-		_dataStorage = DataStorage.GetInstance();
+		_powerUps 	= new ArrayList<ImmovableObject>();
+		_dataStorage= DataStorage.GetInstance();
 		
 		/* Inicializar la lista */
 		_enemies.add(new Enemy1(0, 0));
@@ -22,6 +24,14 @@ public class EnemyGenerator {
 		_enemies.add(new EnemyFat(0, 0));
 		_enemies.add(new EnemySlim(0, 0));
 		_enemies.add(new EnemyStrong(0, 0));
+		
+		/* Inicializar la lista de power ups */
+		_powerUps.add(new Barricada());
+		_powerUps.add(new EscudoProtector());
+		_powerUps.add(new Diente());
+		_powerUps.add(new BombaAtomica());
+		_powerUps.add(new BombaCongelante());
+		
 		
 		/* Inicializo el hilo */
 		_mainThread = new HiloPrincipal();
@@ -46,10 +56,12 @@ public class EnemyGenerator {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
 		e.SetController(Controller.GetInstance());
 		_dataStorage.Store(e);
-		e.SetX(700); e.SetY(y*90); // Placeholders
-		//StateCharacter puto=new StatePeace(e);
-		e.setPeace();
+		e.SetX(700); e.SetY(y*90);
 		return e.GetSprite();
+	}
+	
+	public ImmovableObject GetPowerUp(int i) {
+		return _powerUps.get(i).Clone();
 	}
 
 }

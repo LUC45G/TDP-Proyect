@@ -13,8 +13,7 @@ public class EnemySlim extends Enemy {
 	
 	public EnemySlim(int x,int y) {
 		super();
-		_velocidad*=5;
-		_shoot=new DisparoEnemigo(_strength/3);
+		_state = new NormalState(this, 20, 13, 15);
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy5.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
@@ -23,17 +22,5 @@ public class EnemySlim extends Enemy {
 		Character a = new EnemySlim(0, 0);
 		// Espacio por si hay que setear algun otro valor
 		return a;
-	}
-	
-	@Override
-	public void setPeace() {
-		_sprite=_bank.getPeace(this);
-		
-	}
-
-	@Override
-	public void setAngry() {
-		_sprite=_bank.getAngry(this);
-		
 	}
 }

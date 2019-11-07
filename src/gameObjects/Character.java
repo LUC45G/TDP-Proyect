@@ -13,15 +13,12 @@ import logicas.Visitor;
  */
 public abstract class Character extends GameObject implements Cloneable {
 	
-	protected final int		 _strength=3; 
+
 	protected int 			 _health; 		// Vida actual del personaje, quizas deba ir mas arriba
-	protected Rectangle 	 _boundingBox; 	// Rectangulo que representa el alcance
 	protected Disparo   	 _shoot;	
 	protected StateCharacter _state;
-	protected boolean 		 _hasPowerUp;
-	protected int 			 _powerUpLife;
-	protected Bank			 _bank=new Bank();
-
+	protected Bank			 _bank = Bank.GetInstance();
+	
 	protected Character() {}
 	
 	public Character(ImageIcon sprite, Rectangle hitbox) {
@@ -33,37 +30,43 @@ public abstract class Character extends GameObject implements Cloneable {
 		return _health;
 	}
 	
+	public Disparo get_shoot() {
+		return _shoot;
+	}
 	public void set_health(int _health) {
 		//deberia chequear que se quede en 0???
 		this._health = _health;
 	}
-	
 	
 	public void setHitBox(int x , int y, int heigth, int width) {
 		_hitbox=new Rectangle(x,y,heigth,width);
 	}
 	
 	public void SetPowerUp(int i) {
-		_hasPowerUp  = true;
-		_powerUpLife = i;
 	}
 	
-	public void ReducePowerUpLife() {
-		_powerUpLife--;
-		
-		if ( _powerUpLife <= 0 ) {
-			//this.SetState( new StatePeace(this) );
-			_hasPowerUp = false;
-		}
+	public void SetState(StateCharacter s) {
+		 _state = s;
 	}
-	
 	public abstract void accept(Visitor v);
 	
 	public abstract Character Clone();
 	
-	public abstract void setPeace();
+	public StateCharacter GetState() {
+		return _state;
+	}
+
+	public int GetAttackSpeed() {
+		return _state.GetDelay();
+	}
+
+	public int GetStrength() {
+		return _state.GetStrength();
+	}
 	
-	public abstract void setAngry();
+	public void SetSprite(ImageIcon s) {
+		_sprite = s;
+	}
 	
 	
 	

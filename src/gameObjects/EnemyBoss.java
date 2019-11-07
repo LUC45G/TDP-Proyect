@@ -13,8 +13,7 @@ public class EnemyBoss extends Enemy {
 	
 	public EnemyBoss(int x,int y) {
 		super();
-		_velocidad*=3;
-		_shoot  = new DisparoEnemigo(_strength*3);
+		_state = new NormalState(this, 9, 40 , 14);
 		_health*= 10;
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy6.gif"));
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
@@ -25,16 +24,4 @@ public class EnemyBoss extends Enemy {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
-	@Override
-	public void setPeace() {
-		_bank.getPeace(this);
-		
-	}
-
-	@Override
-	public void setAngry() {
-		_bank.getAngry(this);
-		
-	}
-
 }

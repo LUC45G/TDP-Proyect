@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import gameObjects.Ally;
 import gameObjects.Disparo;
 import gameObjects.GameObject;
+import gameObjects.ImmovableObject;
 import gameObjects.StateCharacter;
 
 /**
@@ -19,26 +20,23 @@ import gameObjects.StateCharacter;
 public class Controller {
 	
 	protected HiloHordas				_enemies;		 	// Hilo de los disparos
-	protected HiloDisparos				_shoots;		 	// Hilo de los disparos
 	protected DataStorage  				_dataStorage;	 	// Donde se guardan los enemigos
 	protected Store				   		_store;				// Tienda para comprar aliados
 	protected Gui		 		   		_gui;				// GUI
 	protected int 		   				_currentIndex;		// Indice para control y realizacion de la compra
-	protected EnemyGenerator			_enemyGenerator;	// Genera enemigos
+	protected Generator					_generator;			// Genera enemigos
 	protected static Controller 		INSTANCE;			// Instancia Singleton
 	protected int 						_mapWidth; 			// Ancho del mapa para controlar limites
 	protected boolean 					_roundEnded; 		// Controla si termina la ronda
+	protected boolean					_alreadyStarted;
 	
 	private Controller(Gui gui) {
-		_shoots			= new HiloDisparos();
 		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
 		_gui 		 	= gui;
 		_currentIndex	= -1;
-		_enemyGenerator = new EnemyGenerator();
+		_generator = new Generator();
 		_roundEnded		= false;
-		
-		_shoots.SetController(this);
 	}
 	
 	/** 
@@ -83,18 +81,23 @@ public class Controller {
 	 */
 	public ArrayList<Rectangle> GetHitboxes() {
 		ArrayList<Rectangle> aux = new ArrayList<Rectangle>();
-		aux.addAll(_shoots.GetHitboxes());
-		aux.addAll(_enemyGenerator.GetHitboxes());
-		aux.addAll(_shoots.GetHitboxes());
+		
+		for(GameObject g : _dataStorage.GetAllObjects())
+			aux.add(g.GetHitbox());
 		
 		return aux;
 	}
 	
 	public void ControlBounds() {
-		ArrayList<GameObject> auxGo=_dataStorage.GetAllObjects();
-		for(GameObject go: auxGo) 
+		ArrayList<GameObject> auxGo = _dataStorage.GetAllObjects();
+		GameObject go;
+		int size = auxGo.size();
+		
+		for(int i = size - 1; i >= 0; i--) {
+			go = auxGo.get(i);
 			if(	go.GetHitbox().getX() < -15 || go.GetHitbox().getX() > _mapWidth ) 
-				Remove(go);
+				Remove(go);			
+		} 
 	}
 	
 	public int Size() {
@@ -115,16 +118,25 @@ public class Controller {
 	
 	public void Intersection() {
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
-		//no seria mejor usar los objetos?
-		for(GameObject go : all) {
-			for(GameObject og:all) {
-				if(og!=go) {
-					if(og.GetHitbox().intersects(go.GetHitbox()))
-						og.accept(go.GetVisitor());
-				}
-			}
-		}
+		GameObject go, og;
+		int size = all.size();
 		
+		for(int i = size-1; i >= 0; i--) 			
+			for(int j = size - 1; j >= 0; j--) {
+				og = all.get(i);
+				go = all.get(j);
+				if( og != go ) {
+					if(og.GetHitbox().intersects(go.GetHitbox())) {
+						go.accept(og.GetVisitor());
+						og.accept(go.GetVisitor());
+					}
+					
+					if(og.inRange(go.GetHitbox())) {
+						go.accept(og.GetVisitorRange());
+						og.accept(go.GetVisitorRange());
+					}
+				}
+			}		
 	}
 
 	/**
@@ -143,9 +155,8 @@ public class Controller {
 	public void InvokeAlly(int x, int y) {
 		Ally a = _store.CreateAlly(_currentIndex, x, y);
 		a.SetController(INSTANCE);
-		_dataStorage.Store(a.GetHitbox());
 		_gui.Insertar(a.GetSprite());
-		
+		_dataStorage.Buy(a.GetCost());
 		_currentIndex = -1;
 	}
 	
@@ -155,8 +166,6 @@ public class Controller {
 	 */
 	public void AddDisparo(Disparo d) {
 		_dataStorage.Store(d);
-		_shoots.AgregarDisparo(d);
-		_gui.Insertar(d.GetSprite());
 	}
 
 	/**
@@ -166,6 +175,10 @@ public class Controller {
 	 */
 	public boolean CanPurchase(int i) {
 		return _dataStorage.GetCurrentMoney() >= _store.GetCost(i);
+	}
+	
+	public String GetCurrentMoney() {
+		return ""+_dataStorage.GetCurrentMoney();
 	}
 
 	/**
@@ -180,8 +193,13 @@ public class Controller {
 	 * Da inicio a la ronda de enemigos
 	 */
 	public void ToggleRound() {
-		_enemies = new HiloHordas();
-		_enemies.SetController(this);
+		
+		if(!_alreadyStarted) {
+			_enemies = new HiloHordas();
+			_enemies.SetController(this);
+			_alreadyStarted = true;
+		}
+		
 		_enemies.crearHordas(3);
 	}
 
@@ -192,13 +210,25 @@ public class Controller {
 			Remove(go);
 	}
 
-	public EnemyGenerator getGenerator() {
-
-		return _enemyGenerator;
+	public Generator getGenerator() {
+		return _generator;
 	}
 
 	public void spawnEnemie(ImageIcon e) {
 		_gui.Insertar( e ); 
+	}
+	
+	public void InstantiatePowerUp(int i) {
+		ImmovableObject p = _generator.GetPowerUp(i);
+		AddPowerUp((VisitorPowerUp)p.GetVisitor());
+	}
+
+	public void AddPowerUp(VisitorPowerUp v) {
+		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
+		int size = all.size();
+		
+		for(int i = size-1; i >= 0; i--) 
+			all.get(i).accept(v);
 		
 	}
 

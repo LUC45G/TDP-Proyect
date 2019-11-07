@@ -18,18 +18,10 @@ public class DataStorage {
 	
 	protected static DataStorage		INSTANCE = null;
 	protected int 						_currentMoney;
-	protected ArrayList<Rectangle>		_alliesHitboxes;
-	
-	protected ArrayList<Ally> 			_allies;
-	protected ArrayList<Enemy> 			_enemies;
-	protected ArrayList<Disparo> 		_shoots;
-	
+	protected ArrayList<GameObject>		_gos;
 	private DataStorage() {
-		_currentMoney 	= 444444440;
-		_alliesHitboxes	= new ArrayList<Rectangle>();
-		_allies 		= new ArrayList<Ally>();
-		_enemies 		= new ArrayList<Enemy>();
-		_shoots 		= new ArrayList<Disparo>();
+		_currentMoney 	= 100;
+		_gos 		= new ArrayList<GameObject>();
 	}
 	
 	public static DataStorage GetInstance() {
@@ -48,64 +40,24 @@ public class DataStorage {
 	}
 	
 	/**
-	 * Consulta y devuelve la lista de aliados
-	 * @return la lista de aliados
-	 */
-	public ArrayList<Rectangle> GetHitboxes() {
-		return _alliesHitboxes;
-	}
-
-	/**
-	 * Almacena un aliado
-	 * @param r Hitbox del aliado a almacenar
-	 */
-	public void Store(Rectangle r) {
-		_alliesHitboxes.add(r);
-	}
-	
-	/**
 	 * Almacena un aliado
 	 * @param a aliado a almacenar
 	 */
-	public void Store(Ally a) {
-		_allies.add(a);
-	}
-	
-	/**
-	 * Almacena un enemigo
-	 * @param e enemigo a almacenar
-	 */
-	public void Store(Enemy e) {
-		_enemies.add(e);
-	}
-	
-	/**
-	 * Almacena un disparo
-	 * @param d disparo a almacenar
-	 */
-	public void Store(Disparo d) {
-		_shoots.add(d);
+	public void Store(GameObject a) {
+		_gos.add(a);
 	}
 	
 	/**
 	 * Devuelve una lista de todos los gameObjects 
 	 * @return lista de todo
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<GameObject> GetAllObjects() {
-		ArrayList<GameObject> aux = new ArrayList<GameObject>();
-		aux.addAll(_shoots);
-		aux.addAll(_allies);
-		aux.addAll(_enemies);
-		return aux;
+		return (ArrayList<GameObject>)_gos.clone();
 	}
 	
 	public void Remove(GameObject g) {
-		if(_allies.remove(g))  return;
-		if(_enemies.remove(g)) return;
-		if(_shoots.remove(g))  return;
-	}
-	public void Remove(Disparo d) {
-		_shoots.remove(d);
+		_gos.remove(g);
 	}
 	
 	/**

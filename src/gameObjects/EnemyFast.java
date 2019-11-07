@@ -13,27 +13,15 @@ public class EnemyFast extends Enemy {
 	
 	public EnemyFast(int x,int y) {
 		super();
-		_velocidad*=3;
+		_state = new NormalState(this, 25, 25, 12);
 		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy2.gif"));
-		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
-		_shoot = new DisparoEnemigo(_strength);
+		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());	
 	}
 	@Override
 	public Character Clone() {
 		Character a = new EnemyFast(0, 0);
 		// Espacio por si hay que setear algun otro valor
 		return a;
-	}
-	@Override
-	public void setPeace() {
-		_sprite=_bank.getPeace(this);
-		
-	}
-
-	@Override
-	public void setAngry() {
-		_sprite=_bank.getAngry(this);
-		
 	}
 
 }

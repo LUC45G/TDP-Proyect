@@ -13,9 +13,9 @@ public abstract class Visitor {
 
 	public void visitEnemy(Enemy e) {}
 	
-	public void visitShoot(Disparo d) {}
-	
 	public void visitImmovableObject(ImmovableObject i) {}
+	
+	public void visitShoot(Disparo d) {}
 
 	public void visitAllyShoot(DisparoAliado disparoAliado) {}
 	

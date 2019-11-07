@@ -10,6 +10,10 @@ import gameObjects.GameObject;
  */
 public class HiloPrincipal extends Thread {
 	
+	private ArrayList<GameObject> all;
+	private GameObject g;
+	private int size;
+	
 	public void run() {
 		while(true) {
 			try {
@@ -18,15 +22,21 @@ public class HiloPrincipal extends Thread {
 				System.out.println("HiloEnemigos=>"); e.printStackTrace();
 			}
 			
-			ArrayList<GameObject> all = DataStorage.GetInstance().GetAllObjects();
+			all = DataStorage.GetInstance().GetAllObjects();
+			size = all.size();
 			
-			for(GameObject g : all) {
+			
+			for(int i = size-1; i >= 0; i--) {
+				g = all.get(i);
+				
 				if(g.CanMove())
-					g.Move();
+					g.Update();
 				if(g.GetHitbox().getX()<=-10)
 					Controller.GetInstance().lose();
-					
+				
 			}
+					
+			
 			
 			Controller.GetInstance().Intersection();
 			

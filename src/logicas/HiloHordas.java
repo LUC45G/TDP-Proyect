@@ -15,11 +15,12 @@ import gameObjects.Enemy;
 		
 		private ArrayList<Rectangle> _enemiesHitboxes;
 		private Controller 			 _controller;
-		private EnemyGenerator       _generator;
+		private Generator       	 _generator;
 		private int					 _dificultad;
 		private int 				 _freno;		
 		private boolean 			 _end;
 		private boolean				 _alreadyStarted;
+		
 		public HiloHordas() {
 			_enemiesHitboxes 	= new ArrayList<Rectangle>();
 			_controller = null;
@@ -42,7 +43,7 @@ import gameObjects.Enemy;
 		}
 		
 		public void crearHordas(int dificultad) {
-			_dificultad = dificultad;
+			_dificultad += dificultad;
 			_end 		= false;
 			
 			if(!_alreadyStarted) {
@@ -66,11 +67,12 @@ import gameObjects.Enemy;
 		}
 		
 		public void run() {
-			while(_freno<_dificultad*5 && !_end) {
+			int sleepTime = 4500 / (_dificultad/3) * 2;
+			while(_freno<_dificultad*3 && !_end) {
 				 try {
 					this.SpawnEnemies();
 					_freno++;
-					Thread.sleep(1500);
+					Thread.sleep(sleepTime);
 				} catch (InterruptedException e) { 
 					_end = true;
 				}

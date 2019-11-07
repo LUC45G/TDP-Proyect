@@ -14,15 +14,8 @@ public class VisitorEnemy extends Visitor {
 	}
 	public void visitImmovableObject(ImmovableObject i) {
 		i.affect(miEnemigo);
-		//miEnemigo.StopMoving(); esto es responsabilidad del metodo affect creo
 	}
 	public void visitAllyShoot(DisparoAliado d) {
 		d.vanish();
-	}
-	public void visitEnemyShoot(DisparoEnemigo de) {
-		de.StartMoving();
-	}
-	public void visitAlly(Ally a) {
-		miEnemigo.startShooting();
 	}
 }
