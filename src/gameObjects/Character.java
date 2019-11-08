@@ -43,6 +43,7 @@ public abstract class Character extends GameObject implements Cloneable {
 	}
 	
 	public void SetPowerUp(int i) {
+	
 	}
 	
 	public void SetState(StateCharacter s) {

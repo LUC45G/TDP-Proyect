@@ -9,7 +9,7 @@ public abstract class StateCharacter {
 	protected int 		_velocidad;
 	
 	public StateCharacter(Character c, int delay, int strength, int speed) {
-		miCh=c;
+		 miCh=c;
 		_delay = delay;
 		_delta = 0;
 		_strength = strength;
@@ -37,4 +37,5 @@ public abstract class StateCharacter {
 	protected int GetStrength() {
 		return _strength;
 	}
+
 }

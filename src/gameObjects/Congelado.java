@@ -9,10 +9,7 @@ public class Congelado extends StateCharacter {
 		_prev = prev;
 		_powerUpLife = 25;
 		
-		/*
-		 * c.SetSprite( Bank.GetFrozen(c) );
-		 * 
-		 */
+		c.SetSprite( Bank.GetFrozenSprite(c));
 	}
 
 	@Override
@@ -21,7 +18,6 @@ public class Congelado extends StateCharacter {
 			miCh.SetState(_prev);
 		}
 	}
-	
 	
 
 }
