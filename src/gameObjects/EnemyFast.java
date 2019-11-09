@@ -14,7 +14,8 @@ public class EnemyFast extends Enemy {
 	public EnemyFast(int x,int y) {
 		super();
 		_state = new NormalState(this, 25, 25, 12);
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy2.gif"));
+		_range = 70;
+		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());	
 	}
 	@Override
@@ -24,4 +25,10 @@ public class EnemyFast extends Enemy {
 		return a;
 	}
 
+	@Override
+	public void SetState(StateCharacter s) {
+		super.SetState(s);
+		_sprite = s.GetSprite(this);
+	}
+	
 }

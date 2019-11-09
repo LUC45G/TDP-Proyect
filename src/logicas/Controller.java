@@ -19,24 +19,28 @@ import gameObjects.StateCharacter;
  */
 public class Controller {
 	
-	protected HiloHordas				_enemies;		 	// Hilo de los disparos
-	protected DataStorage  				_dataStorage;	 	// Donde se guardan los enemigos
-	protected Store				   		_store;				// Tienda para comprar aliados
-	protected Gui		 		   		_gui;				// GUI
-	protected int 		   				_currentIndex;		// Indice para control y realizacion de la compra
-	protected Generator					_generator;			// Genera enemigos
-	protected static Controller 		INSTANCE;			// Instancia Singleton
-	protected int 						_mapWidth; 			// Ancho del mapa para controlar limites
-	protected boolean 					_roundEnded; 		// Controla si termina la ronda
-	protected boolean					_alreadyStarted;
+	protected HiloHordas		_enemies;		 	// Hilo de los disparos
+	protected DataStorage  		_dataStorage;	 	// Donde se guardan los enemigos
+	protected Store				_store;				// Tienda para comprar aliados
+	protected Gui		 		_gui;				// GUI
+	protected int 		   		_currentIndex;		// Indice para control y realizacion de la compra
+	protected int				_currentPowerUp; 	// Indice para control de compra de power up
+	protected Generator			_generator;			// Genera enemigos
+	protected static Controller INSTANCE;			// Instancia Singleton
+	protected int 				_mapWidth; 			// Ancho del mapa para controlar limites
+	protected boolean 			_roundEnded; 		// Controla si termina la ronda
+	protected boolean			_alreadyStarted;	// Controla si ya empezo la partida
+	protected int 				_dificultad; 		// dificultad del juego
 	
 	private Controller(Gui gui) {
 		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
 		_gui 		 	= gui;
 		_currentIndex	= -1;
+		_currentPowerUp = -1;
 		_generator = new Generator();
 		_roundEnded		= false;
+		_dificultad 	= 2;
 	}
 	
 	/** 
@@ -121,9 +125,9 @@ public class Controller {
 		GameObject go, og;
 		int size = all.size();
 		
-		for(int i = size-1; i >= 0; i--) 			
+		for(int i = size-1; i >= 0; i--) {
+			og = all.get(i);
 			for(int j = size - 1; j >= 0; j--) {
-				og = all.get(i);
 				go = all.get(j);
 				if( og != go ) {
 					if(og.GetHitbox().intersects(go.GetHitbox())) {
@@ -132,11 +136,11 @@ public class Controller {
 					}
 					
 					if(og.inRange(go.GetHitbox())) {
-						go.accept(og.GetVisitorRange());
 						og.accept(go.GetVisitorRange());
 					}
 				}
-			}		
+			}
+		}
 	}
 
 	/**
@@ -144,19 +148,31 @@ public class Controller {
 	 * @return true si el carrito esta vacio
 	 */
 	public boolean Empty() {
-		return _currentIndex == -1;
+		return _currentIndex == -1 && _currentPowerUp == -1;
 	}
 
 	/**
-	 * Crea un aliado en las coordenadas x e y dadas
+	 * Crea lo que haya en las coordenadas x e y dadas
 	 * @param x coordenada x
 	 * @param y coordenada y
 	 */
-	public void InvokeAlly(int x, int y) {
-		Ally a = _store.CreateAlly(_currentIndex, x, y);
-		a.SetController(INSTANCE);
-		_gui.Insertar(a.GetSprite());
-		_dataStorage.Buy(a.GetCost());
+	public void Invoke(int x, int y) {
+		
+		boolean invoked = false;
+		
+		if(_currentIndex != -1) {
+			Ally a = _store.CreateAlly(_currentIndex, x, y);
+			_gui.Insertar(a.GetSprite());
+			_dataStorage.Buy(a.GetCost());
+			invoked = true;
+		}
+		
+		if(!invoked && _currentPowerUp != -1) {
+			y = (y/90);
+			ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
+			AddPowerUp(p.GetVisitor());
+		}
+		_currentPowerUp = -1;
 		_currentIndex = -1;
 	}
 	
@@ -194,13 +210,15 @@ public class Controller {
 	 */
 	public void ToggleRound() {
 		
-		if(!_alreadyStarted) {
-			_enemies = new HiloHordas();
-			_enemies.SetController(this);
-			_alreadyStarted = true;
-		}
+		_enemies = new HiloHordas();
+		_enemies.SetController(this);
+		_alreadyStarted = true;
 		
-		_enemies.crearHordas(3);
+		_enemies.crearHordas(++_dificultad);
+	}
+	
+	public void EnemyDeath() {
+		_enemies.SubEnemy();
 	}
 
 	public void lose() {
@@ -208,6 +226,15 @@ public class Controller {
 		_gui.showLose();
 		for(GameObject go:_dataStorage.GetAllObjects())
 			Remove(go);
+	}
+	
+	public void Win() {
+		_enemies.End();
+
+		for(GameObject go:_dataStorage.GetAllObjects())
+			Remove(go);
+		
+		_gui.ShowWin();
 	}
 
 	public Generator getGenerator() {
@@ -218,18 +245,22 @@ public class Controller {
 		_gui.Insertar( e ); 
 	}
 	
-	public void InstantiatePowerUp(int i) {
-		ImmovableObject p = _generator.GetPowerUp(i);
-		AddPowerUp((VisitorPowerUp)p.GetVisitor());
-	}
 
-	public void AddPowerUp(VisitorPowerUp v) {
+	public void AddPowerUp(Visitor v) {
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
 		int size = all.size();
 		
 		for(int i = size-1; i >= 0; i--) 
 			all.get(i).accept(v);
 		
+	}
+	
+	public boolean CanPurchasePowerUp(int i) {
+		return _dataStorage.GetCurrentMoney() >= _generator.GetCost(i);
+	}
+
+	public void PurchasePowerUp(int i) {
+		_currentPowerUp = i;
 	}
 
 }

@@ -14,7 +14,8 @@ public class AllyFast extends Ally {
 	public AllyFast(int x,int y) {
 		super();
 		_state = new NormalState(this, 13, 35, 0);
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally2.gif"));
+
+		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	@Override
@@ -24,4 +25,10 @@ public class AllyFast extends Ally {
 		return a;
 	}
 
+	@Override
+	public void SetState(StateCharacter s) {
+		super.SetState(s);
+		_sprite = s.GetSprite(this);
+	}
+	
 }

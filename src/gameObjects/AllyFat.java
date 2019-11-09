@@ -15,7 +15,8 @@ public class AllyFat extends Ally {
 		super();
 		_state = new NormalState(this, 40, 20, 0);
 		_health*=5;
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Ally3.gif"));
+
+		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	
@@ -24,5 +25,11 @@ public class AllyFat extends Ally {
 		Character a = new AllyFat(0, 0);
 		// Espacio por si hay que setear algun otro valor
 		return a;
+	}
+	
+	@Override
+	public void SetState(StateCharacter s) {
+		super.SetState(s);
+		_sprite = s.GetSprite(this);
 	}
 }

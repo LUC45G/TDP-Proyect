@@ -73,19 +73,19 @@ public class Gui {
 		
 		BackgroundPanel panelPersonajes = new BackgroundPanel(transparent);
 		panelPersonajes.setBounds(0, 0, 170, 300);
+		panelPersonajes.setLayout(new GridLayout(0, 1, 0, 0));
 		panelIzq.add(panelPersonajes);
 		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
-		JButton btnPersonaje1 = new JButton("Seleccionar aliado");
+		JButton btnPersonaje1 = new JButton("1");
 		btnPersonaje1.addActionListener(new btn1AL()); 
-		panelPersonajes.setLayout(new GridLayout(0, 1, 0, 0));
 		panelPersonajes.add(btnPersonaje1);
 		
-		JButton btnPersonaje2 = new JButton("Spawnear enemigo");
+		JButton btnPersonaje2 = new JButton("2");
 		btnPersonaje2.addActionListener(new btn2AL());
 		panelPersonajes.add(btnPersonaje2);
 		
-		JButton btnPersonaje3 = new JButton("Eliminar enemigo");
+		JButton btnPersonaje3 = new JButton("3");
 		btnPersonaje3.addActionListener(new btn3AL());
 		panelPersonajes.add(btnPersonaje3);
 		
@@ -99,14 +99,15 @@ public class Gui {
 		
 		
 		BackgroundPanel panelScore = new BackgroundPanel(transparent);
-		panelScore.setBounds(0, 300, 170, 200);
+		panelScore.setBounds(0, 300, 170, 100);
 		
 		lblScore = new JLabel("Score: 0");
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScore.setForeground(Color.WHITE);
 		lblScore.setBounds(0, 0, 170, 40);
-		panelScore.add(lblScore);		
+		panelScore.add(lblScore);
+		
 		JLabel lblGold = new JLabel("Gold: " + controller.GetCurrentMoney());
 		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblGold.setForeground(Color.WHITE);
@@ -117,12 +118,33 @@ public class Gui {
 		panelIzq.add(panelScore);
 		
 		BackgroundPanel panelPlay = new BackgroundPanel(transparent);
-		panelPlay.setSize(170, 30);
+		panelPlay.setSize(170, 40);
 		panelPlay.setLocation(0, 500);
-		panelScore.setBounds(0, 300, 170, 200);
+		
+		JPanel panelObjetos = new BackgroundPanel(transparent);
+		panelObjetos.setBounds(0, 400, 170, 100);
+		panelObjetos.setLayout(new GridLayout(3, 2, 0, 0));
+		JButton btno1 = new JButton("caja");
+		btno1.addActionListener(new btnObject1());
+		panelObjetos.add(btno1);
+		JButton btno2 = new JButton("shield");
+		btno2.addActionListener(new btnObject2());
+		panelObjetos.add(btno2);
+		JButton btno3 = new JButton("squan");
+		btno3.addActionListener(new btnObject3());
+		panelObjetos.add(btno3);
+		JButton btno4 = new JButton("moab");
+		btno4.addActionListener(new btnObject4());
+		panelObjetos.add(btno4);
+		JButton btno5 = new JButton("cong");
+		btno5.addActionListener(new btnObject5());
+		panelObjetos.add(btno5);
+		panelIzq.add(panelObjetos);
+		
+		
 		btnPlay = new JButton("Play");
 		btnPlay.setLocation(0, 0);
-		btnPlay.setSize(170, 30);
+		btnPlay.setSize(170, 40);
 		btnPlay.addActionListener(new btnPlayAL());
 		panelPlay.add(btnPlay);
 		panelIzq.add(panelPlay);
@@ -133,7 +155,7 @@ public class Gui {
 			public void mouseClicked(MouseEvent e) {
 				
 				if(!controller.Empty()) {
-					controller.InvokeAlly(e.getX(), e.getY());
+					controller.Invoke(e.getX(), e.getY());
 					lblGold.setText("Gold: " + controller.GetCurrentMoney());
 					ActualizarGrafica();
 				}
@@ -218,16 +240,9 @@ public class Gui {
 	private class btn3AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			// PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(2)) {
-					controller.Purchase(2);
-				}
-			 
-			
-			//nivel.Eliminar(ObjetoDelJuego o);
-			// nivel.EliminarTodosLosEnemigos();
-			panelMapa.repaint();
+			if(controller.CanPurchase(2)) {
+				controller.Purchase(2);
+			}
 		}
 	}
 
@@ -238,11 +253,9 @@ public class Gui {
 	private class btn4AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(3)) {
-					controller.Purchase(3);
-				}
-			   panelMapa.repaint();
+			if(controller.CanPurchase(3)) {
+				controller.Purchase(3);
+			}
 		}
 	}
 	
@@ -253,18 +266,13 @@ public class Gui {
 	private class btn5AL implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// PlaceHolder para el verdadero oyente
-			   if(controller.CanPurchase(4)) {
-					controller.Purchase(4);
-				}
-			 
-			   panelMapa.repaint();
+		   if(controller.CanPurchase(4)) {
+				controller.Purchase(4);
+			}
 		}
 	}
 	
 	private class btnPlayAL implements ActionListener {
-
-		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			controller.ToggleRound();
 			btnPlay.setEnabled(false);
@@ -273,12 +281,53 @@ public class Gui {
 		
 	}
 	
+	/**
+	 * Muestra al jugador que gano
+	 */
 	public void ShowWin() {
-		
+		JOptionPane.showMessageDialog(new JFrame(), "Ganaste","Winner",JOptionPane.PLAIN_MESSAGE);
 	}
-
+	
+	/**
+	 * Muestra al jugador que perdio
+	 */
 	public void showLose() {
 		JOptionPane.showMessageDialog(new JFrame(), "Perdiste la partida","Perdedor",JOptionPane.ERROR_MESSAGE);
 		btnPlay.setEnabled(true);
+	}
+	
+	private class btnObject1 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if(controller.CanPurchasePowerUp(0))
+				controller.PurchasePowerUp(0);
+		}
+	}
+	
+	private class btnObject2 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if(controller.CanPurchasePowerUp(1))
+				controller.PurchasePowerUp(1);
+		}
+	}
+	
+	private class btnObject3 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if(controller.CanPurchasePowerUp(2))
+				controller.PurchasePowerUp(2);
+		}
+	}
+	
+	private class btnObject4 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if(controller.CanPurchasePowerUp(3))
+				controller.PurchasePowerUp(3);
+		}
+	}
+	
+	private class btnObject5 implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if(controller.CanPurchasePowerUp(4))
+				controller.PurchasePowerUp(4);
+		}
 	}
 }

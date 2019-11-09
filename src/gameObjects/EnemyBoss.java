@@ -15,7 +15,8 @@ public class EnemyBoss extends Enemy {
 		super();
 		_state = new NormalState(this, 9, 40 , 14);
 		_health*= 10;
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy6.gif"));
+
+		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	@Override
@@ -24,4 +25,11 @@ public class EnemyBoss extends Enemy {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
+	
+	@Override
+	public void SetState(StateCharacter s) {
+		super.SetState(s);
+		_sprite = s.GetSprite(this);
+	}
+	
 }

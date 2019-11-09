@@ -13,4 +13,10 @@ public class PiedraMapa extends ImmovableObject {
 		// Setear _sprite de escudo
 	}
 
+	@Override
+	public ImmovableObject Clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

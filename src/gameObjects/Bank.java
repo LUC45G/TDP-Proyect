@@ -18,10 +18,10 @@ public class Bank {
 	public ImageIcon GetShootingSprite(Enemy1 e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_punch.gif"));
 	}
-	public ImageIcon GetNormalSprite(<? extends Enemy1> e {
+	public ImageIcon GetNormalSprite(Enemy1 e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1.gif"));
 	}
-	public ImageIcon GetDeadSpriteSprite(Enemy1 e) {
+	public ImageIcon GetDeadSprite(Enemy1 e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_bomb.gif"));
 	}
 	public ImageIcon GetProtectedShootingSprite(Enemy1 e) {
@@ -30,8 +30,8 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(Enemy1 e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(Enemy1 e) {
-		return new ImageIcon(this.getClass().getResource("/img/Enemy1_frezze.gif"));
+	public ImageIcon GetAffectedSprite(Enemy1 e) {
+		return new ImageIcon(this.getClass().getResource("/img/Enemy1_freeze.gif"));
 	}
 	
 	
@@ -52,7 +52,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(EnemyBoss e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy2_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(EnemyBoss e) {
+	public ImageIcon GetAffectedSprite(EnemyBoss e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy2_freeze.gif"));
 	}
 	
@@ -73,7 +73,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(EnemyFat e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy3_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(EnemyFat e) {
+	public ImageIcon GetAffectedSprite(EnemyFat e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy3_freeze.gif"));
 	}
 	
@@ -94,7 +94,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(EnemyFast e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy4_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(EnemyFast e) {
+	public ImageIcon GetAffectedSprite(EnemyFast e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy4_freeze.gif"));
 	}
 	
@@ -115,7 +115,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(EnemySlim e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy5_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(EnemySlim e) {
+	public ImageIcon GetAffectedSprite(EnemySlim e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy5_freeze.gif"));
 	}
 	
@@ -136,7 +136,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(EnemyStrong e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy6_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(EnemyStrong e) {
+	public ImageIcon GetAffectedSprite(EnemyStrong e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy6_freeze.gif"));
 	}
 	
@@ -160,7 +160,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(Ally1 a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(Ally1 a) {
+	public ImageIcon GetAffectedSprite(Ally1 a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_freeze.gif"));
 	}
 	
@@ -180,7 +180,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(AllyFat a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally2_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(AllyFat a) {
+	public ImageIcon GetAffectedSprite(AllyFat a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally2_freeze.gif"));
 	}
 	
@@ -200,7 +200,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(AllyFast a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally5_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(AllyFast a) {
+	public ImageIcon GetAffectedSprite(AllyFast a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally5_freeze.gif"));
 	}
 	
@@ -220,7 +220,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(AllySlim a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally3_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(AllySlim a) {
+	public ImageIcon GetAffectedSprite(AllySlim a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally3_freeze.gif"));
 	}
 	
@@ -240,7 +240,7 @@ public class Bank {
 	public ImageIcon GetProtectedWalking(AllyStrong a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally4_shieldWalking.gif"));
 	}
-	public ImageIcon GetFrozenSprite(AllyStrong a) {
+	public ImageIcon GetAffectedSprite(AllyStrong a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally4_freeze.gif"));
 	}
 }

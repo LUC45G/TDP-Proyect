@@ -10,12 +10,13 @@ import javax.swing.ImageIcon;
  *	enemigo con 1/3 de velocidad y 5 veces la vida
  */
 public class EnemyFat extends Enemy {
-	
+
 	public EnemyFat(int x,int y) {
 		super();
 		_state = new NormalState(this, 25, 25, 3);
 		_health*=5;
-		_sprite = new ImageIcon(this.getClass().getResource("/img/Enemy4.gif"));
+
+		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	
@@ -26,4 +27,10 @@ public class EnemyFat extends Enemy {
 		return a;
 	}
 
+	@Override
+	public void SetState(StateCharacter s) {
+		super.SetState(s);
+		_sprite = s.GetSprite(this);
+	}
+	
 }

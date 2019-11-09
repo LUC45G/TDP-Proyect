@@ -13,22 +13,17 @@ import logicas.VisitorRangeEnemigo;
  *
  */
 public abstract class GameObject {
+	
+	protected int 			_cost;
 	protected ImageIcon  	_sprite;
 	protected Rectangle  	_hitbox;
 	protected Visitor 	 	_visitor;
 	protected int 		 	_range;
 	protected Visitor 		_boundingBox; 	// Rectangulo que representa el alcance
-	protected Controller 	_controller;
 	protected boolean 	 	_visible;
 	protected boolean 	 	_canMove;
 	
 	protected GameObject() {
-		Init();
-	}
-
-	public GameObject(ImageIcon sprite, Rectangle hitbox) {
-		_sprite  	= sprite;
-		_hitbox  	= hitbox;
 		Init();
 	}
 	
@@ -62,11 +57,15 @@ public abstract class GameObject {
 		return _boundingBox;
 	}
 	
-	public abstract void Update();
-	
-	public void SetController(Controller c) {
-		_controller = c;
+	/**
+	 * Consulta y devuelve el costo del aliado
+	 * @return costo
+	 */
+	public int GetCost() {
+		return _cost;
 	}
+	
+	public abstract void Update();
 	
 	public void NotVisible() {
 		_visible = false;

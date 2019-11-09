@@ -20,6 +20,7 @@ import gameObjects.Enemy;
 		private int 				 _freno;		
 		private boolean 			 _end;
 		private boolean				 _alreadyStarted;
+		private int 				 _cantidadSpawneada;
 		
 		public HiloHordas() {
 			_enemiesHitboxes 	= new ArrayList<Rectangle>();
@@ -42,6 +43,13 @@ import gameObjects.Enemy;
 			_end = true;
 		}
 		
+		public void SubEnemy() {
+			_cantidadSpawneada--;
+			
+			if(_cantidadSpawneada == 0)
+				Controller.GetInstance().Win();
+		}
+		
 		public void crearHordas(int dificultad) {
 			_dificultad += dificultad;
 			_end 		= false;
@@ -50,8 +58,10 @@ import gameObjects.Enemy;
 				_alreadyStarted = true;
 				this.start();
 			}
-			else
+			else {
 				this.run();
+			}
+			
 		}
 		public void AgregarEnemigo(Enemy e) {
 			_enemiesHitboxes.add(e.GetHitbox());
@@ -67,7 +77,10 @@ import gameObjects.Enemy;
 		}
 		
 		public void run() {
+			
 			int sleepTime = 4500 / (_dificultad/3) * 2;
+			_cantidadSpawneada = _dificultad*3;
+			
 			while(_freno<_dificultad*3 && !_end) {
 				 try {
 					this.SpawnEnemies();

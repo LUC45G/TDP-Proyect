@@ -20,7 +20,7 @@ public class DataStorage {
 	protected int 						_currentMoney;
 	protected ArrayList<GameObject>		_gos;
 	private DataStorage() {
-		_currentMoney 	= 100;
+		_currentMoney 	= 10000;
 		_gos 		= new ArrayList<GameObject>();
 	}
 	

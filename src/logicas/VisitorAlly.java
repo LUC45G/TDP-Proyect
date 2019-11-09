@@ -16,6 +16,9 @@ public class VisitorAlly extends Visitor {
 	public void visitEnemyShoot(DisparoEnemigo de) {
 		de.vanish();
 	}
+	public void visitAlly(Ally a) {
+		a.GetState().GoNormal();
+	}
 	public void visitAllyShoot(DisparoAliado da) {
 		da.StartMoving();
 	}

@@ -54,14 +54,20 @@ public class Generator {
 	 */
 	public ImageIcon GetEnemy(int i, int y) {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
-		e.SetController(Controller.GetInstance());
 		_dataStorage.Store(e);
 		e.SetX(700); e.SetY(y*90);
 		return e.GetSprite();
 	}
 	
-	public ImmovableObject GetPowerUp(int i) {
-		return _powerUps.get(i).Clone();
+	public ImmovableObject GetPowerUp(int i, int x, int y) {
+		ImmovableObject aux = _powerUps.get(i).Clone();
+		aux.SetX(x); aux.SetY(y*90);
+		_dataStorage.Store(aux);
+		return aux;
+	}
+
+	public int GetCost(int i) {
+		return _powerUps.get(i).GetCost();
 	}
 
 }

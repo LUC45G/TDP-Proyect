@@ -6,9 +6,6 @@ import logicas.VisitorAlly;
 import logicas.VisitorRangeAliado;
 
 public abstract class Ally extends Character {
-	
-	protected int _cost;
-	
 
 	protected Ally() {
 		_shoot = new DisparoAliado(20, 150);
@@ -23,14 +20,6 @@ public abstract class Ally extends Character {
 		_state.update();
 	}
 	
-	/**
-	 * Consulta y devuelve el costo del aliado
-	 * @return costo
-	 */
-	public int GetCost() {
-		return _cost;
-	}
-
 	public void receive_attack(Disparo d) {
 		_health-=d.get_strength();
 		if(_health <= 0 ) {

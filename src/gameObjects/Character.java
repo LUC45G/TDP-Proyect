@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import logicas.Controller;
 import logicas.Visitor;
 
 
@@ -17,13 +18,9 @@ public abstract class Character extends GameObject implements Cloneable {
 	protected int 			 _health; 		// Vida actual del personaje, quizas deba ir mas arriba
 	protected Disparo   	 _shoot;	
 	protected StateCharacter _state;
-	protected Bank			 _bank = Bank.GetInstance();
-	
-	protected Character() {}
-	
-	public Character(ImageIcon sprite, Rectangle hitbox) {
-		super(sprite, hitbox);
-		_health = 10;
+
+	protected Character() {	
+		_health = 100;
 	}
 	
 	public int get_health() {
@@ -56,6 +53,15 @@ public abstract class Character extends GameObject implements Cloneable {
 	public StateCharacter GetState() {
 		return _state;
 	}
+	
+	public void receive_attack(int d) {
+		_health -= d;
+		
+		if(_health <= 0 ) {
+			Die();
+		}
+		
+	}
 
 	public int GetAttackSpeed() {
 		return _state.GetDelay();
@@ -65,11 +71,8 @@ public abstract class Character extends GameObject implements Cloneable {
 		return _state.GetStrength();
 	}
 	
-	public void SetSprite(ImageIcon s) {
-		_sprite = s;
+	public void Die() {
+		Controller.GetInstance().Remove(this);
 	}
-	
-	
-	
 	
 }

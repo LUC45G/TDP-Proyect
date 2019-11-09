@@ -1,16 +1,20 @@
 package gameObjects;
 
+import javax.swing.ImageIcon;
+
 public abstract class StateCharacter {
-	protected Bank _bank;
+	
 	protected Character miCh;
 	protected int		_strength; 
 	protected int		_delay;
 	protected int		_delta;
 	protected int 		_velocidad;
+	protected Bank		_bank;
 	
 	public StateCharacter(Character c, int delay, int strength, int speed) {
 		 miCh=c;
 		_delay = delay;
+		_bank = Bank.GetInstance();
 		_delta = 0;
 		_strength = strength;
 		_velocidad = speed;
@@ -20,6 +24,10 @@ public abstract class StateCharacter {
 	public abstract void update();
 	
 	public void ChangeState() {};
+	
+	public void GoNormal() {
+		miCh.SetState(new NormalState(miCh, _delay, _strength, _velocidad));
+	}
 	
 	public Disparo Disparar() {
 		Disparo d = miCh.get_shoot().Clone();
@@ -34,8 +42,40 @@ public abstract class StateCharacter {
 	protected int GetDelay() { return _delay; }
 
 
-	protected int GetStrength() {
-		return _strength;
-	}
+	protected int GetStrength() { return _strength;	}
+	
+	
 
+
+	public abstract ImageIcon GetSprite(Enemy1 enemy1);
+
+
+	public abstract ImageIcon GetSprite(EnemyStrong enemyStrong) ;
+
+
+	public abstract ImageIcon GetSprite(EnemySlim enemySlim);
+
+
+	public abstract ImageIcon GetSprite(EnemyFat enemyFat) ;
+
+
+	public abstract ImageIcon GetSprite(EnemyFast enemyFast) ;
+
+
+	public abstract ImageIcon GetSprite(EnemyBoss enemyBoss) ;
+
+
+	public abstract ImageIcon GetSprite(AllyStrong allyStrong);
+
+
+	public abstract ImageIcon GetSprite(AllySlim allySlim);
+
+
+	public abstract ImageIcon GetSprite(AllyFat allyFat) ;
+
+
+	public abstract ImageIcon GetSprite(AllyFast allyFast);
+
+
+	public abstract ImageIcon GetSprite(Ally1 ally1) ;
 }

@@ -1,18 +1,20 @@
 package gameObjects;
 
 import logicas.Visitor;
+import logicas.VisitorPowerUp;
 
-public class ImmovableObject extends GameObject {
+public abstract class ImmovableObject extends GameObject {
 	
-	protected ImmovableObject() {}
+	protected ImmovableObject() {
+		_visitor = new VisitorPowerUp();
+	}
 
 	public void affect(Disparo miDisparo) {
 		//este metodo debe ser redefinido por cada sub_clase de ImmovableObject
 		// miDisparo.vanish(); _health--;
 	}
-	public void affect(Character c) {
-		//este metodo debe ser redefinido por cada sub_clase de ImmovableObject
-	}
+	public abstract void affect(Character c);
+	
 	public void accept(Visitor v) {
 		v.visitImmovableObject(this);
 	}
@@ -22,9 +24,6 @@ public class ImmovableObject extends GameObject {
 		
 	}
 
-	public ImmovableObject Clone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract ImmovableObject Clone();
 
 }

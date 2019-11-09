@@ -15,14 +15,7 @@ import logicas.VisitorRangeEnemigo;
  */
 public abstract class Enemy extends Character {
 	
-	
-	public Enemy(ImageIcon sprite, Rectangle hitbox) {
-		super(sprite, hitbox);
-		Init();
-	}
-	
 	public void Init() {
-		_health		= 10;
 		_shoot  	= new DisparoEnemigo(15, 150);
 		_visitor	= new VisitorEnemy(this);
 		_range		= 150;
@@ -36,6 +29,12 @@ public abstract class Enemy extends Character {
 	}
 	
 	@Override
+	public void Die() {
+		super.Die();
+		Controller.GetInstance().EnemyDeath();
+	}
+	
+	@Override
 	public void Update() {
 		_state.update();	
 	}
@@ -44,7 +43,7 @@ public abstract class Enemy extends Character {
 		_health-=miDisparo.get_strength();	
 		
 		if(_health <= 0 ) {
-			Controller.GetInstance().Remove(this);
+			Die();
 		}
 			
 	}
