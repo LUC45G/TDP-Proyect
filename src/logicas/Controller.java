@@ -171,6 +171,8 @@ public class Controller {
 			y = (y/90);
 			ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
 			AddPowerUp(p.GetVisitor());
+			_dataStorage.Buy(p.GetCost());
+			invoked = true;
 		}
 		_currentPowerUp = -1;
 		_currentIndex = -1;
@@ -261,6 +263,7 @@ public class Controller {
 
 	public void PurchasePowerUp(int i) {
 		_currentPowerUp = i;
+		
 	}
 
 }

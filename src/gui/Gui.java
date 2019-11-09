@@ -77,7 +77,10 @@ public class Gui {
 		panelIzq.add(panelPersonajes);
 		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
-		JButton btnPersonaje1 = new JButton("1");
+		JButton btnPersonaje1 = new JButton("");
+		btnPersonaje1.setIcon(new ImageIcon(Gui.class.getResource("/img/firzen_f.bmp")));
+		btnPersonaje1.setVerticalAlignment(SwingConstants.TOP);
+		btnPersonaje1.setHorizontalAlignment(SwingConstants.LEADING);
 		btnPersonaje1.addActionListener(new btn1AL()); 
 		panelPersonajes.add(btnPersonaje1);
 		
@@ -102,6 +105,7 @@ public class Gui {
 		panelScore.setBounds(0, 300, 170, 100);
 		
 		lblScore = new JLabel("Score: 0");
+		lblScore.setBackground(Color.BLACK);
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScore.setForeground(Color.WHITE);
@@ -109,10 +113,11 @@ public class Gui {
 		panelScore.add(lblScore);
 		
 		JLabel lblGold = new JLabel("Gold: " + controller.GetCurrentMoney());
+		lblGold.setBackground(Color.BLACK);
 		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblGold.setForeground(Color.WHITE);
 		lblGold.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGold.setBounds(0, 40, 170, 40);
+		lblGold.setBounds(0, 40, 170, 49);
 		panelScore.add(lblGold);
 		
 		panelIzq.add(panelScore);

@@ -1,11 +1,15 @@
 package gameObjects;
 
+import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
+
 public class PiedraMapa extends ImmovableObject {
 
 	public PiedraMapa() {
 		super();
-		// _sprite de escudo protector
-		// hitbox del sprite
+		_sprite = new ImageIcon(this.getClass().getResource("/img/piedra_mapa.png"));
+		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	
 	@Override

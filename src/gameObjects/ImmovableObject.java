@@ -1,5 +1,7 @@
 package gameObjects;
 
+import javax.swing.ImageIcon;
+
 import logicas.Visitor;
 import logicas.VisitorPowerUp;
 
@@ -7,6 +9,7 @@ public abstract class ImmovableObject extends GameObject {
 	
 	protected ImmovableObject() {
 		_visitor = new VisitorPowerUp();
+		_cost=100;
 	}
 
 	public void affect(Disparo miDisparo) {
@@ -25,5 +28,9 @@ public abstract class ImmovableObject extends GameObject {
 	}
 
 	public abstract ImmovableObject Clone();
-
+	
+	public ImageIcon GetSpriteImmovableObject(){
+		return null;
+		
+	}
 }

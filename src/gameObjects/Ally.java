@@ -12,7 +12,7 @@ public abstract class Ally extends Character {
 		_cost=10;
 		_range=300;
 		_visitor=new VisitorAlly(this);
-		_boundingBox= new VisitorRangeAliado();
+		_boundingBox= new VisitorRangeAliado(this);
 	}
 	
 	@Override

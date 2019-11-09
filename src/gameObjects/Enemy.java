@@ -19,7 +19,7 @@ public abstract class Enemy extends Character {
 		_shoot  	= new DisparoEnemigo(15, 150);
 		_visitor	= new VisitorEnemy(this);
 		_range		= 150;
-		_boundingBox= new VisitorRangeEnemigo();
+		_boundingBox= new VisitorRangeEnemigo(this);
 	}
 	
 
