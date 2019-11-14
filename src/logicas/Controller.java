@@ -136,7 +136,7 @@ public class Controller {
 					}
 					
 					if(og.inRange(go.GetHitbox())) {
-						og.accept(go.GetVisitorRange());
+						go.accept(og.GetVisitorRange());
 					}
 				}
 			}
