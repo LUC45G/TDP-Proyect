@@ -78,7 +78,6 @@ public class Gui {
 		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
 		JButton btnPersonaje1 = new JButton("");
-		btnPersonaje1.setIcon(new ImageIcon(Gui.class.getResource("/img/firzen_f.bmp")));
 		btnPersonaje1.setVerticalAlignment(SwingConstants.TOP);
 		btnPersonaje1.setHorizontalAlignment(SwingConstants.LEADING);
 		btnPersonaje1.addActionListener(new btn1AL()); 
