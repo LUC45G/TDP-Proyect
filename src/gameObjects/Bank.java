@@ -149,7 +149,7 @@ public class Bank {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_punch.gif"));
 	}
 	public ImageIcon GetNormalSprite(Ally1 a) {
-		return new ImageIcon(this.getClass().getResource(("/img/Ally1.gif")));
+		return new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
 	}
 	public ImageIcon GetDeadSprite(Ally1 a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_bomb.gif"));

@@ -70,4 +70,24 @@ public class EstadoDisparando extends StateCharacter {
 	public ImageIcon GetSprite(Ally1 ally1) {
 		return _bank.GetShootingSprite(ally1);
 	}
+
+	@Override
+	public void ChangeState(StateCharacter sc) {
+		if (sc==null) {
+			miCh.ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));
+		}
+		else {
+			miCh.ChangeState(sc);
+		}
+	}
+	
+	@Override
+	protected void receive_attack(int d) {
+		super.receive_attack(d);
+		if(miCh.get_health()<=0) {
+			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
+			miCh.Die();
+		}
+	}
+	
 }

@@ -3,16 +3,25 @@ package gameObjects;
 import javax.swing.ImageIcon;
 
 public class EstadoProtegidoCaminando extends StateCharacter {
+	private int ataquesRecibidos;
 
 	public EstadoProtegidoCaminando(Character c, int delay, int strength, int speed) {
 		super(c, delay, strength, speed);
-		// TODO Auto-generated constructor stub
+		ataquesRecibidos=0;
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public int getAtaquesRecibidos() {
+		return ataquesRecibidos;
+	}
+	
+	public void setAtaquesRecibidos(int ataquesRecibidos) {
+		this.ataquesRecibidos = ataquesRecibidos;
 	}
 
 	@Override
@@ -69,4 +78,26 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 	public ImageIcon GetSprite(Ally1 ally1) {
 		return _bank.GetProtectedWalking(ally1);
 	}
+
+	@Override
+	public void ChangeState(StateCharacter sc) {
+		if(sc==null) {
+			EstadoProtegidoAtacando estadoNuevo=new EstadoProtegidoAtacando(miCh,_delay,_strength,_velocidad);
+			//Actualizo la cantidad de ataques recibidos en ambas clases (se podria abstraer en una clase estadoProtegido pero qsy)  
+			estadoNuevo.setAtaquesRecibidos(ataquesRecibidos);
+			miCh.ChangeState(estadoNuevo);
+		}
+		else {
+			//deberia cambiar aca?
+		}
+	}
+	
+	@Override
+	protected void receive_attack(int d) {
+		ataquesRecibidos++;
+		if(ataquesRecibidos>=5) {
+			ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));
+		}
+	}
+	
 }

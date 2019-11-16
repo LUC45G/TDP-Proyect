@@ -23,7 +23,7 @@ public abstract class StateCharacter {
 
 	public abstract void update();
 	
-	public void ChangeState() {};
+	public abstract void ChangeState(StateCharacter sc) ;
 	
 	public void GoNormal() {
 		miCh.SetState(new NormalState(miCh, _delay, _strength, _velocidad));
@@ -39,12 +39,12 @@ public abstract class StateCharacter {
 	}
 
 
-	protected int GetDelay() { return _delay; }
+	public int GetDelay() { return _delay; }
 
 
-	protected int GetStrength() { return _strength;	}
+	public int GetStrength() { return _strength;	}
 	
-	
+	public int GetVelocidad() { return _velocidad;   }
 
 
 	public abstract ImageIcon GetSprite(Enemy1 enemy1);
@@ -78,4 +78,9 @@ public abstract class StateCharacter {
 
 
 	public abstract ImageIcon GetSprite(Ally1 ally1) ;
+
+
+	protected void receive_attack(int d) {
+		miCh.set_health(miCh.get_health()-d);
+	}
 }

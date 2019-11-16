@@ -70,4 +70,7 @@ public class Muerte extends StateCharacter {
 	public ImageIcon GetSprite(Ally1 ally1) {
 		return _bank.GetDeadSprite(ally1);
 	}
+
+	@Override
+	public void ChangeState(StateCharacter sc) {}
 }

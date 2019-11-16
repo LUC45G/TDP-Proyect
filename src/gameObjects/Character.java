@@ -2,8 +2,6 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 import logicas.Controller;
 import logicas.Visitor;
 
@@ -31,7 +29,6 @@ public abstract class Character extends GameObject implements Cloneable {
 		return _shoot;
 	}
 	public void set_health(int _health) {
-		//deberia chequear que se quede en 0???
 		this._health = _health;
 	}
 	
@@ -42,9 +39,21 @@ public abstract class Character extends GameObject implements Cloneable {
 	public void SetPowerUp(int i) {
 	
 	}
-	
+	/**
+	 * 
+	 * @param s Estado nuevo
+	 * cambia efectivamente el estado del personaje
+	 */
+	public void ChangeState(StateCharacter s) {
+		 _state= s;
+	}
+	/**
+	 * 
+	 * @param s Estado que se desea setear como nueva
+	 * Delega al estado actual la accion de cambiar el estado al que corresponda
+	 */
 	public void SetState(StateCharacter s) {
-		 _state = s;
+		 _state.ChangeState(s);
 	}
 	public abstract void accept(Visitor v);
 	
@@ -55,12 +64,7 @@ public abstract class Character extends GameObject implements Cloneable {
 	}
 	
 	public void receive_attack(int d) {
-		_health -= d;
-		
-		if(_health <= 0 ) {
-			Die();
-		}
-		
+		_state.receive_attack(d);
 	}
 
 	public int GetAttackSpeed() {

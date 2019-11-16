@@ -73,5 +73,17 @@ public class Congelado extends StateCharacter {
 	public ImageIcon GetSprite(Ally1 ally1) {
 		return _bank.GetAffectedSprite(ally1);
 	}
-	
+
+	@Override
+	public void ChangeState(StateCharacter sc) {
+		// TODO Auto-generated method stub
+		
+	}
+	protected void receive_attack(int d) {
+		super.receive_attack(d);
+		if(miCh.get_health()<=0) {
+			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
+			miCh.Die();
+		}
+	}
 }

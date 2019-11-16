@@ -11,13 +11,8 @@ public class NormalState extends StateCharacter {
 	@Override
 	public void update() {
 		miCh.GetHitbox().x -= _velocidad;
-		
 	}
 	
-	@Override
-	public void ChangeState() {
-		miCh.SetState(new EstadoDisparando(miCh, _delay, _strength, _velocidad));
-	}
 	@Override
 	public ImageIcon GetSprite(Enemy1 enemy1) {
 		return _bank.GetNormalSprite(enemy1);
@@ -71,5 +66,26 @@ public class NormalState extends StateCharacter {
 	@Override
 	public ImageIcon GetSprite(Ally1 ally1) {
 		return _bank.GetNormalSprite(ally1);
+	}
+	
+	@Override
+	protected void receive_attack(int d) {
+		super.receive_attack(d);
+		if(miCh.get_health()<=0) {
+			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
+			miCh.Die();
+		}
+	}
+	/**
+	 * @param sc Estado del personaje que se va a asignar
+	 * si sc es nulo se setea el estado disparando si no el que se envie por parametro
+	 */
+	public void ChangeState(StateCharacter sc) {
+		if (sc==null) {
+			miCh.ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));
+		}
+		else {
+			miCh.ChangeState(sc);
+		}
 	}
 }
