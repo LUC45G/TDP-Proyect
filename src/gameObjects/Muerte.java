@@ -8,7 +8,7 @@ public class Muerte extends StateCharacter {
 
 	public Muerte(Character c, int delay, int strength, int speed) {
 		super(c, delay, strength, speed);
-		_deathTimer = 30;
+		_deathTimer = 50;
 	}
 
 	@Override
@@ -67,10 +67,12 @@ public class Muerte extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Ally1 ally1) {
+	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetDeadSprite(ally1);
 	}
 
 	@Override
-	public void ChangeState(StateCharacter sc) {}
+	public void ChangeState(StateCharacter sc) {
+		miCh.Die();
+	}
 }

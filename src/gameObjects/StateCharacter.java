@@ -35,6 +35,7 @@ public abstract class StateCharacter {
 		d.SetY(miCh.GetHitbox().y + (miCh.GetHitbox().height/4 ));
 		d.SetX( miCh.GetHitbox().x + ( miCh.GetHitbox().width/2));
 		_delta = 0;
+		_delay=1;
 		return d;
 	}
 
@@ -77,7 +78,7 @@ public abstract class StateCharacter {
 	public abstract ImageIcon GetSprite(AllyFast allyFast);
 
 
-	public abstract ImageIcon GetSprite(Ally1 ally1) ;
+	public abstract ImageIcon GetSprite(AllyBase ally1) ;
 
 
 	protected void receive_attack(int d) {

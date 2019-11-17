@@ -1,9 +1,5 @@
 package gameObjects;
 
-import java.awt.Rectangle;
-
-import javax.swing.ImageIcon;
-
 import logicas.Controller;
 import logicas.Visitor;
 import logicas.VisitorEnemy;

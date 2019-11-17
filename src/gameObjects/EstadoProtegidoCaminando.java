@@ -75,7 +75,7 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Ally1 ally1) {
+	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetProtectedWalking(ally1);
 	}
 
@@ -88,8 +88,8 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 			miCh.ChangeState(estadoNuevo);
 		}
 		else {
-			//deberia cambiar aca?
-		}
+			if(ataquesRecibidos>=5)
+				miCh.ChangeState(sc);		}
 	}
 	
 	@Override

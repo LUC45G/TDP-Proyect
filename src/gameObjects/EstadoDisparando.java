@@ -8,12 +8,15 @@ public class EstadoDisparando extends StateCharacter {
 
 	public EstadoDisparando(Character c, int delay, int strength, int speed) {
 		super(c, delay, strength, speed);
+		_delay=c.GetAttackSpeed();
+		_strength=c.GetStrength();
+		_velocidad=speed;
 	}
 
 	@Override
 	public void update() {
-		if(++_delta%_delay==0) 
-			Controller.GetInstance().AddDisparo(Disparar());
+		if(++_delta%(_delay+2)==0) 
+		Controller.GetInstance().AddDisparo(Disparar());
 	}
 
 	@Override
@@ -67,7 +70,7 @@ public class EstadoDisparando extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Ally1 ally1) {
+	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetShootingSprite(ally1);
 	}
 

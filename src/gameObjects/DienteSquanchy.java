@@ -22,7 +22,7 @@ public class DienteSquanchy extends StateCharacter {
 			Controller.GetInstance().AddDisparo(Disparar());
 
 		if( --_powerUpLife <= 0 )
-			miCh.ChangeState(_prev);
+			miCh.SetState(_prev);
 		
 	}
 
@@ -77,7 +77,7 @@ public class DienteSquanchy extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Ally1 ally1) {
+	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetAffectedSprite(ally1);
 	}
 	

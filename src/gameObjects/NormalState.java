@@ -64,7 +64,7 @@ public class NormalState extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Ally1 ally1) {
+	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetNormalSprite(ally1);
 	}
 	

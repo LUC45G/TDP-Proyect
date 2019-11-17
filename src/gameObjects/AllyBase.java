@@ -5,8 +5,6 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 /**
  * Aliado concreto basico que extiende a Character
  * @author Pippig, Matias Gonzales, Lucas

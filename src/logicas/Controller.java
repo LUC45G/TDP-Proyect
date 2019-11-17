@@ -14,7 +14,8 @@ import gameObjects.ImmovableObject;
 import gameObjects.StateCharacter;
 
 /**
- * Clase que comunica la gui con la logica de atras del todo
+ * Clase que comunica la gui con la logica
+ * @author Pippig, Matias Gonzales, Lucas
  *
  */
 public class Controller {
@@ -32,6 +33,10 @@ public class Controller {
 	protected boolean			_alreadyStarted;	// Controla si ya empezo la partida
 	protected int 				_dificultad; 		// dificultad del juego
 	
+	/**
+	 * Constructor que relaciona una interfaz grafica con una logica
+	 * @param gui Interfaz Grafica que sera enlazada con la logica
+	 */
 	private Controller(Gui gui) {
 		_dataStorage	= DataStorage.GetInstance();
 		_store		 	= new Store();
@@ -58,7 +63,7 @@ public class Controller {
 	
 	/**
 	 * Si la instancia esta creada, la devuelve.
-	 * @return
+	 * @return Retorna la instancia si esta creada si no devuelve nulo
 	 */
 	public static Controller GetInstance() {
 		if (INSTANCE != null) 
@@ -91,7 +96,9 @@ public class Controller {
 		
 		return aux;
 	}
-	
+	/**
+	 * Chequea que todos los objetos estan dentro de lo limites, si no los borra
+	 */
 	public void ControlBounds() {
 		ArrayList<GameObject> auxGo = _dataStorage.GetAllObjects();
 		GameObject go;
@@ -103,23 +110,38 @@ public class Controller {
 				Remove(go);			
 		} 
 	}
-	
+	/**
+	 * Retorna la cantidad de objectos que hay en el mapa
+	 * @return Retorna cantidad de objetos
+	 */
 	public int Size() {
 		return _dataStorage.GetAllObjects().size();
 	}
-	
+	/**
+	 * Retorna la imagen y la hitbox del objeto en la posicion i-esima
+	 * @param i posicion del objeto que se desea
+	 * @return Retorna un par con una imagen y un rectangulo
+	 */
 	public Pair<ImageIcon, Rectangle> GetSpriteAndHitbox(int i) {
 		return new Pair<ImageIcon, Rectangle>(_dataStorage.GetAllObjects().get(i).GetSprite(), _dataStorage.GetAllObjects().get(i).GetHitbox());
 	}
-	
+	/**
+	 * Remueve el objeto de la i-esima posicion
+	 * @param i posicion del objeto a remover
+	 */
 	public void Remove(int i) {
 		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
 	}
-	
+	/**
+	 * Busca el objeto go entre los objetos del mapa, si lo encunetra los remueve 
+	 * @param go objeto que se desea remover
+	 */
 	public void Remove(GameObject go) {
 		_dataStorage.Remove( go );
 	}
-	
+	/**
+	 * Detecta interseccion y produce visitas entre los objetos que se intersectan cuando sucede
+	 */
 	public void Intersection() {
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
 		GameObject go, og;
@@ -132,7 +154,7 @@ public class Controller {
 				if( og != go ) {
 					if(og.GetHitbox().intersects(go.GetHitbox())) {
 						go.accept(og.GetVisitor());
-						og.accept(go.GetVisitor());
+						//og.accept(go.GetVisitor());
 					}
 					
 					if(og.inRange(go.GetHitbox())) {

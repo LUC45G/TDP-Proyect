@@ -15,7 +15,7 @@ public class EnemyBoss extends Enemy {
 		super();
 		_state = new NormalState(this, 9, 40 , 14);
 		_health*= 10;
-
+		_range=70;
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}

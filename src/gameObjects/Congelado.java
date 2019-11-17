@@ -7,15 +7,15 @@ public class Congelado extends StateCharacter {
 	private StateCharacter _prev;
 	protected int 		_powerUpLife;
 	public Congelado(Character c, StateCharacter prev) {
-		super(c, 0, 0, 0);
+		super(c,c.GetAttackSpeed(), c.GetStrength(), 0);
 		_prev = prev;
-		_powerUpLife = 200;
+		_powerUpLife = 100;
 	}
 
 	@Override
 	public void update() {
 		if( --_powerUpLife <= 0 ) {
-			miCh.ChangeState(_prev);
+			miCh.SetState(_prev);
 		}
 	}
 
@@ -70,13 +70,14 @@ public class Congelado extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Ally1 ally1) {
+	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetAffectedSprite(ally1);
 	}
 
 	@Override
 	public void ChangeState(StateCharacter sc) {
-		// TODO Auto-generated method stub
+		if (_powerUpLife<=0)
+			miCh.ChangeState(sc);
 		
 	}
 	protected void receive_attack(int d) {

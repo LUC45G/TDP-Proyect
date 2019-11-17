@@ -14,7 +14,6 @@ public class EnemyFast extends Enemy {
 	public EnemyFast(int x,int y) {
 		super();
 		_state = new NormalState(this, 25, 25, 12);
-		_range = 70;
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());	
 	}

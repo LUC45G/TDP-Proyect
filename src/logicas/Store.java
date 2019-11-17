@@ -3,13 +3,11 @@ package logicas;
 import java.util.ArrayList;
 
 import gameObjects.Ally;
-import gameObjects.Ally1;
+import gameObjects.AllyBase;
 import gameObjects.AllyFast;
 import gameObjects.AllyFat;
 import gameObjects.AllySlim;
 import gameObjects.AllyStrong;
-import gameObjects.StateCharacter;
-//import gameObjects.StatePeace;
 
 /**
  * Store permitira al jugador comprar personajes.
@@ -26,7 +24,7 @@ public class Store {
 		/*
 		 * Inicializar los aliados clonables
 		 */
-		_alliesToClone.add(new Ally1(0, 0));
+		_alliesToClone.add(new AllyBase(0, 0));
 		_alliesToClone.add(new AllyFat(0, 0));
 		_alliesToClone.add(new AllyFast(0, 0));
 		_alliesToClone.add(new AllySlim(0, 0));
