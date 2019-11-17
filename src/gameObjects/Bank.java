@@ -15,6 +15,11 @@ public class Bank {
 	}
 	
 	//enemy 1
+	/**
+	 * Devuelve la imagen del enemigo base disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del enemigo base disparando
+	 */
 	public ImageIcon GetShootingSprite(Enemy1 e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_punch.gif"));
 	}
@@ -37,6 +42,11 @@ public class Bank {
 	
 	
 	//enemy boss
+	/**
+	 * Devuelve la imagen del enemigo jefe disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del enemigo jefe disparando
+	 */
 	public ImageIcon GetShootingSprite(EnemyBoss e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy2_punch.gif"));
 	}
@@ -58,6 +68,11 @@ public class Bank {
 	
 	
 	// Enemy Fat
+	/**
+	 * Devuelve la imagen del enemigo gordo disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del enemigo gordo disparando
+	 */
 	public ImageIcon GetShootingSprite(EnemyFat e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy3_punch.gif"));
 	}
@@ -79,6 +94,11 @@ public class Bank {
 	
 	
 	//enemy Fast
+	/**
+	 * Devuelve la imagen del enemigo rapido disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del enemigo rapido disparando
+	 */
 	public ImageIcon GetShootingSprite(EnemyFast e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy4_punch.gif"));
 	}
@@ -100,6 +120,11 @@ public class Bank {
 	
 	
 	//EnemySlim
+	/**
+	 * Devuelve la imagen del enemigo flaco disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del enemigo flaco disparando
+	 */
 	public ImageIcon GetShootingSprite(EnemySlim e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy5_punch.gif"));
 	}
@@ -121,6 +146,11 @@ public class Bank {
 	
 	
 	//enemy Strong
+	/**
+	 * Devuelve la imagen del enemigo fuerte disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del enemigo fuerte disparando
+	 */
 	public ImageIcon GetShootingSprite(EnemyStrong e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy6_punch.gif"));
 	}
@@ -144,27 +174,37 @@ public class Bank {
 	/*-----------------------------------------------*/
 	
 	
-	//Ally1
-	public ImageIcon GetShootingSprite(Ally1 a) {
+	//AllyBase
+	/**
+	 * Devuelve la imagen del aliado base disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del aliado base disparando
+	 */
+	public ImageIcon GetShootingSprite(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_punch.gif"));
 	}
-	public ImageIcon GetNormalSprite(Ally1 a) {
+	public ImageIcon GetNormalSprite(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1.gif"));
 	}
-	public ImageIcon GetDeadSprite(Ally1 a) {
+	public ImageIcon GetDeadSprite(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_bomb.gif"));
 	}
-	public ImageIcon GetProtectedShootingSprite(Ally1 a) {
+	public ImageIcon GetProtectedShootingSprite(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_shieldAttack.gif"));
 	}
-	public ImageIcon GetProtectedWalking(Ally1 a) {
+	public ImageIcon GetProtectedWalking(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_shieldWalking.gif"));
 	}
-	public ImageIcon GetAffectedSprite(Ally1 a) {
+	public ImageIcon GetAffectedSprite(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_freeze.gif"));
 	}
 	
 	//AllyFat
+	/**
+	 * Devuelve la imagen del aliado gordo disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del aliado gordo disparando
+	 */
 	public ImageIcon GetShootingSprite(AllyFat e) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally2_punch.gif"));
 	}
@@ -185,6 +225,11 @@ public class Bank {
 	}
 	
 	//AllyFast
+	/**
+	 * Devuelve la imagen del aliado rapido disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del aliado rapido disparando
+	 */
 	public ImageIcon GetShootingSprite(AllyFast e) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally5_punch.gif"));
 	}
@@ -205,6 +250,11 @@ public class Bank {
 	}
 	
 	//AllySlim
+	/**
+	 * Devuelve la imagen del aliado flaco disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del aliado flaco disparando
+	 */
 	public ImageIcon GetShootingSprite(AllySlim e) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally3_punch.gif"));
 	}
@@ -225,6 +275,11 @@ public class Bank {
 	}
 	
 	//Ally Strong
+	/**
+	 * Devuelve la imagen del aliado fuerte disparando
+	 * @param e enemigo al que modificar su imagen
+	 * @return Retorna la imagen del aliado fuerte disparando
+	 */
 	public ImageIcon GetShootingSprite(AllyStrong e) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally4_punch.gif"));
 	}

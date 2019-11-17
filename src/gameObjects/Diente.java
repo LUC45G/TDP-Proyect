@@ -3,9 +3,15 @@ package gameObjects;
 import java.awt.Rectangle;
 
 import logicas.VisitorSquanchy;
-
+/**
+ * Objeto que activa un power-up a los aliados
+ * @author Pippig, Matias Gonsalez Lucas
+ *
+ */
 public class Diente extends ImmovableObject {
-
+	/**
+	 * Constructor que setea visitor, hitbos y costo
+	 */
 	public Diente() {
 		super();
 		_visitor = new VisitorSquanchy();

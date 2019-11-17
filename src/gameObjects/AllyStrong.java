@@ -2,15 +2,18 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 /**
  * 
- * @author matia
- *	Aliado con el triple de vida/fuerza 
+ *Aliado con el triple de vida y fuerza 
+ * @author Pippig, Matias Gonzalez,Lucas
  */
 public class AllyStrong extends Ally {
-	
+
+	/**
+	 * Constructor que inicializa lo mismo que Character y setea el x e y de su hitbox
+	 * @param x eje x de la hitbox
+	 * @param y eje y de la hitbox
+	 */
 	public AllyStrong(int x,int y) {
 		super();
 		_state = new NormalState(this, 25, 25, 0);

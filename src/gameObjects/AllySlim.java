@@ -2,15 +2,18 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 /**
- * 
- * @author matia
- *	aliado con el quintuple de velocidad y 1/3 de fuerza
+ * Aliado con el quintuple de velocidad y 1/3 de fuerza
+ * @author Pippig, Matias Gonzales, Lucas
  */
+
 public class AllySlim extends Ally {
-	
+
+	/**
+	 * Constructor que inicializa lo mismo que Character y setea el x e y de su hitbox
+	 * @param x eje x de la hitbox
+	 * @param y eje y de la hitbox
+	 */
 	public AllySlim(int x,int y) {
 		super();
 		_state = new NormalState(this, 17, 13, 0);

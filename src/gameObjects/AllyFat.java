@@ -2,15 +2,18 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 /**
  * 
- * @author matia
- *	aliado con 5 veces la vida y 1/3 de velocidad de disparo
+ * Aliado con 5 veces la vida y 1/3 de velocidad de disparo
+ * @author Pippig, Matias Gonzales, Lucas
  */
 public class AllyFat extends Ally {
-	
+
+	/**
+	 * Constructor que inicializa lo mismo que Character y setea el x e y de su hitbox
+	 * @param x eje x de la hitbox
+	 * @param y eje y de la hitbox
+	 */
 	public AllyFat(int x,int y) {
 		super();
 		_state = new NormalState(this, 40, 20, 0);

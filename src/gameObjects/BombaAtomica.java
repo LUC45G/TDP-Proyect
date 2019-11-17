@@ -5,9 +5,15 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import logicas.VisitorBombaAtomica;
-
+/**
+ * Bomba que mata a todos los personajes del juego
+ * @author Pippig, Matias Gonzalez, Lucas
+ *
+ */
 public class BombaAtomica extends ImmovableObject {
-
+	/**
+	 * Constructor que setea visitor, hitbox, imagen y costo
+	 */
 	public BombaAtomica() {
 		super();
 		_visitor = new VisitorBombaAtomica();

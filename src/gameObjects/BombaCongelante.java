@@ -3,9 +3,16 @@ package gameObjects;
 import java.awt.Rectangle;
 
 import logicas.VisitorCongelado;
-
+/**
+ * Bomba que congela a todos los enemigos del juego
+ * @author Pippig, Matias GOnzales, Lucas
+ *
+ */
 public class BombaCongelante extends ImmovableObject {
-
+	/**
+	 * Constructor que setea un visitor,una hotbox y el costo 
+	 * 
+	 */
 	public BombaCongelante() {
 		super();
 		_visitor = new VisitorCongelado();

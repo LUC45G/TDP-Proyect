@@ -22,7 +22,7 @@ public class DienteSquanchy extends StateCharacter {
 			Controller.GetInstance().AddDisparo(Disparar());
 
 		if( --_powerUpLife <= 0 )
-			miCh.SetState(_prev);
+			miCh.ChangeState(_prev);
 		
 	}
 

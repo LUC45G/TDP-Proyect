@@ -3,9 +3,15 @@ package gameObjects;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Barricada que detiene a los personajes y disparos
+ * @author Pippig, Matias Gonzalez, Lucas
+ *
+ */
 public class Barricada extends ImmovableObject {
-
+	/**
+	 * Constructor que setea imagen,hitbox y costo
+	 */
 	public Barricada() {
 		super();
 		_sprite = new ImageIcon(this.getClass().getResource("/img/barricada.png"));
