@@ -1,6 +1,10 @@
 package gameObjects;
 
-import logicas.Controller;
+import java.util.ArrayList;
+
+import javax.swing.Icon;
+
+import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorAlly;
 import logicas.VisitorRangeAliado;
@@ -19,28 +23,27 @@ public abstract class Ally extends Character {
 		_cost=10;
 		_range=300;
 		_visitor=new VisitorAlly(this);
+		
+		// Stats base
+		_baseDelay = 25; 
+		_baseStrength = 25;
+		_baseMovementSpeed = 0; 
+		
 		//visitor del tango
 		_boundingBox= new VisitorRangeAliado(this);
+		_observers 	= new ArrayList<IObserver>();
 	}
-	/**
-	 * Delega al estado que se actualice si le corresponde
-	 */
-	public void Update() {
-		_state.update();
-	}
-	/**
-	 * Calcula cuanto daño le produce el disparo d y actualiza la vida, si la vida baja de cero el aliado muere
-	 * @param d Disparo que impacta al aliado
-	 */
-	public void receive_attack(Disparo d) {
-		_health-=d.get_strength();
-		if(_health <= 0 ) {
-			Controller.GetInstance().Remove(this);
-		}
-	}
+	
 	@Override
 	public void accept(Visitor v) {
 		v.visitAlly(this);
 	}
+	
+
+	/**
+	 * Devuelve la cara
+	 * @return the face
+	 */
+	public abstract Icon GetIcon();
 	
 }

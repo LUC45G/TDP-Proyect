@@ -2,19 +2,26 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.VisitorState;
+
 public class Muerte extends StateCharacter {
 	
 	protected int _deathTimer;
 
 	public Muerte(Character c, int delay, int strength, int speed) {
 		super(c, delay, strength, speed);
-		_deathTimer = 50;
+		_deathTimer = 15;
+		c.NotVisible();
+		c.notificar();
 	}
 
 	@Override
 	public void update() {
-		if(--_deathTimer <= 0)
-			miCh.receive_attack(1500);
+		_deathTimer--;
+		
+		if(_deathTimer == 0)
+			miCh.Die();
+			
 	}
 	@Override
 	public ImageIcon GetSprite(Enemy1 enemy1) {
@@ -73,6 +80,9 @@ public class Muerte extends StateCharacter {
 
 	@Override
 	public void ChangeState(StateCharacter sc) {
-		miCh.Die();
+	}
+
+	@Override
+	public void accept(VisitorState vs) {
 	}
 }

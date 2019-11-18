@@ -54,6 +54,13 @@ public class Generator {
 	 */
 	public ImageIcon GetEnemy(int i, int y) {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
+		
+		VisitorObserver vo = new VisitorObserver(e, e);
+		
+		for(GameObject go : _dataStorage.GetAllObjects()) {
+			go.acceptObserver(vo);
+		}
+		
 		_dataStorage.Store(e);
 		e.SetX(700); e.SetY(y*90);
 		return e.GetSprite();
@@ -61,13 +68,19 @@ public class Generator {
 	
 	public ImmovableObject GetPowerUp(int i, int x, int y) {
 		ImmovableObject aux = _powerUps.get(i).Clone();
-		aux.SetX(x); aux.SetY(y*90);
+		aux.SetX((x/90)*90); 
+		aux.SetY(y*90);
 		_dataStorage.Store(aux);
+		System.out.println(aux.GetHitbox());
 		return aux;
 	}
 
 	public int GetCost(int i) {
 		return _powerUps.get(i).GetCost();
+	}
+
+	public void HasToStopEverything() {
+		_mainThread.StopEverything();
 	}
 
 }

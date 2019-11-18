@@ -3,15 +3,16 @@ package gameObjects;
 import javax.swing.ImageIcon;
 
 import logicas.Controller;
+import logicas.VisitorSquanchyState;
+import logicas.VisitorState;
 
 public class DienteSquanchy extends StateCharacter {
 	
 	
-	private StateCharacter _prev;
 	protected int 		_powerUpLife;
 	public DienteSquanchy(Character c, StateCharacter prev) {
 		super(c, c.GetAttackSpeed()/3, c.GetStrength() * 2, 0);
-		
+		_visitorS=new VisitorSquanchyState();
 		_prev = prev;
 		_powerUpLife = 100;
 	}
@@ -22,7 +23,7 @@ public class DienteSquanchy extends StateCharacter {
 			Controller.GetInstance().AddDisparo(Disparar());
 
 		if( --_powerUpLife <= 0 )
-			miCh.SetState(_prev);
+			miCh.ChangeState(_prev);
 		
 	}
 
@@ -94,7 +95,11 @@ public class DienteSquanchy extends StateCharacter {
 		super.receive_attack(d);
 		if(miCh.get_health()<=0) {
 			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
-			miCh.Die();
 		}
+	}
+
+	@Override
+	public void accept(VisitorState vs) {
+		vs.visitSquanchy(this);
 	}
 }

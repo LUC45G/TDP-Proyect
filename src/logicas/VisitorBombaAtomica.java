@@ -6,9 +6,9 @@ import gameObjects.Muerte;
 
 public class VisitorBombaAtomica extends Visitor {
 
-	public void visitAlly(Ally a) { a.SetState(new Muerte(a, a.GetAttackSpeed(), a.GetStrength(), 0)); }
+	public void visitAlly(Ally a) { a.ChangeState(new Muerte(a, a.get_delay(), a.get_strength(), a.get_velocidad())); }
 
-	public void visitEnemy(Enemy e) { e.SetState(new Muerte(e, e.GetAttackSpeed(), e.GetStrength(), 0)); }
+	public void visitEnemy(Enemy e) { e.ChangeState(new Muerte(e, e.get_delay(), e.get_strength(), e.get_velocidad())); }
 	
 
 }

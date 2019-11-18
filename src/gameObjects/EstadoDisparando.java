@@ -3,20 +3,21 @@ package gameObjects;
 import javax.swing.ImageIcon;
 
 import logicas.Controller;
+import logicas.VisitorDisparando;
+import logicas.VisitorNormalState;
+import logicas.VisitorState;
 
 public class EstadoDisparando extends StateCharacter {
 
 	public EstadoDisparando(Character c, int delay, int strength, int speed) {
 		super(c, delay, strength, speed);
-		_delay=c.GetAttackSpeed();
-		_strength=c.GetStrength();
-		_velocidad=speed;
+		_visitorS=new VisitorDisparando();
 	}
 
 	@Override
 	public void update() {
 		if(++_delta%(_delay+2)==0) 
-		Controller.GetInstance().AddDisparo(Disparar());
+			Controller.GetInstance().AddDisparo(Disparar());
 	}
 
 	@Override
@@ -73,24 +74,18 @@ public class EstadoDisparando extends StateCharacter {
 	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetShootingSprite(ally1);
 	}
-
-	@Override
-	public void ChangeState(StateCharacter sc) {
-		if (sc==null) {
-			miCh.ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));
-		}
-		else {
-			miCh.ChangeState(sc);
-		}
-	}
 	
 	@Override
 	protected void receive_attack(int d) {
 		super.receive_attack(d);
 		if(miCh.get_health()<=0) {
 			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
-			miCh.Die();
 		}
+	}
+
+	@Override
+	public void accept(VisitorState vs) {
+		vs.visitDisparando(this);
 	}
 	
 }

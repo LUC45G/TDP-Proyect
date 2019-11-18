@@ -2,20 +2,23 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.VisitorCongeladoState;
+import logicas.VisitorState;
+
 public class Congelado extends StateCharacter {
 
-	private StateCharacter _prev;
 	protected int 		_powerUpLife;
 	public Congelado(Character c, StateCharacter prev) {
 		super(c,c.GetAttackSpeed(), c.GetStrength(), 0);
 		_prev = prev;
 		_powerUpLife = 100;
+		_visitorS=new VisitorCongeladoState();
 	}
 
 	@Override
 	public void update() {
 		if( --_powerUpLife <= 0 ) {
-			miCh.SetState(_prev);
+			miCh.ChangeState(_prev);
 		}
 	}
 
@@ -84,7 +87,12 @@ public class Congelado extends StateCharacter {
 		super.receive_attack(d);
 		if(miCh.get_health()<=0) {
 			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
-			miCh.Die();
 		}
+	}
+
+	@Override
+	public void accept(VisitorState vs) {
+		vs.visitCongelado(this);
+		
 	}
 }

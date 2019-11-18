@@ -2,6 +2,8 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
+import javax.swing.Icon;
+
 /**
  * 
  *Aliado con el triple de vida y fuerza 
@@ -16,8 +18,10 @@ public class AllyStrong extends Ally {
 	 */
 	public AllyStrong(int x,int y) {
 		super();
-		_state = new NormalState(this, 25, 25, 0);
 		_health*=3;
+		_baseStrength *= 3;
+		_cost *= 10;
+		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_shoot  = new DisparoAliado(25, 150);
@@ -29,11 +33,15 @@ public class AllyStrong extends Ally {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
-	
 	@Override
-	public void SetState(StateCharacter s) {
-		super.SetState(s);
+	public void ChangeState(StateCharacter s) {
+		super.ChangeState(s);
 		_sprite = s.GetSprite(this);
 	}
+	@Override
+	public Icon GetIcon() {
+		return Bank.GetInstance().GetIcon(this);
+	}
+
 
 }

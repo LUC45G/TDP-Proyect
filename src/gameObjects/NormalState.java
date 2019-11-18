@@ -2,10 +2,14 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.VisitorNormalState;
+import logicas.VisitorState;
+
 public class NormalState extends StateCharacter {
 	
 	public NormalState(Character c, int delay, int fuerza, int velocidad) {
 		super(c, delay, fuerza, velocidad);
+		_visitorS=new VisitorNormalState();
 		
 	}
 	@Override
@@ -73,19 +77,11 @@ public class NormalState extends StateCharacter {
 		super.receive_attack(d);
 		if(miCh.get_health()<=0) {
 			miCh.ChangeState(new Muerte(miCh,_delay,_strength,_velocidad));
-			miCh.Die();
 		}
 	}
-	/**
-	 * @param sc Estado del personaje que se va a asignar
-	 * si sc es nulo se setea el estado disparando si no el que se envie por parametro
-	 */
-	public void ChangeState(StateCharacter sc) {
-		if (sc==null) {
-			miCh.ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));
-		}
-		else {
-			miCh.ChangeState(sc);
-		}
+
+	@Override
+	public void accept(VisitorState vs) {
+		vs.visitNormal(this);
 	}
 }

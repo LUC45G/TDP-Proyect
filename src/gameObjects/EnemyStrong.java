@@ -2,8 +2,6 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 /**
  * 
  * @author matia
@@ -13,8 +11,9 @@ public class EnemyStrong extends Enemy {
 	
 	public EnemyStrong(int x,int y) {
 		super();
-		_state = new NormalState(this, 25, 25, 7);
+		_baseStrength*=3;
 		_health*=3;
+		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
@@ -24,10 +23,10 @@ public class EnemyStrong extends Enemy {
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}
-	
 	@Override
-	public void SetState(StateCharacter s) {
-		super.SetState(s);
+	public void ChangeState(StateCharacter s) {
+		super.ChangeState(s);
 		_sprite = s.GetSprite(this);
 	}
+
 }

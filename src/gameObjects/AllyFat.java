@@ -2,6 +2,8 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
+import javax.swing.Icon;
+
 /**
  * 
  * Aliado con 5 veces la vida y 1/3 de velocidad de disparo
@@ -16,8 +18,10 @@ public class AllyFat extends Ally {
 	 */
 	public AllyFat(int x,int y) {
 		super();
-		_state = new NormalState(this, 40, 20, 0);
 		_health*=5;
+		_baseDelay*=3;
+		_cost *= 8;
+		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
@@ -31,8 +35,13 @@ public class AllyFat extends Ally {
 	}
 	
 	@Override
-	public void SetState(StateCharacter s) {
-		super.SetState(s);
+	public void ChangeState(StateCharacter s) {
+		super.ChangeState(s);
 		_sprite = s.GetSprite(this);
+	}
+
+	@Override
+	public Icon GetIcon() {
+		return Bank.GetInstance().GetIcon(this);
 	}
 }

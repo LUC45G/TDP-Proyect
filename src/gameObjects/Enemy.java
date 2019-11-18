@@ -1,6 +1,9 @@
 package gameObjects;
 
+import java.util.ArrayList;
+
 import logicas.Controller;
+import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorEnemy;
 import logicas.VisitorRangeEnemigo;
@@ -15,7 +18,11 @@ public abstract class Enemy extends Character {
 		_shoot  	= new DisparoEnemigo(15, 150);
 		_visitor	= new VisitorEnemy(this);
 		_range		= 150;
+		_observers 	= new ArrayList<IObserver>();
 		_boundingBox= new VisitorRangeEnemigo(this);
+		_baseDelay = 25;
+		_baseStrength=25;
+		_baseMovementSpeed=7;
 	}
 	
 
@@ -30,24 +37,9 @@ public abstract class Enemy extends Character {
 		Controller.GetInstance().EnemyDeath();
 	}
 	
-	@Override
-	public void Update() {
-		_state.update();	
-	}
-
-	public void receive_attack(Disparo miDisparo) {
-		_health-=miDisparo.get_strength();	
-		
-		if(_health <= 0 ) {
-			Die();
-		}
-			
-	}
-	
 	public void accept(Visitor v) {
 		v.visitEnemy(this);
 	}
-
 			
 }
 

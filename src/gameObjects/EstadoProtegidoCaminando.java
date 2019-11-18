@@ -2,12 +2,17 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.VisitorNormalState;
+import logicas.VisitorProtegidoNormal;
+import logicas.VisitorState;
+
 public class EstadoProtegidoCaminando extends StateCharacter {
 	private int ataquesRecibidos;
 
 	public EstadoProtegidoCaminando(Character c, int delay, int strength, int speed) {
 		super(c, delay, strength, speed);
 		ataquesRecibidos=0;
+		_visitorS=new VisitorProtegidoNormal();
 	}
 
 	@Override
@@ -78,19 +83,6 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 	public ImageIcon GetSprite(AllyBase ally1) {
 		return _bank.GetProtectedWalking(ally1);
 	}
-
-	@Override
-	public void ChangeState(StateCharacter sc) {
-		if(sc==null) {
-			EstadoProtegidoAtacando estadoNuevo=new EstadoProtegidoAtacando(miCh,_delay,_strength,_velocidad);
-			//Actualizo la cantidad de ataques recibidos en ambas clases (se podria abstraer en una clase estadoProtegido pero qsy)  
-			estadoNuevo.setAtaquesRecibidos(ataquesRecibidos);
-			miCh.ChangeState(estadoNuevo);
-		}
-		else {
-			if(ataquesRecibidos>=5)
-				miCh.ChangeState(sc);		}
-	}
 	
 	@Override
 	protected void receive_attack(int d) {
@@ -98,6 +90,11 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 		if(ataquesRecibidos>=5) {
 			ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));
 		}
+	}
+
+	@Override
+	public void accept(VisitorState vs) {
+		vs.visitProtegidoCaminando(this);
 	}
 	
 }

@@ -5,5 +5,5 @@ import gameObjects.Enemy;
 
 public class VisitorCongelado extends VisitorPowerUp {
 
-	public void visitEnemy(Enemy e) { e.SetState( new Congelado(e, e.GetState()) ); }
+	public void visitEnemy(Enemy e) { e.ChangeState( new Congelado(e, e.GetState()) ); }
 }

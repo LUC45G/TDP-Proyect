@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import gameObjects.Ally;
@@ -139,6 +140,11 @@ public class Controller {
 	public void Remove(GameObject go) {
 		_dataStorage.Remove( go );
 	}
+	
+	public void StopAttacking() {
+		_generator.HasToStopEverything();
+	}
+	
 	/**
 	 * Detecta interseccion y produce visitas entre los objetos que se intersectan cuando sucede
 	 */
@@ -149,20 +155,26 @@ public class Controller {
 		
 		for(int i = size-1; i >= 0; i--) {
 			og = all.get(i);
+			
 			for(int j = size - 1; j >= 0; j--) {
 				go = all.get(j);
+				
 				if( og != go ) {
-					if(og.GetHitbox().intersects(go.GetHitbox())) {
-						go.accept(og.GetVisitor());
-						//og.accept(go.GetVisitor());
-					}
 					
-					if(og.inRange(go.GetHitbox())) {
-						go.accept(og.GetVisitorRange());
-					}
+					if(og.GetHitbox().intersects(go.GetHitbox()))
+						go.accept(og.GetVisitor());
+					
+					
+					if(og.IsVisible() && go.IsVisible())
+						if(og.inRange(go.GetHitbox())) 
+							go.accept(og.GetVisitorRange());
+					
 				}
+				
 			}
+			
 		}
+		
 	}
 
 	/**
@@ -239,6 +251,8 @@ public class Controller {
 		_alreadyStarted = true;
 		
 		_enemies.crearHordas(++_dificultad);
+		
+		System.out.println("dif:" + _dificultad);
 	}
 	
 	public void EnemyDeath() {
@@ -247,6 +261,7 @@ public class Controller {
 
 	public void lose() {
 		_enemies.End();
+		_dificultad = 2;
 		_gui.showLose();
 		for(GameObject go:_dataStorage.GetAllObjects())
 			Remove(go);
@@ -286,6 +301,10 @@ public class Controller {
 	public void PurchasePowerUp(int i) {
 		_currentPowerUp = i;
 		
+	}
+
+	public Icon GetIcon(int i) {
+		return _store.GetIcon(i);
 	}
 
 }

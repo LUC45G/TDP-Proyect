@@ -5,6 +5,8 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
+import javax.swing.Icon;
+
 /**
  * Aliado concreto basico que extiende a Character
  * @author Pippig, Matias Gonzales, Lucas
@@ -19,7 +21,8 @@ public class AllyBase extends Ally {
 	public AllyBase(int x, int y) {
 		super();
 
-		_state = new NormalState(this, 25, 25, 0);
+		_cost *= 5;
+		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
@@ -32,9 +35,14 @@ public class AllyBase extends Ally {
 	}
 	
 	@Override
-	public void SetState(StateCharacter s) {
-		super.SetState(s);
+	public void ChangeState(StateCharacter s) {
+		super.ChangeState(s);
 		_sprite = s.GetSprite(this);
+	}
+
+	@Override
+	public Icon GetIcon() {
+		return Bank.GetInstance().GetIcon(this);
 	}
 
 }

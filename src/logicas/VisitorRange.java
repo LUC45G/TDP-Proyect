@@ -1,6 +1,4 @@
-package gameObjects;
-
-import logicas.Visitor;
+package logicas;
 
 public class VisitorRange extends Visitor {
 	

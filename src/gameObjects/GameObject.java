@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import logicas.Visitor;
+import logicas.VisitorObserver;
+import logicas.VisitorRange;
 
 /**
  * Clase general que modela un objeto que puede estar presente en el juego
@@ -21,6 +23,10 @@ public abstract class GameObject {
 	protected Visitor 		_boundingBox; 	// Rectangulo que representa el alcance
 	protected boolean 	 	_visible;
 	protected boolean 	 	_canMove;
+	
+	
+	public boolean notificar() {return true;}
+	
 	/**
 	 * Contructor que llama a init
 	 */
@@ -141,8 +147,8 @@ public abstract class GameObject {
 	public boolean inRange(Rectangle box) {
 		return ( _hitbox.getY() == box.getY() ) && (Math.abs(_hitbox.getX() - box.getX()) < _range);
 	}
-
-	public void startAction() {}
+	
+	public void acceptObserver(VisitorObserver vo) {} 
 
 	
 

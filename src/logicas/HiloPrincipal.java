@@ -13,6 +13,8 @@ public class HiloPrincipal extends Thread {
 	private ArrayList<GameObject> all;
 	private GameObject g;
 	private int size;
+	private boolean _stop, _realStop;
+	
 	
 	public void run() {
 		while(true) {
@@ -25,24 +27,30 @@ public class HiloPrincipal extends Thread {
 			all = DataStorage.GetInstance().GetAllObjects();
 			size = all.size();
 			
-			
 			for(int i = size-1; i >= 0; i--) {
 				g = all.get(i);
 				
-				if(g.CanMove())
-					g.Update();
+				if(_stop)
+					_realStop = _realStop && g.notificar();
+				
+				g.Update();
+				
 				if(g.GetHitbox().getX()<=-10)
-					Controller.GetInstance().lose();
+					g.GetVisitor().visitLose();
 				
 			}
-					
 			
+			_stop = _realStop;
 			
 			Controller.GetInstance().Intersection();
 			
-			Controller.GetInstance().Update();
-			
+			Controller.GetInstance().Update();			
 		}
+	}
+
+	public void StopEverything() {
+		_stop = true;
+		_realStop = true;
 	}
 	
 }

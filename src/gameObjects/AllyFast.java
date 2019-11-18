@@ -2,6 +2,8 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
+import javax.swing.Icon;
+
 /**
  * 
  *	Aliado rapido con el triple de velocidad de disparo
@@ -15,7 +17,10 @@ public class AllyFast extends Ally {
 	 */
 	public AllyFast(int x,int y) {
 		super();
-		_state = new NormalState(this, 13, 35, 0);
+		
+		_baseDelay /= 3;
+		_cost *= 20;
+		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
@@ -29,9 +34,16 @@ public class AllyFast extends Ally {
 	}
 
 	@Override
-	public void SetState(StateCharacter s) {
-		super.SetState(s);
+	public void ChangeState(StateCharacter s) {
+		super.ChangeState(s);
 		_sprite = s.GetSprite(this);
 	}
 	
+	@Override
+	public Icon GetIcon() {
+		return Bank.GetInstance().GetIcon(this);
+	}
+	
+	
+
 }

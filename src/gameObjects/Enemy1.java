@@ -2,13 +2,11 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import javax.swing.ImageIcon;
-
 public class Enemy1 extends Enemy {
 	
 	public Enemy1(int x, int y) {
 		super();
-		_state = new NormalState(this, 25, 17, 7);
+		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 
 		_sprite = _state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
@@ -21,9 +19,9 @@ public class Enemy1 extends Enemy {
 	}
 	
 	@Override
-	public void SetState(StateCharacter s) {
-		super.SetState(s);
+	public void ChangeState(StateCharacter s) {
+		super.ChangeState(s);
 		_sprite = s.GetSprite(this);
 	}
-	
+
 }

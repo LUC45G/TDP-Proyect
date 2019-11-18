@@ -1,5 +1,6 @@
 package gameObjects;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Bank {
@@ -233,6 +234,9 @@ public class Bank {
 	public ImageIcon GetAffectedSprite(AllyBase a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally1_freeze.gif"));
 	}
+	public Icon GetIcon(AllyBase a) {
+		return new ImageIcon(this.getClass().getResource("/img/Ally1.png"));
+	}
 	
 	//AllyFat
 	/**
@@ -262,6 +266,9 @@ public class Bank {
 	}
 	public ImageIcon GetAffectedSprite(AllyFat a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally2_freeze.gif"));
+	}
+	public Icon GetIcon(AllyFat a) {
+		return new ImageIcon(this.getClass().getResource("/img/Ally2.png"));
 	}
 	
 	//AllyFast
@@ -293,6 +300,9 @@ public class Bank {
 	public ImageIcon GetAffectedSprite(AllyFast a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally5_freeze.gif"));
 	}
+	public Icon GetIcon(AllyFast a) {
+		return new ImageIcon(this.getClass().getResource("/img/Ally5.png"));
+	}
 	
 	//AllySlim
 	/**
@@ -323,6 +333,9 @@ public class Bank {
 	public ImageIcon GetAffectedSprite(AllySlim a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally3_freeze.gif"));
 	}
+	public Icon GetIcon(AllySlim a) {
+		return new ImageIcon(this.getClass().getResource("/img/Ally3.png"));
+	}
 	
 	//Ally Strong
 	/**
@@ -352,5 +365,8 @@ public class Bank {
 	}
 	public ImageIcon GetAffectedSprite(AllyStrong a) {
 		return new ImageIcon(this.getClass().getResource("/img/Ally4_freeze.gif"));
+	}
+	public Icon GetIcon(AllyStrong a) {
+		return new ImageIcon(this.getClass().getResource("/img/Ally4.png"));
 	}
 }

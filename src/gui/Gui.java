@@ -77,25 +77,23 @@ public class Gui {
 		panelIzq.add(panelPersonajes);
 		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
-		JButton btnPersonaje1 = new JButton("");
-		btnPersonaje1.setVerticalAlignment(SwingConstants.TOP);
-		btnPersonaje1.setHorizontalAlignment(SwingConstants.LEADING);
+		JButton btnPersonaje1 = new JButton(controller.GetIcon(1));
 		btnPersonaje1.addActionListener(new btn1AL()); 
 		panelPersonajes.add(btnPersonaje1);
 		
-		JButton btnPersonaje2 = new JButton("2");
+		JButton btnPersonaje2 = new JButton(controller.GetIcon(2));
 		btnPersonaje2.addActionListener(new btn2AL());
 		panelPersonajes.add(btnPersonaje2);
 		
-		JButton btnPersonaje3 = new JButton("3");
+		JButton btnPersonaje3 = new JButton(controller.GetIcon(3));
 		btnPersonaje3.addActionListener(new btn3AL());
 		panelPersonajes.add(btnPersonaje3);
 		
-		JButton btnPersonaje4 = new JButton("4");
+		JButton btnPersonaje4 = new JButton(controller.GetIcon(4));
 		btnPersonaje4.addActionListener(new btn4AL());
 		panelPersonajes.add(btnPersonaje4);
 		
-		JButton btnPersonaje5 = new JButton("5");
+		JButton btnPersonaje5 = new JButton(controller.GetIcon(5));
 		btnPersonaje5.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
 		
@@ -290,6 +288,7 @@ public class Gui {
 	 */
 	public void ShowWin() {
 		JOptionPane.showMessageDialog(new JFrame(), "Ganaste","Winner",JOptionPane.PLAIN_MESSAGE);
+		btnPlay.setEnabled(true);
 	}
 	
 	/**

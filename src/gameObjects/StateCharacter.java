@@ -2,14 +2,18 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.VisitorState;
+
 public abstract class StateCharacter {
 	
 	protected Character miCh;
+	protected VisitorState _visitorS;
 	protected int		_strength; 
 	protected int		_delay;
 	protected int		_delta;
 	protected int 		_velocidad;
 	protected Bank		_bank;
+	protected StateCharacter _prev;
 	
 	public StateCharacter(Character c, int delay, int strength, int speed) {
 		 miCh=c;
@@ -19,14 +23,20 @@ public abstract class StateCharacter {
 		_strength = strength;
 		_velocidad = speed;
 	}
+	
+	public boolean equals(StateCharacter sc) {
+		return (miCh == sc.miCh) && (_strength == sc._strength) && (_delay == sc._delay) && (_velocidad == sc._velocidad);
+	}
 
 
 	public abstract void update();
 	
-	public abstract void ChangeState(StateCharacter sc) ;
-	
-	public void GoNormal() {
-		miCh.SetState(new NormalState(miCh, _delay, _strength, _velocidad));
+	/**
+	 * @param sc Estado del personaje que se va a asignar
+	 * si sc es nulo se setea el estado disparando si no el que se envie por parametro
+	 */
+	public void ChangeState(StateCharacter sc) {
+			miCh.ChangeState(sc);
 	}
 	
 	public Disparo Disparar() {
@@ -35,13 +45,18 @@ public abstract class StateCharacter {
 		d.SetY(miCh.GetHitbox().y + (miCh.GetHitbox().height/4 ));
 		d.SetX( miCh.GetHitbox().x + ( miCh.GetHitbox().width/2));
 		_delta = 0;
-		_delay=1;
 		return d;
 	}
 
 
-	public int GetDelay() { return _delay; }
 
+	public int GetBaseDelay() { return miCh.get_delay(); }
+	
+	public int GetBaseStrength() { return miCh.get_strength();	}
+	
+	public int GetBaseVelocidad() { return miCh.get_velocidad();   }
+
+	public int GetDelay() { return _delay; }
 
 	public int GetStrength() { return _strength;	}
 	
@@ -80,7 +95,14 @@ public abstract class StateCharacter {
 
 	public abstract ImageIcon GetSprite(AllyBase ally1) ;
 
-
+	public abstract void accept(VisitorState vs) ;
+	
+	public Character GetCharacter() {
+		return miCh;
+	}
+	public VisitorState GetVisitor(){
+		return _visitorS;
+	}
 	protected void receive_attack(int d) {
 		miCh.set_health(miCh.get_health()-d);
 	}

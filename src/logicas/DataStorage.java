@@ -1,11 +1,7 @@
 package logicas;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import gameObjects.Ally;
-import gameObjects.Disparo;
-import gameObjects.Enemy;
 import gameObjects.GameObject;
 
 /**

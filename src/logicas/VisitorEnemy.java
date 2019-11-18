@@ -18,4 +18,7 @@ public class VisitorEnemy extends Visitor {
 	public void visitAllyShoot(DisparoAliado d) {
 		d.vanish();
 	}
+	public void visitLose(){
+		Controller.GetInstance().lose();
+	}
 }
