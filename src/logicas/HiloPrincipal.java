@@ -13,7 +13,6 @@ public class HiloPrincipal extends Thread {
 	private ArrayList<GameObject> all;
 	private GameObject g;
 	private int size;
-	private boolean _stop, _realStop;
 	
 	
 	public void run() {
@@ -30,8 +29,6 @@ public class HiloPrincipal extends Thread {
 			for(int i = size-1; i >= 0; i--) {
 				g = all.get(i);
 				
-				if(_stop)
-					_realStop = _realStop && g.notificar();
 				
 				g.Update();
 				
@@ -40,7 +37,6 @@ public class HiloPrincipal extends Thread {
 				
 			}
 			
-			_stop = _realStop;
 			
 			Controller.GetInstance().Intersection();
 			
@@ -48,9 +44,5 @@ public class HiloPrincipal extends Thread {
 		}
 	}
 
-	public void StopEverything() {
-		_stop = true;
-		_realStop = true;
-	}
 	
 }

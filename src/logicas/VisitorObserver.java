@@ -11,13 +11,19 @@ public class VisitorObserver {
 		_observed = ed;
 	}
 	
+	public VisitorObserver(IObserved ed) {
+		_observed = ed;
+	}
+	
 	
 	public void visitAllyObservador(IObserver a) {
-		_observed.agregarObservador(a);
+		if(_observed != null)
+			_observed.agregarObservador(a);
 	}
 	
 	public void visitAllyObservado(IObserved a) {
-		a.agregarObservador(_observer);
+		if(_observer != null)
+			a.agregarObservador(_observer);
 	}
 	
 }

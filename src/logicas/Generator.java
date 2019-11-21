@@ -68,19 +68,22 @@ public class Generator {
 	
 	public ImmovableObject GetPowerUp(int i, int x, int y) {
 		ImmovableObject aux = _powerUps.get(i).Clone();
+		
+		VisitorObserver vo = new VisitorObserver(aux);
+		
+		for(GameObject go : _dataStorage.GetAllObjects())
+			go.acceptObserver(vo);
+		
+		
+		
 		aux.SetX((x/90)*90); 
 		aux.SetY(y*90);
 		_dataStorage.Store(aux);
-		System.out.println(aux.GetHitbox());
 		return aux;
 	}
 
 	public int GetCost(int i) {
 		return _powerUps.get(i).GetCost();
-	}
-
-	public void HasToStopEverything() {
-		_mainThread.StopEverything();
 	}
 
 }

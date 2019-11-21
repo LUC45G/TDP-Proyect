@@ -141,10 +141,6 @@ public class Controller {
 		_dataStorage.Remove( go );
 	}
 	
-	public void StopAttacking() {
-		_generator.HasToStopEverything();
-	}
-	
 	/**
 	 * Detecta interseccion y produce visitas entre los objetos que se intersectan cuando sucede
 	 */

@@ -2,6 +2,8 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.IObserved;
+import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorPowerUp;
 /**
@@ -9,7 +11,7 @@ import logicas.VisitorPowerUp;
  * @author Pippig, Matias Gonzalez, Lucas
  *
  */
-public abstract class ImmovableObject extends GameObject {
+public abstract class ImmovableObject extends GameObject implements IObserved {
 	/**
 	 * Constructor de un objeto inamovible con un visitor y costo 100
 	 */
@@ -54,4 +56,8 @@ public abstract class ImmovableObject extends GameObject {
 		return null;
 		
 	}
+	
+	public void agregarObservador(IObserver observador) {}
+	public void eliminarObservador(IObserver observador) {}
+	
 }

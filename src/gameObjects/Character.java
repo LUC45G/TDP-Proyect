@@ -128,7 +128,6 @@ public abstract class Character extends GameObject implements Cloneable, IObserv
 	 */
 	public void Die() {
 		Controller.GetInstance().Remove(this);
-		Controller.GetInstance().StopAttacking();
 	}
 	
 	/**
