@@ -31,6 +31,7 @@ public class Generator {
 		_powerUps.add(new Diente());
 		_powerUps.add(new BombaAtomica());
 		_powerUps.add(new BombaCongelante());
+		_powerUps.add(new Vendedor());
 		
 		
 		/* Inicializo el hilo */
@@ -81,7 +82,10 @@ public class Generator {
 		_dataStorage.Store(aux);
 		return aux;
 	}
-
+	public ImmovableObject GetPowerUp(int i) {
+		ImmovableObject aux = _powerUps.get(i).Clone();
+		return aux;
+	}
 	public int GetCost(int i) {
 		return _powerUps.get(i).GetCost();
 	}

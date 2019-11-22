@@ -3,8 +3,6 @@ package logicas;
 import gui.Gui;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.Random;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -12,7 +10,7 @@ import gameObjects.Ally;
 import gameObjects.Disparo;
 import gameObjects.GameObject;
 import gameObjects.ImmovableObject;
-import gameObjects.StateCharacter;
+import gameObjects.Vendedor;
 
 /**
  * Clase que comunica la gui con la logica
@@ -33,6 +31,7 @@ public class Controller {
 	protected boolean 			_roundEnded; 		// Controla si termina la ronda
 	protected boolean			_alreadyStarted;	// Controla si ya empezo la partida
 	protected int 				_dificultad; 		// dificultad del juego
+	protected boolean 			_vender;
 	
 	/**
 	 * Constructor que relaciona una interfaz grafica con una logica
@@ -189,20 +188,30 @@ public class Controller {
 	public void Invoke(int x, int y) {
 		
 		boolean invoked = false;
-		
-		if(_currentIndex != -1) {
-			Ally a = _store.CreateAlly(_currentIndex, x, y);
-			_gui.Insertar(a.GetSprite());
-			_dataStorage.Buy(a.GetCost());
-			invoked = true;
+		if(_vender) {
+			ImmovableObject aux = _generator.GetPowerUp(5); //hardcodeado
+			aux.SetX((x/90)*90); 
+			aux.SetY((y/90)*90);
+			_dataStorage.Store(aux);
+			System.out.println(aux.GetHitbox().y);
+			_vender=false;
+			invoked=true;
 		}
-		
-		if(!invoked && _currentPowerUp != -1) {
-			y = (y/90);
-			ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
-			AddPowerUp(p.GetVisitor());
-			_dataStorage.Buy(p.GetCost());
-			invoked = true;
+		else {
+			if(_currentIndex != -1) {
+				Ally a = _store.CreateAlly(_currentIndex, x, y);
+				_gui.Insertar(a.GetSprite());
+				_dataStorage.Buy(a.GetCost());
+				invoked = true;
+			}
+			
+			if(!invoked && _currentPowerUp != -1) {
+				y = (y/90);
+				ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
+				AddPowerUp(p.GetVisitor());
+				_dataStorage.Buy(p.GetCost());
+				invoked = true;
+			}
 		}
 		_currentPowerUp = -1;
 		_currentIndex = -1;
@@ -298,9 +307,17 @@ public class Controller {
 		_currentPowerUp = i;
 		
 	}
+	public void sellAlly(Ally a) {
+		_dataStorage.Store(a.GetCost()/2);
+		a.Die();
+	}
 
 	public Icon GetIcon(int i) {
 		return _store.GetIcon(i);
+	}
+
+	public void sell() {
+		_vender=true;
 	}
 
 }

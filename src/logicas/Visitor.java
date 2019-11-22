@@ -7,6 +7,7 @@ import gameObjects.DisparoAliado;
 import gameObjects.DisparoEnemigo;
 import gameObjects.Enemy;
 import gameObjects.ImmovableObject;
+import gameObjects.Vendedor;
 
 public abstract class Visitor {
 	
@@ -25,4 +26,7 @@ public abstract class Visitor {
 	public void visitLose() {}
 	
 	public void visitBarricada(Barricada b) {}
+
+	public void visitVendedor(Vendedor v) {}
+
 }

@@ -78,25 +78,32 @@ public class Gui {
 		panelIzq.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 7, Color.black));
 		
 		JButton btnPersonaje1 = new JButton(controller.GetIcon(1));
+		btnPersonaje1.setBackground(Color.BLACK);
 		btnPersonaje1.addActionListener(new btn1AL()); 
 		panelPersonajes.add(btnPersonaje1);
 		
 		JButton btnPersonaje2 = new JButton(controller.GetIcon(2));
+		btnPersonaje2.setBackground(Color.BLACK);
 		btnPersonaje2.addActionListener(new btn2AL());
 		panelPersonajes.add(btnPersonaje2);
 		
 		JButton btnPersonaje3 = new JButton(controller.GetIcon(3));
+		btnPersonaje3.setBackground(Color.BLACK);
 		btnPersonaje3.addActionListener(new btn3AL());
 		panelPersonajes.add(btnPersonaje3);
 		
 		JButton btnPersonaje4 = new JButton(controller.GetIcon(4));
+		btnPersonaje4.setBackground(Color.BLACK);
 		btnPersonaje4.addActionListener(new btn4AL());
 		panelPersonajes.add(btnPersonaje4);
 		
 		JButton btnPersonaje5 = new JButton(controller.GetIcon(5));
+		btnPersonaje5.setBackground(Color.BLACK);
 		btnPersonaje5.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
 		
+		JButton btnPersonaje6 = new JButton("Vender");
+		btnPersonaje6.addActionListener(new btn6AL());
 		
 		BackgroundPanel panelScore = new BackgroundPanel(transparent);
 		panelScore.setBounds(0, 300, 170, 100);
@@ -141,6 +148,7 @@ public class Gui {
 		JButton btno5 = new JButton("cong");
 		btno5.addActionListener(new btnObject5());
 		panelObjetos.add(btno5);
+		panelObjetos.add(btnPersonaje6);
 		panelIzq.add(panelObjetos);
 		
 		
@@ -273,7 +281,17 @@ public class Gui {
 			}
 		}
 	}
-	
+	/**
+	 * Clase oyente del boton 6
+	 *
+	 */
+	private class btn6AL implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			controller.PurchasePowerUp(5);
+			controller.sell();
+		}
+	}
 	private class btnPlayAL implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			controller.ToggleRound();
