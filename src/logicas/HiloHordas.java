@@ -21,6 +21,7 @@ import gameObjects.Enemy;
 		private boolean 			 _end;
 		private boolean				 _alreadyStarted;
 		private int 				 _cantidadSpawneada;
+		private Random				 _rng;
 		
 		public HiloHordas() {
 			_enemiesHitboxes 	= new ArrayList<Rectangle>();
@@ -28,6 +29,23 @@ import gameObjects.Enemy;
 			_generator=null;
 			_dificultad = 0;
 			_freno=0;
+			_rng = new Random();
+		}
+		
+		private void SpawnMapElements() {
+			int aux, x, y, index;
+			for (int i = 0; i < 6; i++) {
+				aux = _rng.nextInt(100);
+				
+				if (aux % (2 + _dificultad) == 0) {
+					y = i * 90;
+					x = _rng.nextInt(Controller.GetInstance()._mapWidth / 2);
+					
+					index = _rng.nextInt(100) % 2;
+					Controller.GetInstance().SpawnInMap(x, y, _generator.GetMapElement(index));
+				}
+				
+			}
 		}
 		
 		public void SetController(Controller c) {
@@ -42,7 +60,7 @@ import gameObjects.Enemy;
 		public void End() {
 			_end = true;
 		}
-		
+
 		public void SubEnemy() {
 			_cantidadSpawneada--;
 			
@@ -53,6 +71,7 @@ import gameObjects.Enemy;
 		public void crearHordas(int dificultad) {
 			_dificultad += dificultad;
 			_end 		= false;
+			SpawnMapElements();
 			
 			if(!_alreadyStarted) {
 				_alreadyStarted = true;

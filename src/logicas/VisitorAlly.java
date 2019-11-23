@@ -5,6 +5,7 @@ import gameObjects.DisparoAliado;
 import gameObjects.DisparoEnemigo;
 import gameObjects.Enemy;
 import gameObjects.ImmovableObject;
+import gameObjects.Vendedor;
 
 public class VisitorAlly extends Visitor {
 
@@ -23,6 +24,9 @@ public class VisitorAlly extends Visitor {
 	}
 	public void visitImmovableObject(ImmovableObject i) {
 		i.affect(miAliado);
+	}
+	public void visitVendedor(Vendedor v) {
+		miAliado.accept(v.GetVisitor());
 	}
 
 }

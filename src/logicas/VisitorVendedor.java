@@ -11,7 +11,7 @@ public class VisitorVendedor extends Visitor {
 	public void visitAlly(Ally a) {
 		if(v.IsVisible()) {
 			Controller.GetInstance().sellAlly(a);
-			v.receive_attack(0);			
+			v.receive_attack(0);
 		}
 	}
 }

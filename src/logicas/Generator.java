@@ -9,6 +9,7 @@ public class Generator {
 	
 	protected ArrayList<Enemy>  _enemies;		 // Lista de enemigos a clonar
 	protected ArrayList<ImmovableObject> _powerUps;
+	protected ArrayList<ImmovableObject> _mapItems;
 	protected HiloPrincipal 	_mainThread;	 // Hilo principal
 	protected DataStorage 		_dataStorage; 	 // Almacenamiento de cosas
 	
@@ -16,8 +17,9 @@ public class Generator {
 		_enemies 	= new ArrayList<Enemy>();
 		_powerUps 	= new ArrayList<ImmovableObject>();
 		_dataStorage= DataStorage.GetInstance();
+		_mapItems   = new ArrayList<ImmovableObject>();
 		
-		/* Inicializar la lista */
+		/* Inicializar la lista de enemigos */
 		_enemies.add(new Enemy1(0, 0));
 		_enemies.add(new EnemyBoss(0, 0));
 		_enemies.add(new EnemyFast(0, 0));
@@ -33,6 +35,9 @@ public class Generator {
 		_powerUps.add(new BombaCongelante());
 		_powerUps.add(new Vendedor());
 		
+		/* Inicializar la lista de objetos del mapa */
+		_mapItems.add(new LagoMapa());
+		_mapItems.add(new PiedraMapa());
 		
 		/* Inicializo el hilo */
 		_mainThread = new HiloPrincipal();
@@ -88,6 +93,10 @@ public class Generator {
 	}
 	public int GetCost(int i) {
 		return _powerUps.get(i).GetCost();
+	}
+
+	public GameObject GetMapElement(int index) {
+		return _mapItems.get(index).Clone();
 	}
 
 }

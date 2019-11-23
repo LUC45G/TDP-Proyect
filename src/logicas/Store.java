@@ -52,7 +52,6 @@ public class Store {
 		
 		_dataStorage.Store(aux);
 		aux.SetX(x); aux.SetY((y/90)*90);
-		System.out.println(aux.GetHitbox().y);
 		return aux;
 	}
 

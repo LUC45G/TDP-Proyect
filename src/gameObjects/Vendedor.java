@@ -9,8 +9,8 @@ public class Vendedor extends ImmovableObject {
 	public Vendedor()
 	{
 		_hitbox = new Rectangle(0, 0, 1, 1);
-		_cost=0;
-		_visitor=new VisitorVendedor(this);
+		_cost = 0;
+		_visitor = new VisitorVendedor(this);
 	}
 	@Override
 	public void affect(Character c) {

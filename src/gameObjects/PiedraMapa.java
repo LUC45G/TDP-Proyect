@@ -25,8 +25,7 @@ public class PiedraMapa extends ImmovableObject {
 
 	@Override
 	public ImmovableObject Clone() {
-		// TODO Auto-generated method stub
-		return null;
+		return new PiedraMapa();
 	}
 
 }

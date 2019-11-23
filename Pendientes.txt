@@ -1,10 +1,9 @@
 Falta:
 - visitor power-up
-- hordas: que aparezcan los objetos del mapa
-- vender los personjaes*(ya esta hecho pero no se si esta bien implementado)
 ------------------------------------------------
 
-Bugs: Solamente se puede vender en orden
+Bugs: 
+- 
 
 ------------------------------------------------
 

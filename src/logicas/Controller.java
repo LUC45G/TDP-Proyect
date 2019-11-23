@@ -189,12 +189,11 @@ public class Controller {
 		boolean invoked = false;
 		if(_vender) {
 			ImmovableObject aux = _generator.GetPowerUp(5); //hardcodeado
-			aux.SetX((x/90)*90); 
+			aux.SetX(x); 
 			aux.SetY((y/90)*90);
 			_dataStorage.Store(aux);
-			System.out.println(aux.GetHitbox().y);
-			_vender=false;
-			invoked=true;
+			_vender = false;
+			invoked = true;
 		}
 		else {
 			if(_currentIndex != -1) {
@@ -256,7 +255,7 @@ public class Controller {
 		
 		_enemies.crearHordas(++_dificultad);
 		
-		System.out.println("dif:" + _dificultad);
+		//System.out.println("dif:" + _dificultad);
 	}
 	
 	public void EnemyDeath() {
@@ -317,6 +316,11 @@ public class Controller {
 
 	public void sell() {
 		_vender=true;
+	}
+
+	public void SpawnInMap(int x, int y, GameObject go) {
+		go.SetX(x); go.SetY(y);
+		_dataStorage.Store(go);
 	}
 
 }
