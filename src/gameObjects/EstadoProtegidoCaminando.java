@@ -2,7 +2,6 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
-import logicas.VisitorNormalState;
 import logicas.VisitorProtegidoNormal;
 import logicas.VisitorState;
 

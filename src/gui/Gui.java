@@ -10,10 +10,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-
-import gameObjects.GameObject;
 import logicas.Controller;
 import logicas.Pair;
 

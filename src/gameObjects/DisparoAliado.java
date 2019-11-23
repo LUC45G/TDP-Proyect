@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 
 import logicas.Visitor;
 import logicas.VisitorAllyShoot;
-import logicas.VisitorEnemy;
 
 public class DisparoAliado extends Disparo {
 

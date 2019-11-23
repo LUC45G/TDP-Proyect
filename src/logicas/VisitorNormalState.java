@@ -3,9 +3,7 @@ package logicas;
 import gameObjects.Congelado;
 import gameObjects.DienteSquanchy;
 import gameObjects.EstadoDisparando;
-import gameObjects.EstadoProtegidoAtacando;
 import gameObjects.EstadoProtegidoCaminando;
-import gameObjects.Muerte;
 import gameObjects.NormalState;
 
 public class VisitorNormalState extends VisitorState{

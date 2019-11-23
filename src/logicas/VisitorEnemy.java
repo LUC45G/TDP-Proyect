@@ -1,8 +1,6 @@
 package logicas;
 
-import gameObjects.Ally;
 import gameObjects.DisparoAliado;
-import gameObjects.DisparoEnemigo;
 import gameObjects.Enemy;
 import gameObjects.ImmovableObject;
 

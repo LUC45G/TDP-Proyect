@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 
 import logicas.Controller;
 import logicas.VisitorDisparando;
-import logicas.VisitorNormalState;
 import logicas.VisitorState;
 
 public class EstadoDisparando extends StateCharacter {

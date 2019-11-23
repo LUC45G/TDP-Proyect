@@ -3,7 +3,6 @@ package gameObjects;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import logicas.Controller;

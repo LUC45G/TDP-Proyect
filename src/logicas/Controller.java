@@ -10,7 +10,6 @@ import gameObjects.Ally;
 import gameObjects.Disparo;
 import gameObjects.GameObject;
 import gameObjects.ImmovableObject;
-import gameObjects.Vendedor;
 
 /**
  * Clase que comunica la gui con la logica
