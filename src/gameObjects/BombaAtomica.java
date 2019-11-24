@@ -36,4 +36,9 @@ public class BombaAtomica extends ImmovableObject {
 		return new ImageIcon(this.getClass().getResource("/img/moab.png"));
 		
 	}
+
+	@Override
+	public boolean IsAOE() {
+		return true;
+	}
 }

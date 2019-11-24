@@ -29,8 +29,8 @@ public class Controller {
 	protected int 				_mapWidth; 			// Ancho del mapa para controlar limites
 	protected boolean 			_roundEnded; 		// Controla si termina la ronda
 	protected boolean			_alreadyStarted;	// Controla si ya empezo la partida
+	protected boolean 			_isAOE;				// Controla si el power up debe afectar a mas de uno
 	protected int 				_dificultad; 		// dificultad del juego
-	protected boolean 			_vender;
 	
 	/**
 	 * Constructor que relaciona una interfaz grafica con una logica
@@ -70,6 +70,9 @@ public class Controller {
 		return null;
 	}
 	
+	/**
+	 * Dice a la gui que se actualice
+	 */
 	public void Update() {
 		_gui.ActualizarGrafica();
 	}
@@ -95,6 +98,7 @@ public class Controller {
 		
 		return aux;
 	}
+	
 	/**
 	 * Chequea que todos los objetos estan dentro de lo limites, si no los borra
 	 */
@@ -109,6 +113,7 @@ public class Controller {
 				Remove(go);			
 		} 
 	}
+	
 	/**
 	 * Retorna la cantidad de objectos que hay en el mapa
 	 * @return Retorna cantidad de objetos
@@ -116,6 +121,7 @@ public class Controller {
 	public int Size() {
 		return _dataStorage.GetAllObjects().size();
 	}
+	
 	/**
 	 * Retorna la imagen y la hitbox del objeto en la posicion i-esima
 	 * @param i posicion del objeto que se desea
@@ -124,6 +130,7 @@ public class Controller {
 	public Pair<ImageIcon, Rectangle> GetSpriteAndHitbox(int i) {
 		return new Pair<ImageIcon, Rectangle>(_dataStorage.GetAllObjects().get(i).GetSprite(), _dataStorage.GetAllObjects().get(i).GetHitbox());
 	}
+	
 	/**
 	 * Remueve el objeto de la i-esima posicion
 	 * @param i posicion del objeto a remover
@@ -131,6 +138,7 @@ public class Controller {
 	public void Remove(int i) {
 		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
 	}
+	
 	/**
 	 * Busca el objeto go entre los objetos del mapa, si lo encunetra los remueve 
 	 * @param go objeto que se desea remover
@@ -168,7 +176,6 @@ public class Controller {
 			}
 			
 		}
-		
 	}
 
 	/**
@@ -187,34 +194,44 @@ public class Controller {
 	public void Invoke(int x, int y) {
 		
 		boolean invoked = false;
-		if(_vender) {
-			ImmovableObject aux = _generator.GetPowerUp(5); //hardcodeado
-			aux.SetX(x); 
-			aux.SetY((y/90)*90);
-			_dataStorage.Store(aux);
-			_vender = false;
+		
+		if(_currentIndex != -1) {
+			Ally a = _store.CreateAlly(_currentIndex, x, y);
+			_gui.Insertar(a.GetSprite());
+			_dataStorage.Buy(a.GetCost());
 			invoked = true;
 		}
-		else {
-			if(_currentIndex != -1) {
-				Ally a = _store.CreateAlly(_currentIndex, x, y);
-				_gui.Insertar(a.GetSprite());
-				_dataStorage.Buy(a.GetCost());
-				invoked = true;
+		
+		if(!invoked && _currentPowerUp != -1) {
+			y = (y/90);
+			ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
+			_isAOE = _generator.IsAOE(_currentPowerUp);
+			
+			if(_isAOE) {
+				AddAOEPowerUp(p.GetVisitor());
+				_dataStorage.Buy(p.GetCost());
+			}
+			else {
+				//AddPowerUp(p.GetVisitor());
+				_dataStorage.Store(p);
 			}
 			
-			if(!invoked && _currentPowerUp != -1) {
-				y = (y/90);
-				ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
-				AddPowerUp(p.GetVisitor());
-				_dataStorage.Buy(p.GetCost());
-				invoked = true;
-			}
+			invoked = true;
 		}
+		
 		_currentPowerUp = -1;
 		_currentIndex = -1;
 	}
 	
+	/**
+	 * Agrega un power up que deba afectar a un solo personaje
+	 * @param v visitor del power up
+	 */
+	private void AddPowerUp(Visitor v) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Agrega un disparo al mapa
 	 * @param d disparo
@@ -232,6 +249,10 @@ public class Controller {
 		return _dataStorage.GetCurrentMoney() >= _store.GetCost(i);
 	}
 	
+	/**
+	 * Consulta y devuelve el dinero actual
+	 * @return current money
+	 */
 	public String GetCurrentMoney() {
 		return ""+_dataStorage.GetCurrentMoney();
 	}
@@ -249,27 +270,42 @@ public class Controller {
 	 */
 	public void ToggleRound() {
 		
+		
+		if(!_alreadyStarted)
+			_dataStorage.Reset();
+		
 		_enemies = new HiloHordas();
 		_enemies.SetController(this);
 		_alreadyStarted = true;
 		
 		_enemies.crearHordas(++_dificultad);
-		
-		//System.out.println("dif:" + _dificultad);
+		_gui.UpdateGoldAndLevel();
 	}
 	
+	/**
+	 * Actua en respuesta a la muerte de un enemigo
+	 */
 	public void EnemyDeath() {
 		_enemies.SubEnemy();
+		_dataStorage.Store(100);
+		_gui.UpdateGoldAndLevel();
 	}
 
+	/**
+	 * Actua en respuesta a la derrota
+	 */
 	public void lose() {
 		_enemies.End();
 		_dificultad = 2;
 		_gui.showLose();
+		_alreadyStarted = false;
 		for(GameObject go:_dataStorage.GetAllObjects())
 			Remove(go);
 	}
 	
+	/**
+	 * Actua en respuesta a la victoria
+	 */
 	public void Win() {
 		_enemies.End();
 
@@ -279,16 +315,26 @@ public class Controller {
 		_gui.ShowWin();
 	}
 
+	/**
+	 * Devuelve el generador
+	 */
 	public Generator getGenerator() {
 		return _generator;
 	}
 
-	public void spawnEnemie(ImageIcon e) {
+	/**
+	 * Spawnea un enemigo
+	 * @param e enemigo a spawnear
+	 */
+	public void spawnEnemy(ImageIcon e) {
 		_gui.Insertar( e ); 
 	}
 	
-
-	public void AddPowerUp(Visitor v) {
+	/**
+	 * Agrega un power-up que deba afectar a mas de un GameObject
+	 * @param v Visitor de dicho power up
+	 */
+	public void AddAOEPowerUp(Visitor v) {
 		ArrayList<GameObject> all = _dataStorage.GetAllObjects();
 		int size = all.size();
 		
@@ -297,30 +343,67 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Consulta si puede comprar el power up
+	 * @param i indice del boton apretado
+	 * @return true si puede, false si no
+	 */
 	public boolean CanPurchasePowerUp(int i) {
 		return _dataStorage.GetCurrentMoney() >= _generator.GetCost(i);
 	}
 
+	/**
+	 * Compra un power up
+	 * @param i indice del boton presionado
+	 */
 	public void PurchasePowerUp(int i) {
 		_currentPowerUp = i;
 		
 	}
+	
+	/**
+	 * Vende al aliado 
+	 * @param a aliado a vender
+	 */
 	public void sellAlly(Ally a) {
 		_dataStorage.Store(a.GetCost()/2);
 		a.Die();
 	}
 
+	/**
+	 * Devuelve el icono del aliade
+	 * @param i indice del boton
+	 * @return imagen del aliade correspondiente
+	 */
 	public Icon GetIcon(int i) {
 		return _store.GetIcon(i);
 	}
 
-	public void sell() {
-		_vender=true;
-	}
-
+	/**
+	 * Spawnea GO en el mapa, en las coordenadas X e Y dadas
+	 * @param x coord x
+	 * @param y coor y
+	 * @param go gameobject a spawnear
+	 */
 	public void SpawnInMap(int x, int y, GameObject go) {
 		go.SetX(x); go.SetY(y);
 		_dataStorage.Store(go);
+	}
+
+	/**
+	 * Consulta y devuelve el nivel actual
+	 * @return nivel
+	 */
+	public int GetNivel() {
+		return  (_enemies != null) ? _enemies.GetNivel() : 1;
+	}
+
+	/**
+	 * Consulta y devuelve la dificultad actual (stage)
+	 * @return dificultad
+	 */
+	public int GetDificultad() {
+		return _dificultad - 2;
 	}
 
 }

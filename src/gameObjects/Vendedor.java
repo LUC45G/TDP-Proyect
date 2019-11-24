@@ -26,4 +26,8 @@ public class Vendedor extends ImmovableObject {
 		Controller.GetInstance().Remove(this);
 		_visible = false;
 	}
+	@Override
+	public boolean IsAOE() {
+		return false;
+	}
 }

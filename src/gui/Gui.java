@@ -22,6 +22,7 @@ public class Gui {
 	private BackgroundPanel panelMapa, panelGeneral;
 	private Controller controller;
 	private JLabel lblScore;
+	private JLabel lblGold;
 	private ArrayList<JLabel> objetos;
 	JButton btnPlay;
 
@@ -112,7 +113,7 @@ public class Gui {
 		lblScore.setBounds(0, 0, 170, 40);
 		panelScore.add(lblScore);
 		
-		JLabel lblGold = new JLabel("Gold: " + controller.GetCurrentMoney());
+		lblGold = new JLabel("<html> <div text-align=\"center\"> Gold: " + controller.GetCurrentMoney() + "<br /> 1 - 1 <div /> <html>");
 		lblGold.setBackground(Color.BLACK);
 		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblGold.setForeground(Color.WHITE);
@@ -162,7 +163,7 @@ public class Gui {
 				
 				if(!controller.Empty()) {
 					controller.Invoke(e.getX(), e.getY());
-					lblGold.setText("Gold: " + controller.GetCurrentMoney());
+					lblGold.setText("<html> <div> Gold: " + controller.GetCurrentMoney() + "<br />" + controller.GetNivel() + " - " + controller.GetDificultad() + "<html>");
 					ActualizarGrafica();
 				}
 			}
@@ -200,6 +201,10 @@ public class Gui {
 			System.out.println("GUI::"+ e.getMessage());
 		}
 		
+	}
+	
+	public void UpdateGoldAndLevel() {
+		lblGold.setText("<html> <div> Gold: " + controller.GetCurrentMoney() + "<br />" + controller.GetNivel() + " - " + controller.GetDificultad() + "<html>");
 	}
 	
 	/**
@@ -285,7 +290,6 @@ public class Gui {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			controller.PurchasePowerUp(5);
-			controller.sell();
 		}
 	}
 	private class btnPlayAL implements ActionListener {

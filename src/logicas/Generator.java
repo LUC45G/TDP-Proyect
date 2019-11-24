@@ -46,9 +46,10 @@ public class Generator {
 	
 	public ArrayList<Rectangle> GetHitboxes() {
 		ArrayList<Rectangle> tr = new ArrayList<Rectangle>();
-		for(Enemy e : _enemies) {
+		
+		for(Enemy e : _enemies) 
 			tr.add(e.GetHitbox());
-		}
+		
 		return tr;
 	}
 	
@@ -67,8 +68,11 @@ public class Generator {
 			go.acceptObserver(vo);
 		}
 		
-		_dataStorage.Store(e);
+		e.ChangeState(new EstadoProtegidoCaminando(e, e.get_delay(), e.get_strength(), e.get_velocidad()));
+		
+		
 		e.SetX(700); e.SetY(y*90);
+		_dataStorage.Store(e);
 		return e.GetSprite();
 	}
 	
@@ -80,11 +84,10 @@ public class Generator {
 		for(GameObject go : _dataStorage.GetAllObjects())
 			go.acceptObserver(vo);
 		
-		
-		
-		aux.SetX((x/90)*90); 
+		aux.SetX(x); 
 		aux.SetY(y*90);
 		_dataStorage.Store(aux);
+		
 		return aux;
 	}
 	public ImmovableObject GetPowerUp(int i) {
@@ -97,6 +100,10 @@ public class Generator {
 
 	public GameObject GetMapElement(int index) {
 		return _mapItems.get(index).Clone();
+	}
+
+	public boolean IsAOE(int index) {
+		return _powerUps.get(index).IsAOE();
 	}
 
 }

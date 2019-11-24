@@ -2,6 +2,7 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.Controller;
 import logicas.VisitorProtegidoAtacando;
 import logicas.VisitorState;
 
@@ -15,8 +16,8 @@ public class EstadoProtegidoAtacando extends StateCharacter {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		if(++_delta%(_delay+2)==0) 
+			Controller.GetInstance().AddDisparo(Disparar());
 	}
 
 	public int getAtaquesRecibidos() {

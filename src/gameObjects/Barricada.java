@@ -81,4 +81,9 @@ public class Barricada extends ImmovableObject implements IObserved {
 		return false;
 	}
 
+	@Override
+	public boolean IsAOE() {
+		return false;
+	}
+
 }

@@ -16,8 +16,7 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		miCh.GetHitbox().x -= _velocidad;
 	}
 	
 	public int getAtaquesRecibidos() {

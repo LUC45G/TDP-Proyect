@@ -29,4 +29,9 @@ public class Diente extends ImmovableObject {
 		
 	}
 
+	@Override
+	public boolean IsAOE() {
+		return true;
+	}
+
 }

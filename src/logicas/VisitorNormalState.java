@@ -3,6 +3,7 @@ package logicas;
 import gameObjects.Congelado;
 import gameObjects.DienteSquanchy;
 import gameObjects.EstadoDisparando;
+import gameObjects.EstadoProtegidoAtacando;
 import gameObjects.EstadoProtegidoCaminando;
 import gameObjects.NormalState;
 
@@ -15,4 +16,7 @@ public class VisitorNormalState extends VisitorState{
 	public void visitSquanchy(DienteSquanchy sd) {sd.ChangeState(new NormalState(sd.GetCharacter(),sd.GetBaseDelay(),sd.GetBaseStrength(),sd.GetBaseVelocidad()));}
 	
 	public void visitProtegidoCaminando(EstadoProtegidoCaminando sd) {sd.ChangeState(new NormalState(sd.GetCharacter(),sd.GetBaseDelay(),sd.GetBaseStrength(),sd.GetBaseVelocidad()));}
+	
+	public void visitProtegidoDisparando(EstadoProtegidoAtacando sd) {sd.ChangeState(new EstadoProtegidoCaminando(sd.GetCharacter(),sd.GetBaseDelay(),sd.GetBaseStrength(),sd.GetBaseVelocidad()));}
+	
 }

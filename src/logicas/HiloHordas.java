@@ -18,9 +18,10 @@ import gameObjects.Enemy;
 		private Generator       	 _generator;
 		private int					 _dificultad;
 		private int 				 _freno;		
+		private int 				 _cantidadSpawneada;
+		private int 				 _nivel;
 		private boolean 			 _end;
 		private boolean				 _alreadyStarted;
-		private int 				 _cantidadSpawneada;
 		private Random				 _rng;
 		
 		public HiloHordas() {
@@ -29,6 +30,7 @@ import gameObjects.Enemy;
 			_generator=null;
 			_dificultad = 0;
 			_freno=0;
+			_nivel = 1;
 			_rng = new Random();
 		}
 		
@@ -69,7 +71,8 @@ import gameObjects.Enemy;
 		}
 		
 		public void crearHordas(int dificultad) {
-			_dificultad += dificultad;
+			_dificultad = dificultad;
+			_nivel = _dificultad / 3;
 			_end 		= false;
 			SpawnMapElements();
 			
@@ -91,7 +94,7 @@ import gameObjects.Enemy;
 			int y = r.nextInt(6);
 			int rng = r.nextInt(6);
 			ImageIcon e = _generator.GetEnemy(rng, y);
-			_controller.spawnEnemie(e);
+			_controller.spawnEnemy(e);
 			
 		}
 		
@@ -109,6 +112,10 @@ import gameObjects.Enemy;
 					_end = true;
 				}
 			}
+		}
+
+		public int GetNivel() {
+			return _nivel;
 		}
 
 }

@@ -12,11 +12,13 @@ import gameObjects.GameObject;
  */
 public class DataStorage {
 	
+	protected final int STARTING_MONEY = 250;
+	
 	protected static DataStorage		INSTANCE = null;
 	protected int 						_currentMoney;
 	protected ArrayList<GameObject>		_gos;
 	private DataStorage() {
-		_currentMoney 	= 10000;
+		_currentMoney 	= STARTING_MONEY;
 		_gos 		= new ArrayList<GameObject>();
 	}
 	
@@ -70,6 +72,11 @@ public class DataStorage {
 	 */
 	public void Buy(int q) {
 		_currentMoney -= q;
+	}
+
+	public void Reset() {
+		_currentMoney = STARTING_MONEY;
+		
 	}
 	
 	

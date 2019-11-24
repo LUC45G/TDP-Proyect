@@ -60,4 +60,10 @@ public abstract class ImmovableObject extends GameObject implements IObserved {
 	public void agregarObservador(IObserver observador) {}
 	public void eliminarObservador(IObserver observador) {}
 	
+	/**
+	 * Pregunta si el power up es de area de efecto
+	 * @return true si debe afectar en area, false si no
+	 */
+	public abstract boolean IsAOE();
+	
 }

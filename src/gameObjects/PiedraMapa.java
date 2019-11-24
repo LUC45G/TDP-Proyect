@@ -28,4 +28,9 @@ public class PiedraMapa extends ImmovableObject {
 		return new PiedraMapa();
 	}
 
+	@Override
+	public boolean IsAOE() {
+		return false;
+	}
+
 }

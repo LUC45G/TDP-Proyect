@@ -28,4 +28,9 @@ public class LagoMapa extends ImmovableObject {
 		return new LagoMapa();
 	}
 
+	@Override
+	public boolean IsAOE() {
+		return false;
+	}
+
 }

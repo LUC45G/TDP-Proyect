@@ -30,4 +30,9 @@ public class BombaCongelante extends ImmovableObject {
 		
 	}
 
+	@Override
+	public boolean IsAOE() {
+		return true;
+	}
+
 }
