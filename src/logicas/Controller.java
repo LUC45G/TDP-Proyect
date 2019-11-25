@@ -209,15 +209,11 @@ public class Controller {
 			ImmovableObject p = _generator.GetPowerUp(_currentPowerUp, x, y);
 			_isAOE = _generator.IsAOE(_currentPowerUp);
 			
-			if(_isAOE) {
+			if(_isAOE)
 				AddAOEPowerUp(p.GetVisitor());
-				_dataStorage.Buy(p.GetCost());
-			}
-			else {
-				//AddPowerUp(p.GetVisitor());
-				_dataStorage.Store(p);
-			}
 			
+			
+			_dataStorage.Buy(p.GetCost());
 			invoked = true;
 		}
 		

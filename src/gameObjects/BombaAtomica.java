@@ -24,7 +24,7 @@ public class BombaAtomica extends ImmovableObject {
 		_sprite = new ImageIcon(this.getClass().getResource("/img/moab.gif"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_cost*=5;
-		_deathTimer = 45;
+		_deathTimer = 40;
 	}
 
 	public String toString() {

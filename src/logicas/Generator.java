@@ -89,6 +89,7 @@ public class Generator {
 		
 		aux.SetX(x); 
 		aux.SetY(y*90);
+		
 		_dataStorage.Store(aux);
 		
 		return aux;

@@ -41,13 +41,13 @@ import gameObjects.ImmovableObject;
 			for (int i = 0; i < 6; i++) {
 				aux = _rng.nextInt(100);
 				
-				if (0 == 0) {
+				if (aux % (2 + _dificultad) == 0) {
 					y = i * 90;
 					x = _rng.nextInt(Controller.GetInstance()._mapWidth / 2);
 					
 					index = _rng.nextInt(100) % 2;
 					
-					ImmovableObject gog =_generator.GetMapElement(1);
+					ImmovableObject gog =_generator.GetMapElement(index);
 					
 					VisitorObserver vo = new VisitorObserver(gog);
 					
