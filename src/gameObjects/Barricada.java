@@ -33,6 +33,10 @@ public class Barricada extends ImmovableObject implements IObserved {
 		_cost*=2;
 	}
 	
+	public String toString() {
+		return "caja";
+	}
+	
 	@Override
 	public void affect(Character c) {
 		// Setear _sprite de escudo
@@ -45,15 +49,13 @@ public class Barricada extends ImmovableObject implements IObserved {
 	
 	@Override
 	public void accept(Visitor v) {
-		if(_health != 100)
-			v.visitBarricada(this);
-		
-		else
-			_health--;
-		
-		
+		v.visitBarricada(this);
 	}
 	
+	@Override
+	public void Update()	{}
+	
+	@Override
 	public void receive_attack(int i) {
 		_health-=i;
 		if(_health<=0) {

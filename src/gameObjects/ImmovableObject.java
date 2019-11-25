@@ -2,6 +2,7 @@ package gameObjects;
 
 import javax.swing.ImageIcon;
 
+import logicas.Controller;
 import logicas.IObserved;
 import logicas.IObserver;
 import logicas.Visitor;
@@ -15,6 +16,7 @@ public abstract class ImmovableObject extends GameObject implements IObserved {
 	/**
 	 * Constructor de un objeto inamovible con un visitor y costo 100
 	 */
+	protected int _deathTimer;
 	protected ImmovableObject() {
 		_visitor = new VisitorPowerUp();
 		_cost=100;
@@ -36,10 +38,17 @@ public abstract class ImmovableObject extends GameObject implements IObserved {
 	public void accept(Visitor v) {
 		v.visitImmovableObject(this);
 	}
+	
+	public void receive_attack(int i) {
+		Controller.GetInstance().Remove(this);
+		_visible = false;
+	}
 
-	@Override
 	public void Update() {
+		--_deathTimer;
 		
+		if(_deathTimer == 0)
+			receive_attack(0);
 	}
 
 	/**

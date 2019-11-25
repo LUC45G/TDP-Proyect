@@ -7,6 +7,8 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import gameObjects.Enemy;
+import gameObjects.GameObject;
+import gameObjects.ImmovableObject;
 
 	/**
 	 * Hilo encargado de generar las hordas
@@ -39,12 +41,20 @@ import gameObjects.Enemy;
 			for (int i = 0; i < 6; i++) {
 				aux = _rng.nextInt(100);
 				
-				if (aux % (2 + _dificultad) == 0) {
+				if (0 == 0) {
 					y = i * 90;
 					x = _rng.nextInt(Controller.GetInstance()._mapWidth / 2);
 					
 					index = _rng.nextInt(100) % 2;
-					Controller.GetInstance().SpawnInMap(x, y, _generator.GetMapElement(index));
+					
+					ImmovableObject gog =_generator.GetMapElement(1);
+					
+					VisitorObserver vo = new VisitorObserver(gog);
+					
+					for(GameObject go : Controller.GetInstance().GetDataStorage().GetAllObjects())
+						go.acceptObserver(vo);
+					
+					Controller.GetInstance().SpawnInMap(x, y, gog);
 				}
 				
 			}

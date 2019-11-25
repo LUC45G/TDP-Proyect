@@ -23,6 +23,7 @@ public class Gui {
 	private Controller controller;
 	private JLabel lblScore;
 	private JLabel lblGold;
+	private JButton[] powerUpsButtons;
 	private ArrayList<JLabel> objetos;
 	JButton btnPlay;
 
@@ -99,8 +100,6 @@ public class Gui {
 		btnPersonaje5.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
 		
-		JButton btnPersonaje6 = new JButton("Vender");
-		btnPersonaje6.addActionListener(new btn6AL());
 		
 		BackgroundPanel panelScore = new BackgroundPanel(transparent);
 		panelScore.setBounds(0, 300, 170, 100);
@@ -128,26 +127,33 @@ public class Gui {
 		panelPlay.setLocation(0, 500);
 		
 		JPanel panelObjetos = new BackgroundPanel(transparent);
+		powerUpsButtons = new JButton[5];
 		panelObjetos.setBounds(0, 400, 170, 100);
 		panelObjetos.setLayout(new GridLayout(3, 2, 0, 0));
-		JButton btno1 = new JButton("caja");
-		btno1.addActionListener(new btnObject1());
-		panelObjetos.add(btno1);
-		JButton btno2 = new JButton("shield");
-		btno2.addActionListener(new btnObject2());
-		panelObjetos.add(btno2);
-		JButton btno3 = new JButton("squan");
-		btno3.addActionListener(new btnObject3());
-		panelObjetos.add(btno3);
-		JButton btno4 = new JButton("moab");
-		btno4.addActionListener(new btnObject4());
-		panelObjetos.add(btno4);
-		JButton btno5 = new JButton("cong");
-		btno5.addActionListener(new btnObject5());
-		panelObjetos.add(btno5);
+		
+		JButton jb;
+		for(int i = 0; i < powerUpsButtons.length; i++) {
+			jb = new JButton(controller.GetPowerUpName(i));
+			jb.setEnabled(false);
+			panelObjetos.add(jb);
+			powerUpsButtons[i] = jb;
+		}
+		
+		powerUpsButtons[0].addActionListener(new btnObject1());
+		
+		powerUpsButtons[1].addActionListener(new btnObject2());
+		
+		powerUpsButtons[2].addActionListener(new btnObject3());
+		
+		powerUpsButtons[3].addActionListener(new btnObject4());
+		
+		powerUpsButtons[4].addActionListener(new btnObject5());
+		
+		
+		JButton btnPersonaje6 = new JButton("Vender");
+		btnPersonaje6.addActionListener(new btn6AL());
 		panelObjetos.add(btnPersonaje6);
 		panelIzq.add(panelObjetos);
-		
 		
 		btnPlay = new JButton("Play");
 		btnPlay.setLocation(0, 0);
@@ -163,7 +169,7 @@ public class Gui {
 				
 				if(!controller.Empty()) {
 					controller.Invoke(e.getX(), e.getY());
-					lblGold.setText("<html> <div> Gold: " + controller.GetCurrentMoney() + "<br />" + controller.GetNivel() + " - " + controller.GetDificultad() + "<html>");
+					UpdateGoldAndLevel();
 					ActualizarGrafica();
 				}
 			}
@@ -175,6 +181,15 @@ public class Gui {
 		frame.getContentPane().add(panelMapa);
 		
 		
+	}
+	
+	public void DisableAllPowerUps() {
+		for(int i = 0; i < powerUpsButtons.length; i++)
+			powerUpsButtons[i].setEnabled(false);
+	}
+	
+	public void EnablePowerUp(int i) {
+		powerUpsButtons[i].setEnabled(true);
 	}
 	
 	/**
@@ -204,7 +219,7 @@ public class Gui {
 	}
 	
 	public void UpdateGoldAndLevel() {
-		lblGold.setText("<html> <div> Gold: " + controller.GetCurrentMoney() + "<br />" + controller.GetNivel() + " - " + controller.GetDificultad() + "<html>");
+		lblGold.setText("<html> <div> Gold: " + controller.GetCurrentMoney() + "<br /> |||" + controller.GetNivel() + " - " + controller.GetDificultad() + "|||<html>");
 	}
 	
 	/**

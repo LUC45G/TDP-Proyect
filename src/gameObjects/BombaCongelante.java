@@ -19,6 +19,10 @@ public class BombaCongelante extends ImmovableObject {
 		_hitbox = new Rectangle(0, 0, 0, 0);
 		_cost*=10;
 	}
+	
+	public String toString() {
+		return "cong";
+	}
 
 	@Override
 	public ImmovableObject Clone() {

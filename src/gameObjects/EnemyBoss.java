@@ -22,7 +22,8 @@ public class EnemyBoss extends Enemy {
 	}
 	@Override
 	public Character Clone() {
-		Character a = new EnemyFast(0, 0);
+		Character a = new EnemyBoss(0, 0);
+		
 		// Espacio por si hay que setear algun otro valor
 		return a;
 	}

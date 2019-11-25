@@ -11,6 +11,10 @@ import logicas.VisitorBombaAtomica;
  *
  */
 public class BombaAtomica extends ImmovableObject {
+	
+	
+	
+	
 	/**
 	 * Constructor que setea visitor, hitbox, imagen y costo
 	 */
@@ -20,13 +24,18 @@ public class BombaAtomica extends ImmovableObject {
 		_sprite = new ImageIcon(this.getClass().getResource("/img/moab.gif"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_cost*=5;
+		_deathTimer = 45;
 	}
 
+	public String toString() {
+		return "moab";
+	}
+	
 	@Override
 	public ImmovableObject Clone() {
 		return new BombaAtomica();
 	}
-
+	
 	@Override
 	public void affect(Character c) {
 		
@@ -36,7 +45,7 @@ public class BombaAtomica extends ImmovableObject {
 		return new ImageIcon(this.getClass().getResource("/img/moab.png"));
 		
 	}
-
+	
 	@Override
 	public boolean IsAOE() {
 		return true;

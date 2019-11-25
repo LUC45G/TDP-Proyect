@@ -4,6 +4,7 @@ import gameObjects.Ally;
 import gameObjects.Barricada;
 import gameObjects.Enemy;
 import gameObjects.EstadoDisparando;
+import gameObjects.PiedraMapa;
 
 public class VisitorRangeEnemigo extends VisitorRange {
 	private Enemy miEnemy;
@@ -16,8 +17,15 @@ public class VisitorRangeEnemigo extends VisitorRange {
 		EstadoDisparando vamoADisparar = new EstadoDisparando(miEnemy,miEnemy.get_delay(),miEnemy.get_strength(),miEnemy.get_velocidad());
 		miEnemy.GetState().accept(vamoADisparar.GetVisitor());
 	}
+	
 	public void visitBarricada(Barricada b){
 		EstadoDisparando vamoADisparar = new EstadoDisparando(miEnemy,miEnemy.get_delay(),miEnemy.get_strength(),miEnemy.get_velocidad());
 		miEnemy.GetState().accept(vamoADisparar.GetVisitor());
 	}
+	
+	public void visitPiedraMapa(PiedraMapa v) {
+		EstadoDisparando vamoADisparar = new EstadoDisparando(miEnemy,miEnemy.get_delay(),miEnemy.get_strength(),miEnemy.get_velocidad());
+		miEnemy.GetState().accept(vamoADisparar.GetVisitor());
+	}
+	
 }

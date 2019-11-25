@@ -16,6 +16,7 @@ public class LagoMapa extends ImmovableObject {
 		super();
 		_sprite = new ImageIcon(this.getClass().getResource("/img/fuego_lago.gif"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
+		_deathTimer=17*12;//agregar un cero
 	}
 	
 	@Override

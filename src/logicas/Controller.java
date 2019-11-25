@@ -3,6 +3,8 @@ package logicas;
 import gui.Gui;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -270,6 +272,7 @@ public class Controller {
 	 */
 	public void ToggleRound() {
 		
+		Random r = new Random();
 		
 		if(!_alreadyStarted)
 			_dataStorage.Reset();
@@ -279,7 +282,13 @@ public class Controller {
 		_alreadyStarted = true;
 		
 		_enemies.crearHordas(++_dificultad);
+		
 		_gui.UpdateGoldAndLevel();
+		_gui.DisableAllPowerUps();
+		
+		for(int i = 0; i < _dificultad; i++) {
+			_gui.EnablePowerUp(r.nextInt(5));
+		}
 	}
 	
 	/**
@@ -404,6 +413,14 @@ public class Controller {
 	 */
 	public int GetDificultad() {
 		return _dificultad - 2;
+	}
+
+	public String GetPowerUpName(int i) {
+		return _generator.GetPowerUpName(i);
+	}
+
+	public DataStorage GetDataStorage() {
+		return _dataStorage;
 	}
 
 }

@@ -18,6 +18,10 @@ public class Diente extends ImmovableObject {
 		_hitbox = new Rectangle(0, 0, 0, 0);
 		_cost*=20;
 	}
+	
+	public String toString() {
+		return "squan";
+	}
 
 	@Override
 	public ImmovableObject Clone() {

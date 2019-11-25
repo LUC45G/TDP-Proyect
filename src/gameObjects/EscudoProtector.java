@@ -10,7 +10,12 @@ public class EscudoProtector extends ImmovableObject {
 	public EscudoProtector() {
 		super();
 		_hitbox = new Rectangle(0, 0, 1, 1);
-		_visitor = new VisitorProtector(this); //falta implementear
+		_visitor = new VisitorProtector(this);
+		_deathTimer=17;
+	}
+	
+	public String toString() {
+		return "shield";
 	}
 	
 	@Override

@@ -1,13 +1,6 @@
 package logicas;
 
-import gameObjects.Ally;
-import gameObjects.Barricada;
-import gameObjects.Disparo;
-import gameObjects.DisparoAliado;
-import gameObjects.DisparoEnemigo;
-import gameObjects.Enemy;
-import gameObjects.ImmovableObject;
-import gameObjects.Vendedor;
+import gameObjects.*;
 
 public abstract class Visitor {
 	
@@ -28,5 +21,7 @@ public abstract class Visitor {
 	public void visitBarricada(Barricada b) {}
 
 	public void visitVendedor(Vendedor v) {}
+	
+	public void visitPiedraMapa(PiedraMapa v) {}
 
 }

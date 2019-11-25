@@ -161,6 +161,7 @@ public abstract class Character extends GameObject implements Cloneable, IObserv
 		vo.visitAllyObservado(this);
 		vo.visitAllyObservador(this);
 	}
+	
 	public int get_delay() {
 		
 		return _baseDelay;

@@ -14,7 +14,7 @@ public class DienteSquanchy extends StateCharacter {
 		super(c, c.GetAttackSpeed()/3, c.GetStrength() * 2, 0);
 		_visitorS=new VisitorSquanchyState();
 		_prev = prev;
-		_powerUpLife = 100;
+		_powerUpLife = 25;
 	}
 
 	@Override

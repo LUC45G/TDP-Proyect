@@ -12,7 +12,7 @@ import gameObjects.GameObject;
  */
 public class DataStorage {
 	
-	protected final int STARTING_MONEY = 250;
+	protected final int STARTING_MONEY = 500;
 	
 	protected static DataStorage		INSTANCE = null;
 	protected int 						_currentMoney;

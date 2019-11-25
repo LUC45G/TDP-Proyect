@@ -2,6 +2,8 @@ package logicas;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import gameObjects.*;
 
@@ -61,14 +63,15 @@ public class Generator {
 	 */
 	public ImageIcon GetEnemy(int i, int y) {
 		Enemy e = (Enemy) _enemies.get(i).Clone();
-		
+		Random r = new Random();
 		VisitorObserver vo = new VisitorObserver(e, e);
 		
 		for(GameObject go : _dataStorage.GetAllObjects()) {
 			go.acceptObserver(vo);
 		}
 		
-		e.ChangeState(new EstadoProtegidoCaminando(e, e.get_delay(), e.get_strength(), e.get_velocidad()));
+		if(r.nextInt(101) % 4 == 0)
+			e.ChangeState(new EstadoProtegidoCaminando(e, e.get_delay(), e.get_strength(), e.get_velocidad()));
 		
 		
 		e.SetX(700); e.SetY(y*90);
@@ -90,15 +93,21 @@ public class Generator {
 		
 		return aux;
 	}
+	
+	public String GetPowerUpName(int i) {
+		return _powerUps.get(i).toString();
+	}
+	
 	public ImmovableObject GetPowerUp(int i) {
 		ImmovableObject aux = _powerUps.get(i).Clone();
 		return aux;
 	}
+	
 	public int GetCost(int i) {
 		return _powerUps.get(i).GetCost();
 	}
 
-	public GameObject GetMapElement(int index) {
+	public ImmovableObject GetMapElement(int index) {
 		return _mapItems.get(index).Clone();
 	}
 

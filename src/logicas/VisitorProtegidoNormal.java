@@ -11,5 +11,10 @@ public class VisitorProtegidoNormal extends VisitorState{
 	
 	public void visitDisparando(EstadoDisparando sd) {sd.ChangeState(new EstadoProtegidoCaminando(sd.GetCharacter(),sd.GetBaseDelay(),sd.GetBaseStrength(),sd.GetBaseVelocidad()));}
 	
-	public void visitProtegidoDisparando(EstadoProtegidoAtacando sd) {sd.ChangeState(new EstadoProtegidoCaminando(sd.GetCharacter(),sd.GetBaseDelay(),sd.GetBaseStrength(),sd.GetBaseVelocidad()));}
+	public void visitProtegidoDisparando(EstadoProtegidoAtacando sd) {
+		EstadoProtegidoCaminando epc=new EstadoProtegidoCaminando(sd.GetCharacter(),sd.GetBaseDelay(),sd.GetBaseStrength(),sd.GetBaseVelocidad());
+		epc.setAtaquesRecibidos(sd.getAtaquesRecibidos());
+		sd.ChangeState(epc);
+		System.out.println(epc.getAtaquesRecibidos());
+	}
 }

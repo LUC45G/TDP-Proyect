@@ -11,6 +11,7 @@ public class Vendedor extends ImmovableObject {
 		_hitbox = new Rectangle(0, 0, 1, 1);
 		_cost = 0;
 		_visitor = new VisitorVendedor(this);
+		_deathTimer=17;
 	}
 	@Override
 	public void affect(Character c) {

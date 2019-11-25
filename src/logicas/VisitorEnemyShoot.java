@@ -6,6 +6,7 @@ import gameObjects.Disparo;
 import gameObjects.DisparoAliado;
 import gameObjects.DisparoEnemigo;
 import gameObjects.ImmovableObject;
+import gameObjects.PiedraMapa;
 
 public class VisitorEnemyShoot extends Visitor {
 	
@@ -27,11 +28,16 @@ public class VisitorEnemyShoot extends Visitor {
 	public void visitAllyShoot(DisparoAliado da) {
 		da.vanish();
 	}
+	
 	public void visitEnemyShoot(DisparoEnemigo es) {
 		es.StartMoving();
 	}
+	
 	public void visitBarricada(Barricada b) {
 		b.receive_attack(miDisparo.get_strength());
 	}
 	
+	public void visitPiedraMapa(PiedraMapa v) {
+		v.receive_attack(miDisparo.get_strength());
+	}
 }
