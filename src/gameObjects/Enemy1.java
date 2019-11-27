@@ -8,7 +8,7 @@ public class Enemy1 extends Enemy {
 		super();
 		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 
-		_sprite = _state.GetSprite(this);
+		_state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	
@@ -21,7 +21,7 @@ public class Enemy1 extends Enemy {
 	@Override
 	public void ChangeState(StateCharacter s) {
 		super.ChangeState(s);
-		_sprite = s.GetSprite(this);
+		s.GetSprite(this);
 	}
 
 }

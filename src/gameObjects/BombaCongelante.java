@@ -2,7 +2,6 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-import logicas.VisitorBombaAtomica;
 import logicas.VisitorCongelado;
 /**
  * Bomba que congela a todos los enemigos del juego

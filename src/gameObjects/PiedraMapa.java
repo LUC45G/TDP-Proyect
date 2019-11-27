@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorBarricada;
-import logicas.VisitorObserver;
 /**
  * Piedra que detiene a los personajes y disparos
  * @author Pippig, Matias Gonsalez Lucas

@@ -15,7 +15,7 @@ public class EnemySlim extends Enemy {
 		_range=100;
 		_baseMovementSpeed*=5;
 		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
-		_sprite = _state.GetSprite(this);
+		_state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 	}
 	@Override
@@ -27,7 +27,7 @@ public class EnemySlim extends Enemy {
 	@Override
 	public void ChangeState(StateCharacter s) {
 		super.ChangeState(s);
-		_sprite = s.GetSprite(this);
+		s.GetSprite(this);
 	}
 
 }

@@ -22,7 +22,7 @@ public class AllySlim extends Ally {
 		_baseStrength /= 3;
 		_cost *= 15;
 		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
-		_sprite = _state.GetSprite(this);
+		_state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_shoot  = new DisparoAliado(13, 300);
 	}
@@ -35,7 +35,7 @@ public class AllySlim extends Ally {
 	@Override
 	public void ChangeState(StateCharacter s) {
 		super.ChangeState(s);
-		_sprite = s.GetSprite(this);
+		s.GetSprite(this);
 	}
 
 	@Override

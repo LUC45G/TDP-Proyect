@@ -14,7 +14,7 @@ public class EnemyFast extends Enemy {
 		_baseMovementSpeed*=3;
 		_baseDelay/=3;
 		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
-		_sprite = _state.GetSprite(this);
+		_state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());	
 	}
 	@Override
@@ -27,7 +27,7 @@ public class EnemyFast extends Enemy {
 	@Override
 	public void ChangeState(StateCharacter s) {
 		super.ChangeState(s);
-		_sprite = s.GetSprite(this);
+		s.GetSprite(this);
 	}
 
 }

@@ -1,7 +1,5 @@
 package gameObjects;
 
-import javax.swing.ImageIcon;
-
 import logicas.VisitorCongeladoState;
 import logicas.VisitorState;
 
@@ -23,58 +21,58 @@ public class Congelado extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Enemy1 enemy1) {
-		return _bank.GetAffectedSprite(enemy1);
+	public void GetSprite(Enemy1 enemy1) {
+		enemy1.SetSprite(_bank.GetAffectedSprite(enemy1));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyStrong enemyStrong) {
-		return _bank.GetAffectedSprite(enemyStrong);
+	public void GetSprite(EnemyStrong enemyStrong) {
+		enemyStrong.SetSprite(_bank.GetAffectedSprite(enemyStrong));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemySlim enemySlim) {
-		return _bank.GetAffectedSprite(enemySlim);
+	public void GetSprite(EnemySlim enemySlim) {
+		enemySlim.SetSprite(_bank.GetAffectedSprite(enemySlim));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyFat enemyFat) {
-		return _bank.GetAffectedSprite(enemyFat);
+	public void GetSprite(EnemyFat enemyFat) {
+		enemyFat.SetSprite(_bank.GetAffectedSprite(enemyFat));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyFast enemyFast) {
-		return _bank.GetAffectedSprite(enemyFast);
+	public void GetSprite(EnemyFast enemyFast) {
+		enemyFast.SetSprite(_bank.GetAffectedSprite(enemyFast));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyBoss enemyBoss) {
-		return _bank.GetAffectedSprite(enemyBoss);
+	public void GetSprite(EnemyBoss enemyBoss) {
+		enemyBoss.SetSprite(_bank.GetAffectedSprite(enemyBoss));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyStrong allyStrong) {
-		return _bank.GetAffectedSprite(allyStrong);
+	public void GetSprite(AllyStrong allyStrong) {
+		allyStrong.SetSprite(_bank.GetAffectedSprite(allyStrong));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllySlim allySlim) {
-		return _bank.GetAffectedSprite(allySlim);
+	public void GetSprite(AllySlim allySlim) {
+		allySlim.SetSprite(_bank.GetAffectedSprite(allySlim));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyFat allyFat) {
-		return _bank.GetAffectedSprite(allyFat);
+	public void GetSprite(AllyFat allyFat) {
+		allyFat.SetSprite(_bank.GetAffectedSprite(allyFat)); 
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyFast allyFast) {
-		return _bank.GetAffectedSprite(allyFast);
+	public void GetSprite(AllyFast allyFast) {
+		allyFast.SetSprite(_bank.GetAffectedSprite(allyFast));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyBase ally1) {
-		return _bank.GetAffectedSprite(ally1);
+	public void GetSprite(AllyBase ally1) {
+		ally1.SetSprite(_bank.GetAffectedSprite(ally1));
 	}
 
 	@Override

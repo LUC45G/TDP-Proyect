@@ -1,7 +1,5 @@
 package gameObjects;
 
-import javax.swing.ImageIcon;
-
 import logicas.VisitorNormalState;
 import logicas.VisitorState;
 
@@ -18,60 +16,60 @@ public class NormalState extends StateCharacter {
 	}
 	
 	@Override
-	public ImageIcon GetSprite(Enemy1 enemy1) {
-		return _bank.GetNormalSprite(enemy1);
+	public void GetSprite(Enemy1 enemy1) {
+		enemy1.SetSprite(_bank.GetNormalSprite(enemy1));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyStrong enemyStrong) {
-		return _bank.GetNormalSprite(enemyStrong);
+	public void GetSprite(EnemyStrong enemyStrong) {
+		enemyStrong.SetSprite(_bank.GetNormalSprite(enemyStrong));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemySlim enemySlim) {
-		return _bank.GetNormalSprite(enemySlim);
+	public void GetSprite(EnemySlim enemySlim) {
+		enemySlim.SetSprite(_bank.GetNormalSprite(enemySlim));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyFat enemyFat) {
-		return _bank.GetNormalSprite(enemyFat);
+	public void GetSprite(EnemyFat enemyFat) {
+		enemyFat.SetSprite(_bank.GetNormalSprite(enemyFat));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyFast enemyFast) {
-		return _bank.GetNormalSprite(enemyFast);
+	public void GetSprite(EnemyFast enemyFast) {
+		enemyFast.SetSprite(_bank.GetNormalSprite(enemyFast));
 	}
 
 	@Override
-	public ImageIcon GetSprite(EnemyBoss enemyBoss) {
-		return _bank.GetNormalSprite(enemyBoss);
+	public void GetSprite(EnemyBoss enemyBoss) {
+		enemyBoss.SetSprite(_bank.GetNormalSprite(enemyBoss));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyStrong allyStrong) {
-		return _bank.GetNormalSprite(allyStrong);
+	public void GetSprite(AllyStrong allyStrong) {
+		allyStrong.SetSprite(_bank.GetNormalSprite(allyStrong));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllySlim allySlim) {
-		return _bank.GetNormalSprite(allySlim);
+	public void GetSprite(AllySlim allySlim) {
+		allySlim.SetSprite(_bank.GetNormalSprite(allySlim));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyFat allyFat) {
-		return _bank.GetNormalSprite(allyFat);
+	public void GetSprite(AllyFat allyFat) {
+		allyFat.SetSprite(_bank.GetNormalSprite(allyFat)); 
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyFast allyFast) {
-		return _bank.GetNormalSprite(allyFast);
+	public void GetSprite(AllyFast allyFast) {
+		allyFast.SetSprite(_bank.GetNormalSprite(allyFast));
 	}
 
 	@Override
-	public ImageIcon GetSprite(AllyBase ally1) {
-		return _bank.GetNormalSprite(ally1);
+	public void GetSprite(AllyBase ally1) {
+		ally1.SetSprite(_bank.GetNormalSprite(ally1));
 	}
-	
+
 	@Override
 	protected void receive_attack(int d) {
 		super.receive_attack(d);
