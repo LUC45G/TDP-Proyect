@@ -25,6 +25,7 @@ public class Gui {
 	private ArrayList<JLabel> objetos;
 	private JLabel lblNivel,lblGold,lblScore;
 	JButton btnPlay;
+	protected JPanel panelTutorial;
 
 	/**
 	 * Launch the application.
@@ -47,6 +48,7 @@ public class Gui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Image tutorialImagen=new ImageIcon(this.getClass().getResource("/img/Tutorial2.png")).getImage();
 		
 		controller = Controller.GetInstance(this);
 		objetos = new ArrayList<JLabel>();
@@ -62,6 +64,7 @@ public class Gui {
 		
 		Image transparent = new ImageIcon(this.getClass().getResource("/img/transparent.png")).getImage();
 		Image image = new ImageIcon(this.getClass().getResource("/img/Map.png")).getImage();
+		
 		
 		BackgroundPanel panelIzq = new BackgroundPanel(transparent);
 		panelIzq.setBounds(0, 0, 180, 540);
@@ -145,26 +148,46 @@ public class Gui {
 		panelIzq.add(panel);
 		panel.setLayout(null);
 		
+		JButton button = new JButton("Alt+T=Tutorial");
+		button.setBounds(0, 0, 170, 22);
+		panel.add(button);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				if(panelTutorial.isVisible()) {					
+					panelMapa.setVisible(true);
+					panelIzq.setVisible(true);
+					panelTutorial.setVisible(false);
+				}
+				else {					
+					panelMapa.setVisible(false);
+					panelTutorial.setVisible(true);
+				}
+			}
+		});
+		button.setMnemonic('t');
+		button.setBackground(Color.WHITE);
+		
 		lblScore = new JLabel("Score: "+Controller.GetInstance().getScore());
-		lblScore.setBounds(0, 0, 170, 32);
+		lblScore.setBounds(0, 22, 170, 28);
 		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScore.setForeground(Color.WHITE);
-		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblScore.setBackground(Color.BLACK);
 		panel.add(lblScore);
 		
 		lblGold = new JLabel("Gold: " + Controller.GetInstance().GetCurrentMoney());
-		lblGold.setBounds(0, 34, 170, 32);
+		lblGold.setBounds(0, 51, 170, 22);
 		lblGold.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGold.setForeground(Color.WHITE);
-		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(lblGold);
 		
 		lblNivel = new JLabel("|| "+Controller.GetInstance().GetNivel()+" - "+ Controller.GetInstance().GetDificultad() +" ||");
-		lblNivel.setBounds(0, 67, 170, 22);
+		lblNivel.setBounds(0, 72, 170, 28);
 		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNivel.setForeground(Color.WHITE);
-		lblNivel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNivel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(lblNivel);
 		
 		
@@ -184,8 +207,10 @@ public class Gui {
 		panelMapa.setLayout(null);
 		controller.SetMapWidth(panelMapa.getWidth());
 		frame.getContentPane().add(panelMapa);
-		
-		
+		panelTutorial=new BackgroundPanel(tutorialImagen);
+		panelTutorial.setBounds(new Rectangle(180, 11, 782, 499));
+		panelTutorial.setVisible(false);
+		frame.getContentPane().add(panelTutorial);
 	}
 	
 	public void DisableAllPowerUps() {

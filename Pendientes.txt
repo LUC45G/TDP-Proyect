@@ -1,6 +1,5 @@
 Falta:
 -Depende de jose haya que cambiar prototype
-- Poner tutorial
 - hacer el uml
 
 ------------------------------------------------
