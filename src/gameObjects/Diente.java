@@ -27,6 +27,7 @@ public class Diente extends ImmovableObject {
 	public ImmovableObject Clone() {
 		Diente d = new Diente();
 		set_atributos(d);
+		d.set_visitor(new VisitorSquanchy());
 		return d;
 	}
 

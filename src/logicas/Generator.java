@@ -99,10 +99,10 @@ public class Generator {
 		return _powerUps.get(i).toString();
 	}
 	
-	public GameObject GetPowerUp(int i) {
+	/*public GameObject GetPowerUp(int i) {
 		GameObject aux = _powerUps.get(i).Clone();
 		return aux;
-	}
+	}*/
 	
 	public int GetCost(int i) {
 		return _powerUps.get(i).get_cost();

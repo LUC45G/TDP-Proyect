@@ -63,9 +63,7 @@ public class Barricada extends ImmovableObject implements IObserved {
 		Barricada b= new Barricada();
 		set_atributos(b);
 		b.set_health(_health);
-		for(IObserver io: _observers) {
-			b.agregarObservador(io);
-		}
+		b.set_visitor(new VisitorBarricada());
 		return b;
 	}
 	

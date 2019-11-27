@@ -2,6 +2,7 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
+import logicas.VisitorBombaAtomica;
 import logicas.VisitorCongelado;
 /**
  * Bomba que congela a todos los enemigos del juego
@@ -26,7 +27,10 @@ public class BombaCongelante extends ImmovableObject {
 
 	@Override
 	public ImmovableObject Clone() {
-		return new BombaCongelante();
+		BombaCongelante bc = new BombaCongelante();
+		set_atributos(bc);
+		bc.set_visitor(new VisitorCongelado());
+		return bc;
 	}
 
 	@Override

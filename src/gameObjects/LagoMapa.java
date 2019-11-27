@@ -1,9 +1,11 @@
 package gameObjects;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorPowerUp;
 /**
@@ -22,6 +24,7 @@ public class LagoMapa extends MapObject {
 		_sprite = new ImageIcon(this.getClass().getResource("/img/fuego_lago.gif"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_deathTimer=17*12;//agregar un cero
+		_observers = new ArrayList<IObserver>();
 		_visitor=new VisitorPowerUp();
 ;	}
 

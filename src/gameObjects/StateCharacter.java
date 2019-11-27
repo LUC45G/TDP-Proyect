@@ -1,7 +1,5 @@
 package gameObjects;
 
-import javax.swing.ImageIcon;
-
 import logicas.VisitorState;
 
 public abstract class StateCharacter {
@@ -63,37 +61,37 @@ public abstract class StateCharacter {
 	public int GetVelocidad() { return _velocidad;   }
 
 
-	public abstract ImageIcon GetSprite(Enemy1 enemy1);
+	public abstract void GetSprite(Enemy1 enemy1);
 
 
-	public abstract ImageIcon GetSprite(EnemyStrong enemyStrong) ;
+	public abstract void GetSprite(EnemyStrong enemyStrong) ;
 
 
-	public abstract ImageIcon GetSprite(EnemySlim enemySlim);
+	public abstract void GetSprite(EnemySlim enemySlim);
 
 
-	public abstract ImageIcon GetSprite(EnemyFat enemyFat) ;
+	public abstract void GetSprite(EnemyFat enemyFat) ;
 
 
-	public abstract ImageIcon GetSprite(EnemyFast enemyFast) ;
+	public abstract void GetSprite(EnemyFast enemyFast) ;
 
 
-	public abstract ImageIcon GetSprite(EnemyBoss enemyBoss) ;
+	public abstract void GetSprite(EnemyBoss enemyBoss) ;
 
 
-	public abstract ImageIcon GetSprite(AllyStrong allyStrong);
+	public abstract void GetSprite(AllyStrong allyStrong);
 
 
-	public abstract ImageIcon GetSprite(AllySlim allySlim);
+	public abstract void GetSprite(AllySlim allySlim);
 
 
-	public abstract ImageIcon GetSprite(AllyFat allyFat) ;
+	public abstract void GetSprite(AllyFat allyFat) ;
 
 
-	public abstract ImageIcon GetSprite(AllyFast allyFast);
+	public abstract void GetSprite(AllyFast allyFast);
 
 
-	public abstract ImageIcon GetSprite(AllyBase ally1) ;
+	public abstract void GetSprite(AllyBase ally1) ;
 
 	public abstract void accept(VisitorState vs) ;
 	

@@ -12,6 +12,7 @@ import gameObjects.Ally;
 import gameObjects.Disparo;
 import gameObjects.GameObject;
 import gameObjects.ImmovableObject;
+import gameObjects.Muerte;
 
 /**
  * Clase que comunica la gui con la logica
@@ -363,7 +364,8 @@ public class Controller {
 	 */
 	public void sellAlly(Ally a) {
 		_dataStorage.Store(a.get_cost()/2);
-		a.Die();
+		a.ChangeState(new Muerte(a, a.get_delay(), a.get_strength(), a.get_velocidad()));
+	//	a.notificar();
 	}
 
 	/**

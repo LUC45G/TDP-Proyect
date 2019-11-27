@@ -31,6 +31,7 @@ public class BombaAtomica extends ImmovableObject {
 	public ImmovableObject Clone() {
 		BombaAtomica ba = new BombaAtomica();
 		set_atributos(ba);
+		ba.set_visitor(new VisitorBombaAtomica());
 		return ba;
 	}
 	

@@ -1,13 +1,17 @@
 package gameObjects;
 
+import java.util.ArrayList;
+
 import logicas.Controller;
 import logicas.IObserved;
 import logicas.IObserver;
+import logicas.VisitorObserver;
 
 public class MapObject extends GameObject implements IObserved {
 
 	protected int _health;
-
+	protected ArrayList<IObserver> _observers;
+	
 	@Override
 	public void Update() {
 		// TODO Auto-generated method stub
@@ -25,16 +29,26 @@ public class MapObject extends GameObject implements IObserved {
 		
 	}
 
+	public void acceptObserver(VisitorObserver vo) {
+		vo.visitAllyObservado(this);
+	}
+	
 	@Override
 	public void agregarObservador(IObserver observador) {
-		// TODO Auto-generated method stub
-		
+		_observers.add(observador);
 	}
 
 	@Override
 	public void eliminarObservador(IObserver observador) {
-		// TODO Auto-generated method stub
+		_observers.remove(observador);
+	}
+	
+	@Override
+	public boolean notificar() {
+		for(IObserver o : _observers)
+			o.StopShooting();
 		
+		return false;
 	}
 	
 	/**

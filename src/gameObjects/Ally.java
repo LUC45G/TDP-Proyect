@@ -44,7 +44,7 @@ public abstract class Ally extends Character {
 	 */
 	public void set_atributos(Ally c){
 		super.set_atributos(c);
-		c.set_visitor(new VisitorAlly(this));
+		c.set_visitor(new VisitorAlly(c));
 	}
 	/**
 	 * Devuelve la cara

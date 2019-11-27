@@ -45,7 +45,7 @@ public abstract class Enemy extends Character {
 	 */
 	public void set_atributos(Enemy c){
 		super.set_atributos(c);
-		c.set_visitor(new VisitorEnemy(this));
+		c.set_visitor(new VisitorEnemy(c));
 	}
 }
 

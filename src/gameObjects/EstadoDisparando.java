@@ -20,8 +20,8 @@ public class EstadoDisparando extends StateCharacter {
 	}
 
 	@Override
-	public ImageIcon GetSprite(Enemy1 enemy1) {
-		return _bank.GetShootingSprite(enemy1);
+	public void GetSprite(Enemy1 enemy1) {
+		miCh.SetSprite(_bank.GetShootingSprite(enemy1));
 	}
 
 	@Override

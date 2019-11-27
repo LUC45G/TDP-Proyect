@@ -32,6 +32,7 @@ public class EscudoProtector extends ImmovableObject {
 	public ImmovableObject Clone() {
 		EscudoProtector ep = new EscudoProtector();
 		set_atributos(ep);
+		ep.set_visitor(new VisitorProtector(ep));
 		return ep;
 	}
 

@@ -16,7 +16,6 @@ import logicas.VisitorObserver;
  */
 public class PiedraMapa extends MapObject {
 
-	private ArrayList<IObserver> _observers;
 	
 	/**
 	 * Constructor que setea imagen y hitbox
@@ -52,26 +51,6 @@ public class PiedraMapa extends MapObject {
 	@Override
 	public void Update() {}
 	
-	public void acceptObserver(VisitorObserver vo) {
-		vo.visitAllyObservado(this);
-	}
 	
-	@Override
-	public void agregarObservador(IObserver observador) {
-		_observers.add(observador);
-	}
-
-	@Override
-	public void eliminarObservador(IObserver observador) {
-		_observers.remove(observador);
-	}
-	
-	@Override
-	public boolean notificar() {
-		for(IObserver o : _observers)
-			o.StopShooting();
-		
-		return false;
-	}
 
 }

@@ -23,6 +23,7 @@ public class Vendedor extends ImmovableObject {
 	public ImmovableObject Clone() {
 		Vendedor v = new Vendedor();
 		set_atributos(v);
+		v.set_visitor(new VisitorVendedor(v));
 		return v;
 	}
 	public void receive_attack(int i) {
