@@ -21,7 +21,7 @@ public class Bank {
 	 * @param e enemigo al que modificar su imagen
 	 * @return Retorna la imagen del enemigo base disparando
 	 */
-	public ImageIcon GetShootingSprite(Enemy1 e) {
+	public ImageIcon GetShootingSprite(EnemyBase e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_punch.gif"));
 	}
 	/**
@@ -29,19 +29,19 @@ public class Bank {
 	 * @param e enemigo al que modificar su imagen
 	 * @return Retorna la imagen del enemigo base idle
 	 */
-	public ImageIcon GetNormalSprite(Enemy1 e) {
+	public ImageIcon GetNormalSprite(EnemyBase e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1.gif"));
 	}
-	public ImageIcon GetDeadSprite(Enemy1 e) {
+	public ImageIcon GetDeadSprite(EnemyBase e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_bomb.gif"));
 	}
-	public ImageIcon GetProtectedShootingSprite(Enemy1 e) {
+	public ImageIcon GetProtectedShootingSprite(EnemyBase e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_shieldAttack.gif"));
 	}
-	public ImageIcon GetProtectedWalking(Enemy1 e) {
+	public ImageIcon GetProtectedWalking(EnemyBase e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_shieldWalking.gif"));
 	}
-	public ImageIcon GetAffectedSprite(Enemy1 e) {
+	public ImageIcon GetAffectedSprite(EnemyBase e) {
 		return new ImageIcon(this.getClass().getResource("/img/Enemy1_freeze.gif"));
 	}
 	

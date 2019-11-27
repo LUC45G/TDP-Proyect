@@ -22,10 +22,9 @@ public class Gui {
 	private BackgroundPanel panelMapa, panelGeneral;
 	private Controller controller;
 	private JButton[] powerUpsButtons;
-	private ArrayList<JLabel> objetos;
 	private JLabel lblNivel,lblGold,lblScore;
-	JButton btnPlay;
-	protected JPanel panelTutorial;
+	private JButton btnPlay;
+	private JPanel panelTutorial;
 
 	/**
 	 * Launch the application.
@@ -51,7 +50,6 @@ public class Gui {
 		Image tutorialImagen=new ImageIcon(this.getClass().getResource("/img/Tutorial2.png")).getImage();
 		
 		controller = Controller.GetInstance(this);
-		objetos = new ArrayList<JLabel>();
 		
 		Image bg = new ImageIcon(this.getClass().getResource("/img/BG.png")).getImage();
 		panelGeneral = new BackgroundPanel(bg);
@@ -252,15 +250,6 @@ public class Gui {
 		lblScore.setText("Score: "+Controller.GetInstance().getScore());
 		lblGold.setText("Gold: "+ controller.GetCurrentMoney());
 		lblNivel.setText("|| " + controller.GetNivel() + " - " + controller.GetDificultad() + " ||");
-	}
-	
-	/**
-	 * Inserta un objeto a la grafica
-	 * @param img sprite del objeto a insertar
-	 */
-	public void Insertar(ImageIcon img) {
-		JLabel jl = new JLabel(img);		
-		objetos.add( jl );
 	}
 	
 	/**

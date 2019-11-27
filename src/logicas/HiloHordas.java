@@ -15,7 +15,6 @@ import gameObjects.MapObject;
 	 */
 	public class HiloHordas extends Thread {
 		
-		private ArrayList<Rectangle> _enemiesHitboxes;
 		private Controller 			 _controller;
 		private Generator       	 _generator;
 		private int					 _dificultad;
@@ -27,7 +26,6 @@ import gameObjects.MapObject;
 		private Random				 _rng;
 		
 		public HiloHordas() {
-			_enemiesHitboxes 	= new ArrayList<Rectangle>();
 			_controller = null;
 			_generator=null;
 			_dificultad = 0;
@@ -62,11 +60,7 @@ import gameObjects.MapObject;
 		
 		public void SetController(Controller c) {
 			_controller = c;
-			_generator=c.getGenerator();
-		}
-		
-		public ArrayList<Rectangle> GetHitboxes() {
-			return _enemiesHitboxes;
+			_generator=c.GetGenerator();
 		}
 		
 		public void End() {
@@ -95,17 +89,12 @@ import gameObjects.MapObject;
 			}
 			
 		}
-		public void AgregarEnemigo(Enemy e) {
-			_enemiesHitboxes.add(e.GetHitbox());
-		}
 		private void SpawnEnemies() {
 			Random r = new Random();
 			// Generar enemigo y spawnearlo en la grafica
 			int y = r.nextInt(6);
 			int rng = r.nextInt(6);
-			ImageIcon e = _generator.GetEnemy(rng, y);
-			_controller.spawnEnemy(e);
-			
+			_generator.GetEnemy(rng, y);
 		}
 		
 		public void run() {

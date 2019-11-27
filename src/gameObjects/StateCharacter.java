@@ -61,7 +61,7 @@ public abstract class StateCharacter {
 	public int GetVelocidad() { return _velocidad;   }
 
 
-	public abstract void GetSprite(Enemy1 enemy1);
+	public abstract void GetSprite(EnemyBase enemy1);
 
 
 	public abstract void GetSprite(EnemyStrong enemyStrong) ;

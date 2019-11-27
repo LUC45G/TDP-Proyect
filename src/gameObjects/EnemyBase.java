@@ -2,9 +2,9 @@ package gameObjects;
 
 import java.awt.Rectangle;
 
-public class Enemy1 extends Enemy {
+public class EnemyBase extends Enemy {
 	
-	public Enemy1(int x, int y) {
+	public EnemyBase(int x, int y) {
 		super();
 		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 
@@ -14,7 +14,7 @@ public class Enemy1 extends Enemy {
 	}
 	
 	public Character Clone() {
-		Character a = new Enemy1(0, 0);
+		Character a = new EnemyBase(0, 0);
 		set_atributos(a);
 		return a;
 	}

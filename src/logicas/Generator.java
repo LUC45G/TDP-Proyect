@@ -22,7 +22,7 @@ public class Generator {
 		_mapItems   = new ArrayList<MapObject>();
 		
 		/* Inicializar la lista de enemigos */
-		_enemies.add(new Enemy1(0, 0));
+		_enemies.add(new EnemyBase(0, 0));
 		_enemies.add(new EnemyBoss(0, 0));
 		_enemies.add(new EnemyFast(0, 0));
 		_enemies.add(new EnemyFat(0, 0));

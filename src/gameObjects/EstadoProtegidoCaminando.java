@@ -26,7 +26,7 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 	}
 
 	@Override
-	public void GetSprite(Enemy1 enemy1) {
+	public void GetSprite(EnemyBase enemy1) {
 		enemy1.SetSprite(_bank.GetProtectedWalking(enemy1));
 	}
 

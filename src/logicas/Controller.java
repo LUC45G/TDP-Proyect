@@ -135,13 +135,6 @@ public class Controller {
 		return new Pair<ImageIcon, Rectangle>(_dataStorage.GetAllObjects().get(i).GetSprite(), _dataStorage.GetAllObjects().get(i).GetHitbox());
 	}
 	
-	/**
-	 * Remueve el objeto de la i-esima posicion
-	 * @param i posicion del objeto a remover
-	 */
-	public void Remove(int i) {
-		_dataStorage.Remove( _dataStorage.GetAllObjects().get(i) );
-	}
 	
 	/**
 	 * Busca el objeto go entre los objetos del mapa, si lo encunetra los remueve 
@@ -201,7 +194,6 @@ public class Controller {
 		
 		if(_currentIndex != -1) {
 			Ally a = _store.CreateAlly(_currentIndex, x, y);
-			_gui.Insertar(a.GetSprite());
 			_dataStorage.Buy(a.get_cost());
 			invoked = true;
 		}
@@ -283,14 +275,6 @@ public class Controller {
 	/**
 	 * Actua en respuesta a la muerte de un enemigo
 	 */
-	public void EnemyDeath() {
-		_enemies.SubEnemy();
-		_dataStorage.Store(100);
-		_gui.UpdatePanelScore();
-	}
-	/**
-	 * Actua en respuesta a la muerte de un enemigo
-	 */
 	public void EnemyDeath(Enemy e) {
 		_enemies.SubEnemy();
 		_dataStorage.Store(e.get_cost());
@@ -328,20 +312,12 @@ public class Controller {
 	/**
 	 * Devuelve el generador
 	 */
-	public Generator getGenerator() {
+	public Generator GetGenerator() {
 		return _generator;
 	}
 	
 	public int getScore() {
 		return _dataStorage.get_score();
-	}
-	
-	/**
-	 * Spawnea un enemigo
-	 * @param e enemigo a spawnear
-	 */
-	public void spawnEnemy(ImageIcon e) {
-		_gui.Insertar( e ); 
 	}
 	
 	/**
