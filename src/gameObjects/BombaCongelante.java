@@ -17,7 +17,7 @@ public class BombaCongelante extends ImmovableObject {
 		super();
 		_visitor = new VisitorCongelado();
 		_hitbox = new Rectangle(0, 0, 0, 0);
-		_cost*=10;
+		_cost*=3;
 	}
 	
 	public String toString() {

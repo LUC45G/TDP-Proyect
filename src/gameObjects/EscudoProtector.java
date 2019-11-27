@@ -12,6 +12,7 @@ public class EscudoProtector extends ImmovableObject {
 		_hitbox = new Rectangle(0, 0, 1, 1);
 		_visitor = new VisitorProtector(this);
 		_deathTimer=17;
+		_cost*=2;
 	}
 	
 	public String toString() {

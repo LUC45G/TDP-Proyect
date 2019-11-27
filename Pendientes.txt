@@ -1,15 +1,17 @@
 Falta:
-- ?
+- actualizar score
+- Poner tutorial
+- hacer el uml
 
 ------------------------------------------------
 
 Bugs: 
-- 
+- cuando colisiona con lago mapa no cambia de estado
 
 ------------------------------------------------
 
 Gifs que faltan:
--Squanchy(los jugadores se congelan en vez de activar este modo)
+-Squanchy Aliada(probablemete quede asi)
 
 ------------------------------------------------
 

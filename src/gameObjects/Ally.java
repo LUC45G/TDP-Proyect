@@ -19,6 +19,7 @@ public abstract class Ally extends Character {
 	 */
 	protected Ally() {
 		//nuevo disparo
+		super();
 		_shoot = new DisparoAliado(20, 150);
 		_cost = 10;
 		_range = 300;

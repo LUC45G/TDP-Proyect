@@ -16,6 +16,7 @@ public class EnemyStrong extends Enemy {
 		_state = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 		_state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+		_cost*=5;
 	}
 	@Override
 	public Character Clone() {

@@ -19,6 +19,7 @@ public class EnemyBoss extends Enemy {
 		_range=70;
 		_state.GetSprite(this);
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());
+		_cost*=20;
 	}
 	@Override
 	public Character Clone() {

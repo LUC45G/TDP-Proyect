@@ -16,7 +16,7 @@ public class Diente extends ImmovableObject {
 		super();
 		_visitor = new VisitorSquanchy();
 		_hitbox = new Rectangle(0, 0, 0, 0);
-		_cost*=20;
+		_cost*=4;
 	}
 	
 	public String toString() {

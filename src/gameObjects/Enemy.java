@@ -34,7 +34,7 @@ public abstract class Enemy extends Character {
 	@Override
 	public void Die() {
 		super.Die();
-		Controller.GetInstance().EnemyDeath();
+		Controller.GetInstance().EnemyDeath(this);
 	}
 	
 	public void accept(Visitor v) {

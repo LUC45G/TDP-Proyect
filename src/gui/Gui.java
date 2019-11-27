@@ -21,10 +21,9 @@ public class Gui {
 	private JFrame frame;
 	private BackgroundPanel panelMapa, panelGeneral;
 	private Controller controller;
-	private JLabel lblScore;
-	private JLabel lblGold;
 	private JButton[] powerUpsButtons;
 	private ArrayList<JLabel> objetos;
+	private JLabel lblNivel,lblGold,lblScore;
 	JButton btnPlay;
 
 	/**
@@ -100,28 +99,6 @@ public class Gui {
 		btnPersonaje5.addActionListener(new btn5AL());
 		panelPersonajes.add(btnPersonaje5);
 		
-		
-		BackgroundPanel panelScore = new BackgroundPanel(transparent);
-		panelScore.setBounds(0, 300, 170, 100);
-		
-		lblScore = new JLabel("Score: 0");
-		lblScore.setBackground(Color.BLACK);
-		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
-		lblScore.setForeground(Color.WHITE);
-		lblScore.setBounds(0, 0, 170, 40);
-		panelScore.add(lblScore);
-		
-		lblGold = new JLabel("<html> <div text-align=\"center\"> Gold: " + controller.GetCurrentMoney() + "<br /> 1 - 1 <div /> <html>");
-		lblGold.setBackground(Color.BLACK);
-		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGold.setForeground(Color.WHITE);
-		lblGold.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGold.setBounds(0, 40, 170, 49);
-		panelScore.add(lblGold);
-		
-		panelIzq.add(panelScore);
-		
 		BackgroundPanel panelPlay = new BackgroundPanel(transparent);
 		panelPlay.setSize(170, 40);
 		panelPlay.setLocation(0, 500);
@@ -162,6 +139,34 @@ public class Gui {
 		panelPlay.add(btnPlay);
 		panelIzq.add(panelPlay);
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		panel.setBounds(0, 300, 170, 100);
+		panelIzq.add(panel);
+		panel.setLayout(null);
+		
+		lblScore = new JLabel("Score: "+Controller.GetInstance().getScore());
+		lblScore.setBounds(0, 0, 170, 32);
+		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScore.setForeground(Color.WHITE);
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblScore.setBackground(Color.BLACK);
+		panel.add(lblScore);
+		
+		lblGold = new JLabel("Gold: " + Controller.GetInstance().GetCurrentMoney());
+		lblGold.setBounds(0, 34, 170, 32);
+		lblGold.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGold.setForeground(Color.WHITE);
+		lblGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel.add(lblGold);
+		
+		lblNivel = new JLabel("|| "+Controller.GetInstance().GetNivel()+" - "+ Controller.GetInstance().GetDificultad() +" ||");
+		lblNivel.setBounds(0, 67, 170, 22);
+		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNivel.setForeground(Color.WHITE);
+		lblNivel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel.add(lblNivel);
+		
 		
 		panelMapa = new BackgroundPanel(image);
 		panelMapa.addMouseListener(new MouseAdapter() {
@@ -169,7 +174,7 @@ public class Gui {
 				
 				if(!controller.Empty()) {
 					controller.Invoke(e.getX(), e.getY());
-					UpdateGoldAndLevel();
+					UpdatePanelScore();
 					ActualizarGrafica();
 				}
 			}
@@ -218,8 +223,10 @@ public class Gui {
 		
 	}
 	
-	public void UpdateGoldAndLevel() {
-		lblGold.setText("<html> <div> Gold: " + controller.GetCurrentMoney() + "<br /> |||" + controller.GetNivel() + " - " + controller.GetDificultad() + "|||<html>");
+	public void UpdatePanelScore() {
+		lblScore.setText("Score: "+Controller.GetInstance().getScore());
+		lblGold.setText("Gold: "+ controller.GetCurrentMoney());
+		lblNivel.setText("|| " + controller.GetNivel() + " - " + controller.GetDificultad() + " ||");
 	}
 	
 	/**

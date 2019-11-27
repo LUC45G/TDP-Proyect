@@ -5,6 +5,7 @@ import gameObjects.Barricada;
 import gameObjects.Disparo;
 import gameObjects.DisparoAliado;
 import gameObjects.ImmovableObject;
+import gameObjects.LagoMapa;
 import gameObjects.PiedraMapa;
 
 public class VisitorEnemyShoot extends Visitor {
@@ -35,4 +36,9 @@ public class VisitorEnemyShoot extends Visitor {
 	public void visitPiedraMapa(PiedraMapa v) {
 		v.receive_attack(miDisparo.get_strength());
 	}
+	
+	public void visitLagoMapa(LagoMapa v) {
+		miDisparo.vanish();
+	}
+	
 }

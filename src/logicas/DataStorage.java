@@ -17,6 +17,9 @@ public class DataStorage {
 	protected static DataStorage		INSTANCE = null;
 	protected int 						_currentMoney;
 	protected ArrayList<GameObject>		_gos;
+
+	private int _score;
+
 	private DataStorage() {
 		_currentMoney 	= STARTING_MONEY;
 		_gos 		= new ArrayList<GameObject>();
@@ -29,6 +32,14 @@ public class DataStorage {
 		return INSTANCE;
 	}
 	
+	public int get_score() {
+		return _score;
+	}
+	
+	public void set_score(int _score) {
+		this._score = _score;
+	}
+
 	/**
 	 * Consulta y devuelve la cantidad de dinero actual
 	 * @return cantidad de dinero actual
@@ -64,6 +75,7 @@ public class DataStorage {
 	 */
 	public void Store(int q) {
 		_currentMoney += q;
+		_score+=q;
 	}
 	
 	/**

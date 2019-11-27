@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 
 import gameObjects.Ally;
 import gameObjects.Disparo;
+import gameObjects.Enemy;
 import gameObjects.GameObject;
 import gameObjects.ImmovableObject;
 import gameObjects.Muerte;
@@ -271,7 +272,7 @@ public class Controller {
 		
 		_enemies.crearHordas(++_dificultad);
 		
-		_gui.UpdateGoldAndLevel();
+		_gui.UpdatePanelScore();
 		_gui.DisableAllPowerUps();
 		
 		for(int i = 0; i < _dificultad; i++) {
@@ -285,7 +286,15 @@ public class Controller {
 	public void EnemyDeath() {
 		_enemies.SubEnemy();
 		_dataStorage.Store(100);
-		_gui.UpdateGoldAndLevel();
+		_gui.UpdatePanelScore();
+	}
+	/**
+	 * Actua en respuesta a la muerte de un enemigo
+	 */
+	public void EnemyDeath(Enemy e) {
+		_enemies.SubEnemy();
+		_dataStorage.Store(e.get_cost());
+		_gui.UpdatePanelScore();
 	}
 
 	/**
@@ -298,6 +307,9 @@ public class Controller {
 		_alreadyStarted = false;
 		for(GameObject go:_dataStorage.GetAllObjects())
 			Remove(go);
+		_dataStorage.set_score(0);
+		_gui.UpdatePanelScore();
+		
 	}
 	
 	/**
@@ -310,6 +322,7 @@ public class Controller {
 			Remove(go);
 		
 		_gui.ShowWin();
+		_gui.UpdatePanelScore();
 	}
 
 	/**
@@ -318,7 +331,11 @@ public class Controller {
 	public Generator getGenerator() {
 		return _generator;
 	}
-
+	
+	public int getScore() {
+		return _dataStorage.get_score();
+	}
+	
 	/**
 	 * Spawnea un enemigo
 	 * @param e enemigo a spawnear

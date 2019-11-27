@@ -22,17 +22,6 @@ public class Barricada extends ImmovableObject implements IObserved {
 		return _health;
 	}
 
-	public void set_health(int _health) {
-		this._health = _health;
-	}
-
-	public ArrayList<IObserver> get_observers() {
-		return _observers;
-	}
-
-	public void set_observers(ArrayList<IObserver> _observers) {
-		this._observers = _observers;
-	}
 
 	private ArrayList<IObserver> _observers;
 	
@@ -45,10 +34,22 @@ public class Barricada extends ImmovableObject implements IObserved {
 		_sprite = new ImageIcon(this.getClass().getResource("/img/barricada.png"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_observers = new ArrayList<IObserver>();
-		_health = 100;
+		_health = 500;
 		_cost*=2;
 	}
 	
+	public void set_health(int _health) {
+		this._health = _health;
+	}
+	
+	public ArrayList<IObserver> get_observers() {
+		return _observers;
+	}
+	
+	public void set_observers(ArrayList<IObserver> _observers) {
+		this._observers = _observers;
+	}
+
 	public String toString() {
 		return "caja";
 	}

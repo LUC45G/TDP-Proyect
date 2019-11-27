@@ -19,7 +19,7 @@ public class BombaAtomica extends ImmovableObject {
 		_visitor = new VisitorBombaAtomica();
 		_sprite = new ImageIcon(this.getClass().getResource("/img/moab.gif"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
-		_cost*=5;
+		_cost*=6;
 		_deathTimer = 40;
 	}
 

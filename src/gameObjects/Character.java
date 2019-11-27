@@ -19,9 +19,6 @@ import logicas.VisitorObserver;
 public abstract class Character extends GameObject implements IObserver, IObserved {
 
 	protected int 			 _cost;
-	public int get_cost() {
-		return _cost;
-	}
 	protected int 			 _health; 		// Vida actual del personaje, quizas deba ir mas arriba
 	protected Disparo   	 _shoot;	
 	protected StateCharacter _state;
@@ -35,6 +32,7 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 	 */
 	protected Character() {	
 		_health = 100;
+		_cost=10;
 	}
 	/**
 	 * Setea los atributos de este personaje a otro
@@ -50,6 +48,11 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 		if(!_visible)
 			c.NotVisible();
 	}
+
+	public int get_cost() {
+		return _cost;
+	}
+	
 	/**
 	 * Setea el disparo del personaje
 	 * @param _shoot2 nuevo disparo del personaje
