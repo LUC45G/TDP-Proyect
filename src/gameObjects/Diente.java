@@ -25,7 +25,9 @@ public class Diente extends ImmovableObject {
 
 	@Override
 	public ImmovableObject Clone() {
-		return new Diente();
+		Diente d = new Diente();
+		set_atributos(d);
+		return d;
 	}
 
 	@Override

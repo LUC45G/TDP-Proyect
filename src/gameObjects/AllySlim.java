@@ -27,9 +27,9 @@ public class AllySlim extends Ally {
 		_shoot  = new DisparoAliado(13, 300);
 	}
 	@Override
-	public Character Clone() {
-		Character a = new AllySlim(0, 0);
-		// Espacio por si hay que setear algun otro valor
+	public Ally Clone() {
+		Ally a = new AllySlim(0, 0);
+		set_atributos(a);
 		return a;
 	}
 	@Override

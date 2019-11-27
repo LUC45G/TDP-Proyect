@@ -14,7 +14,7 @@ public class Enemy1 extends Enemy {
 	
 	public Character Clone() {
 		Character a = new Enemy1(0, 0);
-		// Espacio por si hay que setear algun otro valor
+		set_atributos(a);
 		return a;
 	}
 	

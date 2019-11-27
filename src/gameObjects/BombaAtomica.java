@@ -11,10 +11,6 @@ import logicas.VisitorBombaAtomica;
  *
  */
 public class BombaAtomica extends ImmovableObject {
-	
-	
-	
-	
 	/**
 	 * Constructor que setea visitor, hitbox, imagen y costo
 	 */
@@ -33,7 +29,9 @@ public class BombaAtomica extends ImmovableObject {
 	
 	@Override
 	public ImmovableObject Clone() {
-		return new BombaAtomica();
+		BombaAtomica ba = new BombaAtomica();
+		set_atributos(ba);
+		return ba;
 	}
 	
 	@Override

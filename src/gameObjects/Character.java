@@ -16,8 +16,12 @@ import logicas.VisitorObserver;
  * Modela a los personajes, tanto aliados como enemigos
  * @author Pippig, Matias Gonzalez, Lucas
  */
-public abstract class Character extends GameObject implements Cloneable, IObserver, IObserved {
-	
+public abstract class Character extends GameObject implements IObserver, IObserved {
+
+	protected int 			 _cost;
+	public int get_cost() {
+		return _cost;
+	}
 	protected int 			 _health; 		// Vida actual del personaje, quizas deba ir mas arriba
 	protected Disparo   	 _shoot;	
 	protected StateCharacter _state;
@@ -32,7 +36,34 @@ public abstract class Character extends GameObject implements Cloneable, IObserv
 	protected Character() {	
 		_health = 100;
 	}
-	
+	/**
+	 * Setea los atributos de este personaje a otro
+	 */
+	public void set_atributos(Character c){
+		c.set_health(_health);
+		c.set_cost(_cost);
+		c.set_shoot(_shoot);
+		for(IObserver o: _observers) {
+			c.agregarObservador(o);
+		}
+		c.set_range(_range);
+		if(!_visible)
+			c.NotVisible();
+	}
+	/**
+	 * Setea el disparo del personaje
+	 * @param _shoot2 nuevo disparo del personaje
+	 */
+	protected void set_shoot(Disparo _shoot2) {
+		_shoot=_shoot2;	
+	}
+	/**
+	 * Setea el costo del personaje
+	 * @param cost nuevo costo del personaje
+	 */
+	protected void set_cost(int cost) {
+		_cost=cost;
+	}
 	/**
 	 * Devuuelve la vida del personaje
 	 * @return Retorna la vida del Personake
@@ -85,11 +116,6 @@ public abstract class Character extends GameObject implements Cloneable, IObserv
 	@Override
 	public abstract void accept(Visitor v);
 	
-	/**
-	 * Clona al personaje y devuelve la copia creada
-	 * @return Retorna una copia del personaje
-	 */
-	public abstract Character Clone();
 	
 	public StateCharacter GetState() {
 		return _state;

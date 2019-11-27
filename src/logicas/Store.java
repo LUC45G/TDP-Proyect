@@ -56,7 +56,7 @@ public class Store {
 	}
 
 	public int GetCost(int i) {
-		return _alliesToClone.get(i).GetCost();
+		return _alliesToClone.get(i).get_cost();
 	}
 
 	public Icon GetIcon(int i) {

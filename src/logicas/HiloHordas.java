@@ -8,7 +8,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import gameObjects.Enemy;
 import gameObjects.GameObject;
-import gameObjects.ImmovableObject;
+import gameObjects.MapObject;
 
 	/**
 	 * Hilo encargado de generar las hordas
@@ -47,7 +47,7 @@ import gameObjects.ImmovableObject;
 					
 					index = _rng.nextInt(100) % 2;
 					
-					ImmovableObject gog =_generator.GetMapElement(index);
+					MapObject gog =_generator.GetMapElement(index);
 					
 					VisitorObserver vo = new VisitorObserver(gog);
 					
@@ -111,7 +111,7 @@ import gameObjects.ImmovableObject;
 		public void run() {
 			
 			int sleepTime = 4500 / (_dificultad/3) * 2;
-			_cantidadSpawneada = _dificultad*3;
+			_cantidadSpawneada = _dificultad*2;
 			
 			while(_freno<_dificultad*3 && !_end) {
 				 try {

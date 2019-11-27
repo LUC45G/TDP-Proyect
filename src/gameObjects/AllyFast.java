@@ -27,9 +27,9 @@ public class AllyFast extends Ally {
 	}
 	
 	@Override
-	public Character Clone() {
-		Character a = new AllyFast(0, 0);
-		// Espacio por si hay que setear algun otro valor
+	public Ally Clone() {
+		Ally a = new AllyFast(0, 0);
+		set_atributos(a);
 		return a;
 	}
 

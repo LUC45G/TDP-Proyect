@@ -40,6 +40,12 @@ public abstract class Enemy extends Character {
 	public void accept(Visitor v) {
 		v.visitEnemy(this);
 	}
-			
+	/**
+	 * Setea los atributos de este personaje a otro
+	 */
+	public void set_atributos(Enemy c){
+		super.set_atributos(c);
+		c.set_visitor(new VisitorEnemy(this));
+	}
 }
 

@@ -39,11 +39,23 @@ public abstract class Ally extends Character {
 		v.visitAlly(this);
 	}
 	
-
+	/**
+	 * Setea los atributos de este personaje a otro
+	 */
+	public void set_atributos(Ally c){
+		super.set_atributos(c);
+		c.set_visitor(new VisitorAlly(this));
+	}
 	/**
 	 * Devuelve la cara
 	 * @return the face
 	 */
 	public abstract Icon GetIcon();
+	
+	@Override
+	public Ally Clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

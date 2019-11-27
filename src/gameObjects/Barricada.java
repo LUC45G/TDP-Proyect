@@ -18,6 +18,22 @@ import logicas.VisitorBarricada;
 public class Barricada extends ImmovableObject implements IObserved {
 	
 	private int _health;
+	public int get_health() {
+		return _health;
+	}
+
+	public void set_health(int _health) {
+		this._health = _health;
+	}
+
+	public ArrayList<IObserver> get_observers() {
+		return _observers;
+	}
+
+	public void set_observers(ArrayList<IObserver> _observers) {
+		this._observers = _observers;
+	}
+
 	private ArrayList<IObserver> _observers;
 	
 	/**
@@ -44,7 +60,13 @@ public class Barricada extends ImmovableObject implements IObserved {
 
 	@Override
 	public ImmovableObject Clone() {
-		return new Barricada();
+		Barricada b= new Barricada();
+		set_atributos(b);
+		b.set_health(_health);
+		for(IObserver io: _observers) {
+			b.agregarObservador(io);
+		}
+		return b;
 	}
 	
 	@Override

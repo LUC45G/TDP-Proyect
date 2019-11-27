@@ -21,7 +21,9 @@ public class Vendedor extends ImmovableObject {
 
 	@Override
 	public ImmovableObject Clone() {
-		return new Vendedor();
+		Vendedor v = new Vendedor();
+		set_atributos(v);
+		return v;
 	}
 	public void receive_attack(int i) {
 		Controller.GetInstance().Remove(this);

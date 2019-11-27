@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import logicas.Controller;
 import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorBarricada;
@@ -15,9 +14,8 @@ import logicas.VisitorObserver;
  * @author Pippig, Matias Gonsalez Lucas
  *
  */
-public class PiedraMapa extends ImmovableObject {
+public class PiedraMapa extends MapObject {
 
-	private int _health; //modularizar
 	private ArrayList<IObserver> _observers;
 	
 	/**
@@ -32,14 +30,18 @@ public class PiedraMapa extends ImmovableObject {
 		_health=1500;
 	}
 	
-	@Override
-	public void affect(Character c) {
-		// Setear _sprite de escudo
+	public MapObject Clone() {
+		PiedraMapa p = new PiedraMapa();
+		set_atributos(p);
+		return p;
 	}
 
 	@Override
-	public ImmovableObject Clone() {
-		return new PiedraMapa();
+	public void set_atributos(MapObject c){
+		super.set_atributos(c);
+		for(IObserver o:_observers) {
+			c.agregarObservador(o);
+		}
 	}
 	
 	@Override
@@ -48,20 +50,7 @@ public class PiedraMapa extends ImmovableObject {
 	}
 	
 	@Override
-	public void Update()
-	{}
-	
-	@Override
-	public void receive_attack(int i) {
-		_health-=i;
-		
-		if(_health<=0) {
-			Controller.GetInstance().Remove(this);
-			_visible = false;
-			notificar();
-		}
-		
-	}
+	public void Update() {}
 	
 	public void acceptObserver(VisitorObserver vo) {
 		vo.visitAllyObservado(this);
@@ -82,11 +71,6 @@ public class PiedraMapa extends ImmovableObject {
 		for(IObserver o : _observers)
 			o.StopShooting();
 		
-		return false;
-	}
-
-	@Override
-	public boolean IsAOE() {
 		return false;
 	}
 

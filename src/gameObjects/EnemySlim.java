@@ -21,7 +21,7 @@ public class EnemySlim extends Enemy {
 	@Override
 	public Character Clone() {
 		Character a = new EnemySlim(0, 0);
-		// Espacio por si hay que setear algun otro valor
+		set_atributos(a);
 		return a;
 	}
 	@Override

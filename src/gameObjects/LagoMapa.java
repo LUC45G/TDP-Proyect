@@ -3,12 +3,17 @@ package gameObjects;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
+
+import logicas.Visitor;
+import logicas.VisitorPowerUp;
 /**
  * Objeto que no permite que ningun personaje pase por el lugar que ocupe
  * @author Pippig, Matias Gonsalez Lucas
  *
  */
-public class LagoMapa extends ImmovableObject {
+public class LagoMapa extends MapObject {
+	private int _deathTimer;
+
 	/**
 	 * Constructor que setea Imagen y hitbox
 	 */
@@ -17,21 +22,30 @@ public class LagoMapa extends ImmovableObject {
 		_sprite = new ImageIcon(this.getClass().getResource("/img/fuego_lago.gif"));
 		_hitbox = new Rectangle(0, 0, _sprite.getIconWidth(), _sprite.getIconHeight());
 		_deathTimer=17*12;//agregar un cero
+		_visitor=new VisitorPowerUp();
+;	}
+
+	public MapObject Clone() {
+		LagoMapa lm = new LagoMapa();
+		lm.set_deathTimer(_deathTimer);
+		return lm;
 	}
-	
-	@Override
-	public void affect(Character c) {
-		// Setear _sprite de escudo
+	public int get_deathTimer() {
+		return _deathTimer;
 	}
 
-	@Override
-	public ImmovableObject Clone() {
-		return new LagoMapa();
+	public void set_deathTimer(int _deathTimer) {
+		this._deathTimer = _deathTimer;
 	}
 
-	@Override
-	public boolean IsAOE() {
-		return false;
+	public void Update() {
+		--_deathTimer;
+		
+		if(_deathTimer == 0)
+			receive_attack(0);
 	}
-
+	@Override
+	public void accept(Visitor v) {
+		v.visitLagoMapa(this);
+	}
 }

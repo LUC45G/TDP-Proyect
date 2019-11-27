@@ -200,7 +200,7 @@ public class Controller {
 		if(_currentIndex != -1) {
 			Ally a = _store.CreateAlly(_currentIndex, x, y);
 			_gui.Insertar(a.GetSprite());
-			_dataStorage.Buy(a.GetCost());
+			_dataStorage.Buy(a.get_cost());
 			invoked = true;
 		}
 		
@@ -213,7 +213,7 @@ public class Controller {
 				AddAOEPowerUp(p.GetVisitor());
 			
 			
-			_dataStorage.Buy(p.GetCost());
+			_dataStorage.Buy(p.get_cost());
 			invoked = true;
 		}
 		
@@ -221,15 +221,6 @@ public class Controller {
 		_currentIndex = -1;
 	}
 	
-	/**
-	 * Agrega un power up que deba afectar a un solo personaje
-	 * @param v visitor del power up
-	 */
-	private void AddPowerUp(Visitor v) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/**
 	 * Agrega un disparo al mapa
 	 * @param d disparo
@@ -371,7 +362,7 @@ public class Controller {
 	 * @param a aliado a vender
 	 */
 	public void sellAlly(Ally a) {
-		_dataStorage.Store(a.GetCost()/2);
+		_dataStorage.Store(a.get_cost()/2);
 		a.Die();
 	}
 

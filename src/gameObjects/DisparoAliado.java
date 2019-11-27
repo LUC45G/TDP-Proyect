@@ -25,4 +25,5 @@ public class DisparoAliado extends Disparo {
 		ve.visitAllyShoot(this);
 	}
 
+
 }

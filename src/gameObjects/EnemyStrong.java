@@ -20,7 +20,7 @@ public class EnemyStrong extends Enemy {
 	@Override
 	public Character Clone() {
 		Character a = new EnemyStrong(0, 0);
-		// Espacio por si hay que setear algun otro valor
+		set_atributos(a);
 		return a;
 	}
 	@Override

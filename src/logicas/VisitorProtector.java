@@ -4,7 +4,6 @@ import gameObjects.Ally;
 import gameObjects.Enemy;
 import gameObjects.EscudoProtector;
 import gameObjects.EstadoProtegidoCaminando;
-import gameObjects.Vendedor;
 
 public class VisitorProtector extends Visitor {
 	

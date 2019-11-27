@@ -11,7 +11,7 @@ public class Generator {
 	
 	protected ArrayList<Enemy>  _enemies;		 // Lista de enemigos a clonar
 	protected ArrayList<ImmovableObject> _powerUps;
-	protected ArrayList<ImmovableObject> _mapItems;
+	protected ArrayList<MapObject> _mapItems;
 	protected HiloPrincipal 	_mainThread;	 // Hilo principal
 	protected DataStorage 		_dataStorage; 	 // Almacenamiento de cosas
 	
@@ -19,7 +19,7 @@ public class Generator {
 		_enemies 	= new ArrayList<Enemy>();
 		_powerUps 	= new ArrayList<ImmovableObject>();
 		_dataStorage= DataStorage.GetInstance();
-		_mapItems   = new ArrayList<ImmovableObject>();
+		_mapItems   = new ArrayList<MapObject>();
 		
 		/* Inicializar la lista de enemigos */
 		_enemies.add(new Enemy1(0, 0));
@@ -99,16 +99,16 @@ public class Generator {
 		return _powerUps.get(i).toString();
 	}
 	
-	public ImmovableObject GetPowerUp(int i) {
-		ImmovableObject aux = _powerUps.get(i).Clone();
+	public GameObject GetPowerUp(int i) {
+		GameObject aux = _powerUps.get(i).Clone();
 		return aux;
 	}
 	
 	public int GetCost(int i) {
-		return _powerUps.get(i).GetCost();
+		return _powerUps.get(i).get_cost();
 	}
 
-	public ImmovableObject GetMapElement(int index) {
+	public MapObject GetMapElement(int index) {
 		return _mapItems.get(index).Clone();
 	}
 

@@ -23,5 +23,7 @@ public abstract class Visitor {
 	public void visitVendedor(Vendedor v) {}
 	
 	public void visitPiedraMapa(PiedraMapa v) {}
+	
+	public void visitLagoMapa(LagoMapa lm) {}
 
 }

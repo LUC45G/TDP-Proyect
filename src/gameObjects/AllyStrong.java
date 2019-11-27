@@ -28,9 +28,9 @@ public class AllyStrong extends Ally {
 	}
 	
 	@Override
-	public Character Clone() {
-		Character a = new AllyStrong(0, 0);
-		// Espacio por si hay que setear algun otro valor
+	public Ally Clone() {
+		Ally a = new AllyStrong(0, 0);
+		set_atributos(a);
 		return a;
 	}
 	@Override

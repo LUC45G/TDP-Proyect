@@ -30,7 +30,9 @@ public class EscudoProtector extends ImmovableObject {
 
 	@Override
 	public ImmovableObject Clone() {
-		return new EscudoProtector();
+		EscudoProtector ep = new EscudoProtector();
+		set_atributos(ep);
+		return ep;
 	}
 
 	@Override
