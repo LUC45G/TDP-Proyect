@@ -42,7 +42,7 @@ public class Store {
 	 * @return Aliado creado
 	 */
 	public Ally CreateAlly(int i, int x, int y) {
-		Ally aux = (Ally) _alliesToClone.get(i).Clone();
+		Ally aux = _alliesToClone.get(i).Clone();
 		
 		VisitorObserver vo = new VisitorObserver(aux, aux);
 		

@@ -1,11 +1,9 @@
 Falta:
--Depende de jose haya que cambiar prototype
 - hacer el uml
-
 ------------------------------------------------
 
 Bugs: 
--
+- store se actualiza con el vender
 
 ------------------------------------------------
 
