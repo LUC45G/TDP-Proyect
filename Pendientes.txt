@@ -1,14 +1,12 @@
 Falta:
-- hacer el uml
+- Javadoc fino
 ------------------------------------------------
 
 Bugs: 
-- store se actualiza con el vender
 
 ------------------------------------------------
 
 Gifs que faltan:
--Squanchy Aliada(probablemete quede asi)
 
 ------------------------------------------------
 
