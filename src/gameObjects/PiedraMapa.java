@@ -28,6 +28,7 @@ public class PiedraMapa extends MapObject {
 		_health=1500;
 	}
 	
+	@Override
 	public MapObject Clone() {
 		PiedraMapa p = new PiedraMapa();
 		set_atributos(p);
@@ -48,8 +49,8 @@ public class PiedraMapa extends MapObject {
 	}
 	
 	@Override
-	public void Update() {}
+	public void Update() {
+		
+	}
 	
-	
-
 }

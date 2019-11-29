@@ -13,8 +13,8 @@ public class EnemyBase extends Enemy {
 		_cost*=2;
 	}
 	
-	public Character Clone() {
-		Character a = new EnemyBase(0, 0);
+	public Enemy Clone() {
+		Enemy a = new EnemyBase(0, 0);
 		set_atributos(a);
 		return a;
 	}

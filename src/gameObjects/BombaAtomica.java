@@ -34,17 +34,6 @@ public class BombaAtomica extends ImmovableObject {
 		ba.set_visitor(new VisitorBombaAtomica());
 		return ba;
 	}
-	
-	@Override
-	public void affect(Character c) {
-		
-	}
-	@Override
-	public ImageIcon GetSpriteImmovableObject(){
-		return new ImageIcon(this.getClass().getResource("/img/moab.png"));
-		
-	}
-	
 	@Override
 	public boolean IsAOE() {
 		return true;

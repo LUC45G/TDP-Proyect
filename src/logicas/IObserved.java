@@ -18,6 +18,7 @@ public interface IObserved {
 	public void eliminarObservador(IObserver observador);
 	/**
 	 * Metodo que notifica de un cambio en el observado (agregado o eliminacion de observadores)
+	 * @return true si notifico correctamente, false caso contrario
 	 */
 	public boolean notificar();
 }

@@ -4,7 +4,6 @@ import gameObjects.Ally;
 import gameObjects.Barricada;
 import gameObjects.Disparo;
 import gameObjects.DisparoAliado;
-import gameObjects.ImmovableObject;
 import gameObjects.LagoMapa;
 import gameObjects.PiedraMapa;
 
@@ -19,10 +18,6 @@ public class VisitorEnemyShoot extends Visitor {
 	
 	public void visitAlly(Ally a) {
 		a.receive_attack(miDisparo);
-	}
-	
-	public void visitImmovableObject(ImmovableObject i) {
-		i.affect(miDisparo);
 	}
 	
 	public void visitAllyShoot(DisparoAliado da) {

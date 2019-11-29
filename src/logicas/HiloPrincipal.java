@@ -32,8 +32,8 @@ public class HiloPrincipal extends Thread {
 				
 				g.Update();
 				
-				if(g.GetHitbox().getX()<=-10)
-					g.GetVisitor().visitLose();
+				if(g.get_hitbox().getX()<=-10)
+					g.get_visitor().visitLose();
 				
 			}
 			

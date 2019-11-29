@@ -32,11 +32,6 @@ public class Diente extends ImmovableObject {
 	}
 
 	@Override
-	public void affect(Character c) {
-		
-	}
-
-	@Override
 	public boolean IsAOE() {
 		return true;
 	}

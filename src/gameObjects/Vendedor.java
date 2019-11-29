@@ -13,11 +13,6 @@ public class Vendedor extends ImmovableObject {
 		_visitor = new VisitorVendedor(this);
 		_deathTimer=17;
 	}
-	@Override
-	public void affect(Character c) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public ImmovableObject Clone() {

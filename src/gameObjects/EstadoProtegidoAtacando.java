@@ -18,10 +18,18 @@ public class EstadoProtegidoAtacando extends StateCharacter {
 			Controller.GetInstance().AddDisparo(Disparar());
 	}
 
+	/**
+	 * Devuelve la cantidad de ataque recibidos restantes
+	 * @return cantidad de ataque recibidos restantes
+	 */
 	public int getAtaquesRecibidos() {
 		return ataquesRecibidos;
 	}
 	
+	/**
+	 * Setea la cantidad de ataques recibidos restantes
+	 * @param ataquesRecibidos nueva cantidad de ataques recibidos restantes
+	 */
 	public void setAtaquesRecibidos(int ataquesRecibidos) {
 		this.ataquesRecibidos = ataquesRecibidos;
 	}

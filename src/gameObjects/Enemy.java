@@ -25,12 +25,14 @@ public abstract class Enemy extends Character {
 		_baseMovementSpeed=7;
 	}
 	
+	public abstract Enemy Clone();
+	
 
 	protected Enemy() {
 		super();
 		Init();
 	}
-	
+
 	@Override
 	public void Die() {
 		super.Die();
@@ -42,6 +44,7 @@ public abstract class Enemy extends Character {
 	}
 	/**
 	 * Setea los atributos de este personaje a otro
+	 * @param c enemigo donde clonar
 	 */
 	public void set_atributos(Enemy c){
 		super.set_atributos(c);

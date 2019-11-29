@@ -17,10 +17,11 @@ public class DienteSquanchy extends StateCharacter {
 
 	@Override
 	public void update() {
-		if(++_delta%(_delay+1)==0) 
+		_delta++;
+		if(_delta%(_delay+1)==0) 
 			Controller.GetInstance().AddDisparo(Disparar());
-
-		if( --_powerUpLife <= 0 )
+		_powerUpLife--;
+		if( _powerUpLife <= 0 )
 			miCh.ChangeState(_prev);
 		
 	}

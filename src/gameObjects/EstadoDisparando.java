@@ -13,7 +13,8 @@ public class EstadoDisparando extends StateCharacter {
 
 	@Override
 	public void update() {
-		if(++_delta%(_delay+2)==0) 
+		_delta++;
+		if(_delta%(_delay+2)==0) 
 			Controller.GetInstance().AddDisparo(Disparar());
 	}
 

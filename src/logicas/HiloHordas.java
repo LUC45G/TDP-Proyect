@@ -1,12 +1,7 @@
 package logicas;
 
 	
-	import java.awt.Rectangle;
-	import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.ImageIcon;
-import gameObjects.Enemy;
 import gameObjects.GameObject;
 import gameObjects.MapObject;
 
@@ -15,7 +10,6 @@ import gameObjects.MapObject;
 	 */
 	public class HiloHordas extends Thread {
 		
-		private Controller 			 _controller;
 		private Generator       	 _generator;
 		private int					 _dificultad;
 		private int 				 _freno;		
@@ -26,7 +20,6 @@ import gameObjects.MapObject;
 		private Random				 _rng;
 		
 		public HiloHordas() {
-			_controller = null;
 			_generator=null;
 			_dificultad = 0;
 			_freno=0;
@@ -59,7 +52,6 @@ import gameObjects.MapObject;
 		}
 		
 		public void SetController(Controller c) {
-			_controller = c;
 			_generator=c.GetGenerator();
 		}
 		

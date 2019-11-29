@@ -208,7 +208,7 @@ public class Bank {
 	//AllyBase
 	/**
 	 * Devuelve la imagen del aliado base disparando
-	 * @param e enemigo al que modificar su imagen
+	 * @param a aliado al que modificar su imagen
 	 * @return Retorna la imagen del aliado base disparando
 	 */
 	public ImageIcon GetShootingSprite(AllyBase a) {
@@ -216,7 +216,7 @@ public class Bank {
 	}
 	/**
 	 * Devuelve la imagen del aliado base idle
-	 * @param e aliado al que modificar su imagen
+	 * @param a aliado al que modificar su imagen
 	 * @return Retorna la imagen del aliado base idle
 	 */
 	public ImageIcon GetNormalSprite(AllyBase a) {
@@ -241,7 +241,7 @@ public class Bank {
 	//AllyFat
 	/**
 	 * Devuelve la imagen del aliado gordo disparando
-	 * @param e enemigo al que modificar su imagen
+	 * @param e aliado al que modificar su imagen
 	 * @return Retorna la imagen del aliado gordo disparando
 	 */
 	public ImageIcon GetShootingSprite(AllyFat e) {
@@ -274,7 +274,7 @@ public class Bank {
 	//AllyFast
 	/**
 	 * Devuelve la imagen del aliado rapido disparando
-	 * @param e enemigo al que modificar su imagen
+	 * @param e aliado al que modificar su imagen
 	 * @return Retorna la imagen del aliado rapido disparando
 	 */
 	public ImageIcon GetShootingSprite(AllyFast e) {
@@ -307,7 +307,7 @@ public class Bank {
 	//AllySlim
 	/**
 	 * Devuelve la imagen del aliado flaco disparando
-	 * @param e enemigo al que modificar su imagen
+	 * @param e aliado al que modificar su imagen
 	 * @return Retorna la imagen del aliado flaco disparando
 	 */
 	public ImageIcon GetShootingSprite(AllySlim e) {

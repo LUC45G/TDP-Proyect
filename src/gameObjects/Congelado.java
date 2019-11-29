@@ -15,7 +15,8 @@ public class Congelado extends StateCharacter {
 
 	@Override
 	public void update() {
-		if( --_powerUpLife <= 0 ) {
+		_powerUpLife--;
+		if( _powerUpLife <= 0 ) {
 			miCh.ChangeState(_prev);
 		}
 	}

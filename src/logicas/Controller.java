@@ -91,19 +91,6 @@ public class Controller {
 	}
 	
 	/**
-	 * Junta todas las hitboxes que tiene que haber en el mapa
-	 * @return Todas las hitboxes
-	 */
-	public ArrayList<Rectangle> GetHitboxes() {
-		ArrayList<Rectangle> aux = new ArrayList<Rectangle>();
-		
-		for(GameObject g : _dataStorage.GetAllObjects())
-			aux.add(g.GetHitbox());
-		
-		return aux;
-	}
-	
-	/**
 	 * Chequea que todos los objetos estan dentro de lo limites, si no los borra
 	 */
 	public void ControlBounds() {
@@ -113,7 +100,7 @@ public class Controller {
 		
 		for(int i = size - 1; i >= 0; i--) {
 			go = auxGo.get(i);
-			if(	go.GetHitbox().getX() < -15 || go.GetHitbox().getX() > _mapWidth ) 
+			if(	go.get_hitbox().getX() < -15 || go.get_hitbox().getX() > _mapWidth ) 
 				Remove(go);			
 		} 
 	}
@@ -132,7 +119,7 @@ public class Controller {
 	 * @return Retorna un par con una imagen y un rectangulo
 	 */
 	public Pair<ImageIcon, Rectangle> GetSpriteAndHitbox(int i) {
-		return new Pair<ImageIcon, Rectangle>(_dataStorage.GetAllObjects().get(i).GetSprite(), _dataStorage.GetAllObjects().get(i).GetHitbox());
+		return new Pair<ImageIcon, Rectangle>(_dataStorage.GetAllObjects().get(i).GetSprite(), _dataStorage.GetAllObjects().get(i).get_hitbox());
 	}
 	
 	
@@ -160,12 +147,12 @@ public class Controller {
 				
 				if( og != go ) {
 					
-					if(og.GetHitbox().intersects(go.GetHitbox()))
-						go.accept(og.GetVisitor());
+					if(og.get_hitbox().intersects(go.get_hitbox()))
+						go.accept(og.get_visitor());
 					
 					
 					if(og.IsVisible() && go.IsVisible())
-						if(og.inRange(go.GetHitbox())) 
+						if(og.inRange(go.get_hitbox())) 
 							go.accept(og.GetVisitorRange());
 					
 				}
@@ -204,7 +191,7 @@ public class Controller {
 			_isAOE = _generator.IsAOE(_currentPowerUp);
 			
 			if(_isAOE)
-				AddAOEPowerUp(p.GetVisitor());
+				AddAOEPowerUp(p.get_visitor());
 			
 			
 			_dataStorage.Buy(p.get_cost());
@@ -274,6 +261,7 @@ public class Controller {
 	
 	/**
 	 * Actua en respuesta a la muerte de un enemigo
+	 * @param e enemigo muerto
 	 */
 	public void EnemyDeath(Enemy e) {
 		_enemies.SubEnemy();
@@ -306,16 +294,22 @@ public class Controller {
 			Remove(go);
 		
 		_gui.ShowWin();
+		_dataStorage.Store(_dataStorage.STARTING_MONEY);
 		_gui.UpdatePanelScore();
 	}
 
 	/**
 	 * Devuelve el generador
+	 * @return Generador
 	 */
 	public Generator GetGenerator() {
 		return _generator;
 	}
 	
+	/**
+	 * Devuelve la puntuacion
+	 * @return score
+	 */
 	public int getScore() {
 		return _dataStorage.get_score();
 	}
@@ -356,9 +350,9 @@ public class Controller {
 	 * @param a aliado a vender
 	 */
 	public void sellAlly(Ally a) {
-		_dataStorage.Store(a.get_cost()/2);
+		_dataStorage.Sell(a.get_cost()/2);
 		a.ChangeState(new Muerte(a, a.get_delay(), a.get_strength(), a.get_velocidad()));
-	//	a.notificar();
+		_gui.UpdatePanelScore();
 	}
 
 	/**
@@ -397,10 +391,19 @@ public class Controller {
 		return _dificultad - 2;
 	}
 
+	/**
+	 * Devuelve el nombre del power up correspondiente al boton 
+	 * @param i indice del boton
+	 * @return nombre del powerup
+	 */
 	public String GetPowerUpName(int i) {
 		return _generator.GetPowerUpName(i);
 	}
 
+	/**
+	 * Devuelve el almacenamiento de los datos
+	 * @return Data Storage
+	 */
 	public DataStorage GetDataStorage() {
 		return _dataStorage;
 	}

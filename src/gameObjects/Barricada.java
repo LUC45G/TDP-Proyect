@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import logicas.Controller;
-import logicas.IObserved;
 import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorBarricada;
@@ -15,13 +14,9 @@ import logicas.VisitorBarricada;
  * @author Pippig, Matias Gonzalez, Lucas
  *
  */
-public class Barricada extends ImmovableObject implements IObserved {
+public class Barricada extends ImmovableObject {
 	
 	private int _health;
-	public int get_health() {
-		return _health;
-	}
-
 
 	private ArrayList<IObserver> _observers;
 	
@@ -42,10 +37,6 @@ public class Barricada extends ImmovableObject implements IObserved {
 		this._health = _health;
 	}
 	
-	public ArrayList<IObserver> get_observers() {
-		return _observers;
-	}
-	
 	public void set_observers(ArrayList<IObserver> _observers) {
 		this._observers = _observers;
 	}
@@ -54,11 +45,6 @@ public class Barricada extends ImmovableObject implements IObserved {
 		return "caja";
 	}
 	
-	@Override
-	public void affect(Character c) {
-		// Setear _sprite de escudo
-	}
-
 	@Override
 	public ImmovableObject Clone() {
 		Barricada b= new Barricada();
@@ -72,9 +58,6 @@ public class Barricada extends ImmovableObject implements IObserved {
 	public void accept(Visitor v) {
 		v.visitBarricada(this);
 	}
-	
-	@Override
-	public void Update()	{}
 	
 	@Override
 	public void receive_attack(int i) {

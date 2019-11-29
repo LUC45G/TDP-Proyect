@@ -14,15 +14,12 @@ public abstract class Disparo extends GameObject implements Cloneable {
 		_velocidad = 20 * multiplier;
 	}
 	
-	public abstract Disparo Clone();
 
 	public int get_strength() {
 		return _strength;
 	}
 	
-	public int get_range() { return _range; }
 	public void set_strength(int s) { _strength = s; }
-	public void set_range(int r) { _range = r; }
 	
 	@Override
 	public void Update() {
@@ -36,6 +33,8 @@ public abstract class Disparo extends GameObject implements Cloneable {
 	public Visitor getVisitorDisparo() {
 		return _visitor;
 	}
+	
+	public abstract Disparo Clone();
 
 
 	public void setVisitorDisparo(Visitor visitorDisparo) {

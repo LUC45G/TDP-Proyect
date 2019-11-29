@@ -61,7 +61,6 @@ public class Store {
 
 	public Icon GetIcon(int i) {
 		return _alliesToClone.get(i-1).GetIcon();
-		
 	}
 	
 }

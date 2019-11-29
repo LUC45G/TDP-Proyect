@@ -50,7 +50,7 @@ public class Generator {
 		ArrayList<Rectangle> tr = new ArrayList<Rectangle>();
 		
 		for(Enemy e : _enemies) 
-			tr.add(e.GetHitbox());
+			tr.add(e.get_hitbox());
 		
 		return tr;
 	}
@@ -62,7 +62,7 @@ public class Generator {
 	 * @return Sprite del enemigo
 	 */
 	public ImageIcon GetEnemy(int i, int y) {
-		Enemy e = (Enemy) _enemies.get(i).Clone();
+		Enemy e = _enemies.get(i).Clone();
 		Random r = new Random();
 		VisitorObserver vo = new VisitorObserver(e, e);
 		

@@ -3,20 +3,13 @@ package gameObjects;
 import java.util.ArrayList;
 
 import logicas.Controller;
-import logicas.IObserved;
 import logicas.IObserver;
 import logicas.VisitorObserver;
 
-public class MapObject extends GameObject implements IObserved {
+public abstract class MapObject extends GameObject {
 
 	protected int _health;
 	protected ArrayList<IObserver> _observers;
-	
-	@Override
-	public void Update() {
-		// TODO Auto-generated method stub
-
-	}
 	
 	public void receive_attack(int i) {
 		_health-=i;
@@ -53,6 +46,7 @@ public class MapObject extends GameObject implements IObserved {
 	
 	/**
 	 * Setea los atributos de este objeto del mapa a otro
+	 * @param c objeto donde clonar atributos
 	 */
 	public void set_atributos(MapObject c){
 		c.set_health(_health);
@@ -73,8 +67,6 @@ public class MapObject extends GameObject implements IObserved {
 	}
 
 	@Override
-	public MapObject Clone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract MapObject Clone();
+	
 }

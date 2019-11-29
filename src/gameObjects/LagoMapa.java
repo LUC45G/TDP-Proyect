@@ -26,7 +26,7 @@ public class LagoMapa extends MapObject {
 		_deathTimer=17*12;//agregar un cero
 		_observers = new ArrayList<IObserver>();
 		_visitor=new VisitorPowerUp();
-;	}
+	}
 
 	public MapObject Clone() {
 		LagoMapa lm = new LagoMapa();

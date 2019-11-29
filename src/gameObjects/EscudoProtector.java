@@ -18,12 +18,7 @@ public class EscudoProtector extends ImmovableObject {
 	public String toString() {
 		return "shield";
 	}
-	
-	@Override
-	public void affect(Character c) {
-		// Setear _sprite de escudo
-	}
-	
+
 	public void receive_attack(int i) {
 		Controller.GetInstance().Remove(this);
 		_visible = false;

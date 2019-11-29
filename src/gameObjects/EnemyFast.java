@@ -18,9 +18,10 @@ public class EnemyFast extends Enemy {
 		_hitbox = new Rectangle(x, y, _sprite.getIconWidth(), _sprite.getIconHeight());	
 		_cost*=4;
 	}
+	
 	@Override
-	public Character Clone() {
-		Character a = new EnemyFast(0, 0);
+	public Enemy Clone() {
+		Enemy a = new EnemyFast(0, 0);
 		set_atributos(a);
 		return a;
 	}

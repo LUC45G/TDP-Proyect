@@ -14,7 +14,7 @@ public class EstadoProtegidoCaminando extends StateCharacter {
 
 	@Override
 	public void update() {
-		miCh.GetHitbox().x -= _velocidad;
+		miCh.get_hitbox().x -= _velocidad;
 	}
 	
 	public int getAtaquesRecibidos() {

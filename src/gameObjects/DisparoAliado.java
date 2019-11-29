@@ -21,6 +21,7 @@ public class DisparoAliado extends Disparo {
 		return new DisparoAliado(_strength, _range);
 	}
 	
+	@Override
 	public void accept(Visitor ve) {
 		ve.visitAllyShoot(this);
 	}

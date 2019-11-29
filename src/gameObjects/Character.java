@@ -1,12 +1,10 @@
 package gameObjects;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 import logicas.Controller;
-import logicas.IObserved;
 import logicas.IObserver;
 import logicas.Visitor;
 import logicas.VisitorObserver;
@@ -16,7 +14,7 @@ import logicas.VisitorObserver;
  * Modela a los personajes, tanto aliados como enemigos
  * @author Pippig, Matias Gonzalez, Lucas
  */
-public abstract class Character extends GameObject implements IObserver, IObserved {
+public abstract class Character extends GameObject implements IObserver {
 
 	protected int 			 _cost;
 	protected int 			 _health; 		// Vida actual del personaje, quizas deba ir mas arriba
@@ -36,6 +34,7 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 	}
 	/**
 	 * Setea los atributos de este personaje a otro
+	 * @param c caracter donde clonar atributos
 	 */
 	public void set_atributos(Character c){
 		c.set_health(_health);
@@ -98,17 +97,6 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 	}
 	
 	/**
-	 * Actualiza la hitbox del personaje
-	 * @param x valor del eje x
-	 * @param y valor del eje y
-	 * @param heigth altura de la hitbox
-	 * @param width  ancho de la hitbox
-	 */
-	public void setHitBox(int x , int y, int heigth, int width) {
-		_hitbox=new Rectangle(x,y,heigth,width);
-	}
-	
-	/**
 	 * Cambia el estado actual por el estado s
 	 * @param s Estado nuevo
 	 */
@@ -119,10 +107,14 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 	@Override
 	public abstract void accept(Visitor v);
 	
-	
+	/**
+	 * Devuelve el estado actual del personaje
+	 * @return estado actual del personaje
+	 */
 	public StateCharacter GetState() {
 		return _state;
 	}
+	
 	/**
 	 * Calcula el daño recibido por el valor d restandolo a la vida actual
 	 * @param d valor que va a ser reducido de la vida
@@ -130,6 +122,7 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 	public void receive_attack(int d) {
 		_state.receive_attack(d);
 	}
+	
 	/**
 	 * Delega al estado que retorne la velocidad de ataque
 	 * @return Retorna la velocidad de ataque del personaje
@@ -137,6 +130,7 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 	public int GetAttackSpeed() {
 		return _state.GetDelay();
 	}
+	
 	/**
 	 * 
 	 * Delega al estado que retorne la fuerza de ataque
@@ -146,6 +140,10 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 		return _state.GetStrength();
 	}
 	
+	/**
+	 * Efectua el recibimiento del ataque
+	 * @param miDisparo disparo que golpea al personaje
+	 */
 	public void receive_attack(Disparo miDisparo) {
 		_state.receive_attack(miDisparo.get_strength());
 			
@@ -165,6 +163,7 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 		_state.update();
 	}
 	
+	@Override
 	public boolean notificar() {
 		for(IObserver c : _observers)
 			c.StopShooting();
@@ -172,32 +171,53 @@ public abstract class Character extends GameObject implements IObserver, IObserv
 		return false;
 	}
 	
+	@Override
 	public void StopShooting() {
 		NormalState normal = new NormalState(this, _baseDelay, _baseStrength, _baseMovementSpeed);
 		_state.accept(normal.GetVisitor());
 	}
 	
+	@Override
 	public void eliminarObservador(IObserver observador) {
 		_observers.remove(observador);
 	}
 	
+	@Override
 	public void agregarObservador(IObserver observador) {
 		if(!_observers.contains(observador))
 			_observers.add(observador);
 	}
 	
+	
+	/**
+	 * Acepta o no el visitante
+	 * @param vo Visitor que visita 
+	 */
 	public void acceptObserver(VisitorObserver vo) {
 		vo.visitAllyObservado(this);
 		vo.visitAllyObservador(this);
 	}
 	
+	/**
+	 * devuelve la velocidad de ataque base
+	 * @return velocidad de ataque base
+	 */
 	public int get_delay() {
-		
 		return _baseDelay;
 	}
+	
+	/**
+	 * devuelve la fuerza base
+	 * @return fuerza base
+	 */
 	public int get_strength() {
 		return _baseStrength;
 	}
+	
+	/**
+	 * devuelve la velocidad base
+	 * @return velocidad base
+	 */
 	public int get_velocidad() {
 		return _baseMovementSpeed;
 	}

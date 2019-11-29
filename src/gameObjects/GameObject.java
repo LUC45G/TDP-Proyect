@@ -40,10 +40,18 @@ public abstract class GameObject implements Cloneable, IObserved{
 		_boundingBox= new VisitorRange();
 	}
 	
+	/**
+	 * Devuelve la hitbox
+	 * @return Rectangulo que representa la hitbox
+	 */
 	public Rectangle get_hitbox() {
 		return _hitbox;
 	}
 
+	/**
+	 * Setea la hitbox
+	 * @param _hitbox Rectangulo que representa la hitbox
+	 */
 	public void set_hitbox(Rectangle _hitbox) {
 		this._hitbox = _hitbox;
 	}
@@ -91,14 +99,6 @@ public abstract class GameObject implements Cloneable, IObserved{
 		return _sprite;
 	}
 	/**
-	 * Devuelve un rectangulo que representa la zona de contacto del objeto del juego
-	 * @return Retorna un rectangulo que representa las dimensiones del objeto
-	 */
-	public Rectangle GetHitbox() {
-		return _hitbox;
-	}
-	
-	/**
 	 * Actualiza el valor del eje x de la hitbox con el valor value
 	 * @param value valor que va a suplantar el valor actual de x
 	 */
@@ -114,14 +114,6 @@ public abstract class GameObject implements Cloneable, IObserved{
 		_hitbox.y = value;
 	}
 	/**
-	 * Devuelve el visitor del objeto del juego
-	 * @return Retorna un visitor
-	 */
-	public Visitor GetVisitor() {
-		return _visitor;
-	}
-	
-	/**
 	 * Devuelve el visitor del rango que se encarga de vigilar el rango
 	 * @return Retorna un visitor de rango
 	 */
@@ -129,6 +121,9 @@ public abstract class GameObject implements Cloneable, IObserved{
 		return _boundingBox;
 	}
 		
+	/**
+	 * Actualiza el estado del objeto
+	 */
 	public abstract void Update();
 	
 	/**

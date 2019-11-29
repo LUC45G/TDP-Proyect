@@ -19,8 +19,8 @@ public class EnemyStrong extends Enemy {
 		_cost*=5;
 	}
 	@Override
-	public Character Clone() {
-		Character a = new EnemyStrong(0, 0);
+	public Enemy Clone() {
+		Enemy a = new EnemyStrong(0, 0);
 		set_atributos(a);
 		return a;
 	}

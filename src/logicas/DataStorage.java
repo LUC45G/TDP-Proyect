@@ -12,7 +12,7 @@ import gameObjects.GameObject;
  */
 public class DataStorage {
 	
-	protected final int STARTING_MONEY = 50000;
+	public final int STARTING_MONEY = 1000;
 	
 	protected static DataStorage		INSTANCE = null;
 	protected int 						_currentMoney;
@@ -32,10 +32,18 @@ public class DataStorage {
 		return INSTANCE;
 	}
 	
+	/**
+	 * Devuelve la puntuacion
+	 * @return score
+	 */
 	public int get_score() {
 		return _score;
 	}
 	
+	/**
+	 * Setea la puntuacion
+	 * @param _score nueva puntuacion
+	 */
 	public void set_score(int _score) {
 		this._score = _score;
 	}
@@ -75,7 +83,7 @@ public class DataStorage {
 	 */
 	public void Store(int q) {
 		_currentMoney += q;
-		_score+=q;
+		_score += q;
 	}
 	
 	/**
@@ -86,9 +94,19 @@ public class DataStorage {
 		_currentMoney -= q;
 	}
 
+	/**
+	 * Resetea el oro del juego
+	 */
 	public void Reset() {
 		_currentMoney = STARTING_MONEY;
-		
+	}
+
+	/**
+	 * Suma la cantidad de oro
+	 * @param i cantidad a sumar
+	 */
+	public void Sell(int i) {
+		_currentMoney += i;
 	}
 	
 	

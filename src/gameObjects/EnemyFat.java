@@ -21,8 +21,8 @@ public class EnemyFat extends Enemy {
 	}
 	
 	@Override
-	public Character Clone() {
-		Character a = new EnemyFat(0, 0);
+	public Enemy Clone() {
+		Enemy a = new EnemyFat(0, 0);
 		set_atributos(a);
 		return a;
 	}
