@@ -1,13 +1,15 @@
-package gameObjects;
+package gameObjects.Aliados;
 
 import java.util.ArrayList;
 
 import javax.swing.Icon;
 
+import gameObjects.Character;
+import gameObjects.Disparos.DisparoAliado;
 import logicas.IObserver;
-import logicas.Visitor;
-import logicas.VisitorAlly;
-import logicas.VisitorRangeAliado;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorAlly;
+import logicas.Visitors.VisitorRangeAliado;
 /**
  * Representa a los aliados del juego
  * @author Pippig,Matias Gonazales, Lucas

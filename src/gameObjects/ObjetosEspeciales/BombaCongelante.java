@@ -1,8 +1,8 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
 import java.awt.Rectangle;
 
-import logicas.VisitorCongelado;
+import logicas.Visitors.VisitorCongelado;
 /**
  * Bomba que congela a todos los enemigos del juego
  * @author Pippig, Matias GOnzales, Lucas

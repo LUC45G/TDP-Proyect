@@ -1,8 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.Enemy;
-import gameObjects.Muerte;
+import gameObjects.Aliados.Ally;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Estados.Muerte;
 
 public class VisitorBombaAtomica extends Visitor {
 

@@ -1,4 +1,4 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import javax.swing.ImageIcon;
 
 import logicas.Controller;
 import logicas.IObserver;
-import logicas.Visitor;
-import logicas.VisitorBarricada;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorBarricada;
 /**
  * Barricada que detiene a los personajes y disparos
  * @author Pippig, Matias Gonzalez, Lucas

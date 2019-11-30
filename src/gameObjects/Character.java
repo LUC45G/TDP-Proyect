@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import gameObjects.Disparos.Disparo;
+import gameObjects.Estados.NormalState;
+import gameObjects.Estados.StateCharacter;
 import logicas.Controller;
 import logicas.IObserver;
-import logicas.Visitor;
-import logicas.VisitorObserver;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorObserver;
 
 
 /**

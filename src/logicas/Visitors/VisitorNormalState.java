@@ -1,11 +1,11 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Congelado;
-import gameObjects.DienteSquanchy;
-import gameObjects.EstadoDisparando;
-import gameObjects.EstadoProtegidoAtacando;
-import gameObjects.EstadoProtegidoCaminando;
-import gameObjects.NormalState;
+import gameObjects.Estados.Congelado;
+import gameObjects.Estados.DienteSquanchy;
+import gameObjects.Estados.EstadoDisparando;
+import gameObjects.Estados.EstadoProtegidoAtacando;
+import gameObjects.Estados.EstadoProtegidoCaminando;
+import gameObjects.Estados.NormalState;
 
 public class VisitorNormalState extends VisitorState{
 

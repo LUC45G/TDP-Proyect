@@ -1,11 +1,15 @@
 /**
  * 
  */
-package gameObjects;
+package gameObjects.Aliados;
 
 import java.awt.Rectangle;
 
 import javax.swing.Icon;
+
+import gameObjects.Bank;
+import gameObjects.Estados.NormalState;
+import gameObjects.Estados.StateCharacter;
 
 /**
  * Aliado concreto basico que extiende a Character

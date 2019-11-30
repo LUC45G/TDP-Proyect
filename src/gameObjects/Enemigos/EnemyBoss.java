@@ -1,6 +1,9 @@
-package gameObjects;
+package gameObjects.Enemigos;
 
 import java.awt.Rectangle;
+
+import gameObjects.Estados.NormalState;
+import gameObjects.Estados.StateCharacter;
 
 /**
  * 

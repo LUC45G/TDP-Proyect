@@ -1,9 +1,13 @@
-package logicas;
+package logicas.Hilos;
 
 	
 import java.util.Random;
+
 import gameObjects.GameObject;
-import gameObjects.MapObject;
+import gameObjects.ObjetosDelMapa.MapObject;
+import logicas.Controller;
+import logicas.Generator;
+import logicas.Visitors.VisitorObserver;
 
 	/**
 	 * Hilo encargado de generar las hordas
@@ -34,7 +38,7 @@ import gameObjects.MapObject;
 				
 				if (aux % (2 + _dificultad) == 0) {
 					y = i * 90;
-					x = _rng.nextInt(Controller.GetInstance()._mapWidth / 2);
+					x = _rng.nextInt(Controller.GetInstance().get_mapWidth() / 2);
 					
 					index = _rng.nextInt(100) % 2;
 					

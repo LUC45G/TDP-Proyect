@@ -6,9 +6,9 @@ import javax.swing.ImageIcon;
 
 import logicas.IObserved;
 import logicas.IObserver;
-import logicas.Visitor;
-import logicas.VisitorObserver;
-import logicas.VisitorRange;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorObserver;
+import logicas.Visitors.VisitorRange;
 
 /**
  * Clase general que modela un objeto que puede estar presente en el juego

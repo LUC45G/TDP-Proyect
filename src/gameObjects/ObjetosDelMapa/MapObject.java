@@ -1,10 +1,11 @@
-package gameObjects;
+package gameObjects.ObjetosDelMapa;
 
 import java.util.ArrayList;
 
+import gameObjects.GameObject;
 import logicas.Controller;
 import logicas.IObserver;
-import logicas.VisitorObserver;
+import logicas.Visitors.VisitorObserver;
 
 public abstract class MapObject extends GameObject {
 

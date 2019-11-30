@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.Icon;
 
-import gameObjects.Ally;
-import gameObjects.AllyBase;
-import gameObjects.AllyFast;
-import gameObjects.AllyFat;
-import gameObjects.AllySlim;
-import gameObjects.AllyStrong;
 import gameObjects.GameObject;
+import gameObjects.Aliados.Ally;
+import gameObjects.Aliados.AllyBase;
+import gameObjects.Aliados.AllyFast;
+import gameObjects.Aliados.AllyFat;
+import gameObjects.Aliados.AllySlim;
+import gameObjects.Aliados.AllyStrong;
+import logicas.Visitors.VisitorObserver;
 
 /**
  * Store permitira al jugador comprar personajes.

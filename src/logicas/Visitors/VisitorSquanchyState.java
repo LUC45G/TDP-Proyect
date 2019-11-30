@@ -1,8 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.DienteSquanchy;
-import gameObjects.EstadoDisparando;
-import gameObjects.NormalState;
+import gameObjects.Estados.DienteSquanchy;
+import gameObjects.Estados.EstadoDisparando;
+import gameObjects.Estados.NormalState;
 
 public class VisitorSquanchyState extends VisitorState {
 

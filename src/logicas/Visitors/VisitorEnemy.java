@@ -1,7 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.DisparoAliado;
-import gameObjects.Enemy;
+import gameObjects.Disparos.DisparoAliado;
+import gameObjects.Enemigos.Enemy;
+import logicas.Controller;
 
 public class VisitorEnemy extends Visitor {
 	@SuppressWarnings("unused")

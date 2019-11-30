@@ -1,9 +1,9 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
 import java.awt.Rectangle;
 
 import logicas.Controller;
-import logicas.VisitorProtector;
+import logicas.Visitors.VisitorProtector;
 
 public class EscudoProtector extends ImmovableObject {
 

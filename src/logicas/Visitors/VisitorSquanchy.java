@@ -1,7 +1,7 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.DienteSquanchy;
+import gameObjects.Aliados.Ally;
+import gameObjects.Estados.DienteSquanchy;
 
 public class VisitorSquanchy extends VisitorPowerUp {
 

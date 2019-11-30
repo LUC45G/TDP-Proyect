@@ -1,8 +1,10 @@
-package logicas;
+package logicas.Hilos;
 
 import java.util.ArrayList;
 
 import gameObjects.GameObject;
+import logicas.Controller;
+import logicas.DataStorage;
 
 /**
  * Hilo encargado de mover a los enemigos

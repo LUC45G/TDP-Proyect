@@ -1,8 +1,20 @@
-package gameObjects;
+package gameObjects.Estados;
 
+import gameObjects.Aliados.AllyBase;
+import gameObjects.Character;
+import gameObjects.Aliados.AllyFast;
+import gameObjects.Aliados.AllyFat;
+import gameObjects.Aliados.AllySlim;
+import gameObjects.Aliados.AllyStrong;
+import gameObjects.Enemigos.EnemyBase;
+import gameObjects.Enemigos.EnemyBoss;
+import gameObjects.Enemigos.EnemyFast;
+import gameObjects.Enemigos.EnemyFat;
+import gameObjects.Enemigos.EnemySlim;
+import gameObjects.Enemigos.EnemyStrong;
 import logicas.Controller;
-import logicas.VisitorProtegidoAtacando;
-import logicas.VisitorState;
+import logicas.Visitors.VisitorProtegidoAtacando;
+import logicas.Visitors.VisitorState;
 
 public class EstadoProtegidoAtacando extends StateCharacter {
 	private int ataquesRecibidos;
@@ -90,7 +102,7 @@ public class EstadoProtegidoAtacando extends StateCharacter {
 	}
 
 	@Override
-	protected void receive_attack(int d) {
+	public void receive_attack(int d) {
 		ataquesRecibidos++;
 		if(ataquesRecibidos>=5) {
 			ChangeState(new NormalState(miCh,_delay,_strength,_velocidad));

@@ -1,6 +1,6 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.DisparoEnemigo;
+import gameObjects.Disparos.DisparoEnemigo;
 
 public class VisitorBarricada extends Visitor {
 	

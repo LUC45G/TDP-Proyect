@@ -1,10 +1,10 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-import logicas.VisitorBombaAtomica;
+import logicas.Visitors.VisitorBombaAtomica;
 /**
  * Bomba que mata a todos los personajes del juego
  * @author Pippig, Matias Gonzalez, Lucas

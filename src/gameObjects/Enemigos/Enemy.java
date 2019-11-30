@@ -1,12 +1,13 @@
-package gameObjects;
+package gameObjects.Enemigos;
 
 import java.util.ArrayList;
-
+import gameObjects.Character;
+import gameObjects.Disparos.DisparoEnemigo;
 import logicas.Controller;
 import logicas.IObserver;
-import logicas.Visitor;
-import logicas.VisitorEnemy;
-import logicas.VisitorRangeEnemigo;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorEnemy;
+import logicas.Visitors.VisitorRangeEnemigo;
 
 /**
  * Clase que modela a los enemigos

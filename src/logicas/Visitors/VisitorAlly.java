@@ -1,8 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.DisparoEnemigo;
-import gameObjects.Vendedor;
+import gameObjects.Aliados.Ally;
+import gameObjects.Disparos.DisparoEnemigo;
+import gameObjects.ObjetosEspeciales.Vendedor;
 
 public class VisitorAlly extends Visitor {
 

@@ -1,6 +1,20 @@
-package gameObjects;
+package gameObjects.Estados;
 
-import logicas.VisitorState;
+import gameObjects.Bank;
+import gameObjects.Character;
+import gameObjects.Aliados.AllyBase;
+import gameObjects.Aliados.AllyFast;
+import gameObjects.Aliados.AllyFat;
+import gameObjects.Aliados.AllySlim;
+import gameObjects.Aliados.AllyStrong;
+import gameObjects.Disparos.Disparo;
+import gameObjects.Enemigos.EnemyBase;
+import gameObjects.Enemigos.EnemyBoss;
+import gameObjects.Enemigos.EnemyFast;
+import gameObjects.Enemigos.EnemyFat;
+import gameObjects.Enemigos.EnemySlim;
+import gameObjects.Enemigos.EnemyStrong;
+import logicas.Visitors.VisitorState;
 
 public abstract class StateCharacter {
 	
@@ -184,7 +198,7 @@ public abstract class StateCharacter {
 	 * Efectua el recibimiento del daño
 	 * @param d vida a restar
 	 */
-	protected void receive_attack(int d) {
+	public void receive_attack(int d) {
 		miCh.set_health(miCh.get_health()-d);
 	}
 }

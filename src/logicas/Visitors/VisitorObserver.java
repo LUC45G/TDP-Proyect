@@ -1,5 +1,7 @@
-package logicas;
+package logicas.Visitors;
 
+import logicas.IObserved;
+import logicas.IObserver;
 
 public class VisitorObserver {
 

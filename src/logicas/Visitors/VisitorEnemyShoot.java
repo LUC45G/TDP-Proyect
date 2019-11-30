@@ -1,11 +1,11 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.Barricada;
-import gameObjects.Disparo;
-import gameObjects.DisparoAliado;
-import gameObjects.LagoMapa;
-import gameObjects.PiedraMapa;
+import gameObjects.Aliados.Ally;
+import gameObjects.Disparos.Disparo;
+import gameObjects.Disparos.DisparoAliado;
+import gameObjects.ObjetosDelMapa.LagoMapa;
+import gameObjects.ObjetosDelMapa.PiedraMapa;
+import gameObjects.ObjetosEspeciales.Barricada;
 
 public class VisitorEnemyShoot extends Visitor {
 	

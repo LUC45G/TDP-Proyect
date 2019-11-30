@@ -1,7 +1,7 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Congelado;
-import gameObjects.Enemy;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Estados.Congelado;
 
 public class VisitorCongelado extends VisitorPowerUp {
 

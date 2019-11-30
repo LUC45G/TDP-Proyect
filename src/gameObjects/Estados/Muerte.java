@@ -1,6 +1,18 @@
-package gameObjects;
+package gameObjects.Estados;
 
-import logicas.VisitorState;
+import gameObjects.Aliados.AllyBase;
+import gameObjects.Aliados.AllyFast;
+import gameObjects.Character;
+import gameObjects.Aliados.AllyFat;
+import gameObjects.Aliados.AllySlim;
+import gameObjects.Aliados.AllyStrong;
+import gameObjects.Enemigos.EnemyBase;
+import gameObjects.Enemigos.EnemyBoss;
+import gameObjects.Enemigos.EnemyFast;
+import gameObjects.Enemigos.EnemyFat;
+import gameObjects.Enemigos.EnemySlim;
+import gameObjects.Enemigos.EnemyStrong;
+import logicas.Visitors.VisitorState;
 
 public class Muerte extends StateCharacter {
 	

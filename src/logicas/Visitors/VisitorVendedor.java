@@ -1,7 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.Vendedor;
+import gameObjects.Aliados.Ally;
+import gameObjects.ObjetosEspeciales.Vendedor;
+import logicas.Controller;
 
 public class VisitorVendedor extends Visitor {
 	private Vendedor v;

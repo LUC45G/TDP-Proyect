@@ -1,4 +1,4 @@
-package gameObjects;
+package gameObjects.ObjetosDelMapa;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import logicas.IObserver;
-import logicas.Visitor;
-import logicas.VisitorPowerUp;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorPowerUp;
 /**
  * Objeto que no permite que ningun personaje pase por el lugar que ocupe
  * @author Pippig, Matias Gonsalez Lucas

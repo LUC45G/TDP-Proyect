@@ -1,11 +1,11 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.Barricada;
-import gameObjects.Enemy;
-import gameObjects.EstadoDisparando;
-import gameObjects.LagoMapa;
-import gameObjects.PiedraMapa;
+import gameObjects.Aliados.Ally;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Estados.EstadoDisparando;
+import gameObjects.ObjetosDelMapa.LagoMapa;
+import gameObjects.ObjetosDelMapa.PiedraMapa;
+import gameObjects.ObjetosEspeciales.Barricada;
 
 public class VisitorRangeEnemigo extends VisitorRange {
 	private Enemy miEnemy;

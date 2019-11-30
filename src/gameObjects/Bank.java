@@ -3,6 +3,17 @@ package gameObjects;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import gameObjects.Aliados.AllyBase;
+import gameObjects.Aliados.AllyFast;
+import gameObjects.Aliados.AllyFat;
+import gameObjects.Aliados.AllySlim;
+import gameObjects.Aliados.AllyStrong;
+import gameObjects.Enemigos.EnemyBase;
+import gameObjects.Enemigos.EnemyBoss;
+import gameObjects.Enemigos.EnemyFast;
+import gameObjects.Enemigos.EnemyFat;
+import gameObjects.Enemigos.EnemySlim;
+import gameObjects.Enemigos.EnemyStrong;
 public class Bank {
 	
 	private static Bank INSTANCE;

@@ -1,8 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Congelado;
-import gameObjects.EstadoDisparando;
-import gameObjects.NormalState;
+import gameObjects.Estados.Congelado;
+import gameObjects.Estados.EstadoDisparando;
+import gameObjects.Estados.NormalState;
 
 public class VisitorCongeladoState extends VisitorState{
 	

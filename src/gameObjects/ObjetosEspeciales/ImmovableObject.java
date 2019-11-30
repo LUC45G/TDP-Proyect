@@ -1,7 +1,8 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
+import gameObjects.GameObject;
 import logicas.Controller;
-import logicas.VisitorPowerUp;
+import logicas.Visitors.VisitorPowerUp;
 /**
  * Objetos inamovibles que pueden aparecer en el juego
  * @author Pippig, Matias Gonzalez, Lucas

@@ -1,7 +1,8 @@
-package gameObjects;
+package gameObjects.Disparos;
 
+import gameObjects.GameObject;
 import logicas.Controller;
-import logicas.Visitor;
+import logicas.Visitors.Visitor;
 
 public abstract class Disparo extends GameObject implements Cloneable {
 	

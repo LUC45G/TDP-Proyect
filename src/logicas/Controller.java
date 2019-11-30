@@ -1,6 +1,5 @@
 package logicas;
 
-import gui.Gui;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,12 +7,15 @@ import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import gameObjects.Ally;
-import gameObjects.Disparo;
-import gameObjects.Enemy;
 import gameObjects.GameObject;
-import gameObjects.ImmovableObject;
-import gameObjects.Muerte;
+import gameObjects.Aliados.Ally;
+import gameObjects.Disparos.Disparo;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Estados.Muerte;
+import gameObjects.ObjetosEspeciales.ImmovableObject;
+import gui.Gui;
+import logicas.Hilos.HiloHordas;
+import logicas.Visitors.Visitor;
 
 /**
  * Clase que comunica la gui con la logica
@@ -30,7 +32,7 @@ public class Controller {
 	protected int				_currentPowerUp; 	// Indice para control de compra de power up
 	protected Generator			_generator;			// Genera enemigos
 	protected static Controller INSTANCE;			// Instancia Singleton
-	protected int 				_mapWidth; 			// Ancho del mapa para controlar limites
+	private int 				_mapWidth; 			// Ancho del mapa para controlar limites
 	protected boolean 			_roundEnded; 		// Controla si termina la ronda
 	protected boolean			_alreadyStarted;	// Controla si ya empezo la partida
 	protected boolean 			_isAOE;				// Controla si el power up debe afectar a mas de uno
@@ -87,7 +89,7 @@ public class Controller {
 	 * @param w ancho
 	 */
 	public void SetMapWidth(int w) {
-		_mapWidth = w;
+		set_mapWidth(w);
 	}
 	
 	/**
@@ -100,7 +102,7 @@ public class Controller {
 		
 		for(int i = size - 1; i >= 0; i--) {
 			go = auxGo.get(i);
-			if(	go.get_hitbox().getX() < -15 || go.get_hitbox().getX() > _mapWidth ) 
+			if(	go.get_hitbox().getX() < -15 || go.get_hitbox().getX() > get_mapWidth() ) 
 				Remove(go);			
 		} 
 	}
@@ -406,6 +408,14 @@ public class Controller {
 	 */
 	public DataStorage GetDataStorage() {
 		return _dataStorage;
+	}
+
+	public int get_mapWidth() {
+		return _mapWidth;
+	}
+
+	public void set_mapWidth(int _mapWidth) {
+		this._mapWidth = _mapWidth;
 	}
 
 }

@@ -1,7 +1,7 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.EstadoProtegidoAtacando;
-import gameObjects.EstadoProtegidoCaminando;
+import gameObjects.Estados.EstadoProtegidoAtacando;
+import gameObjects.Estados.EstadoProtegidoCaminando;
 
 public class VisitorProtegidoAtacando extends VisitorState {
 

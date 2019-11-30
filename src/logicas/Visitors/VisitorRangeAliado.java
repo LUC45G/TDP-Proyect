@@ -1,8 +1,8 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.Enemy;
-import gameObjects.EstadoDisparando;
+import gameObjects.Aliados.Ally;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Estados.EstadoDisparando;
 
 public class VisitorRangeAliado extends VisitorRange {
 	private Ally miAlly;

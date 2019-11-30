@@ -5,7 +5,28 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
-import gameObjects.*;
+
+import gameObjects.GameObject;
+import gameObjects.ObjetosEspeciales.ImmovableObject;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Enemigos.EnemyBase;
+import gameObjects.Enemigos.EnemyBoss;
+import gameObjects.Enemigos.EnemyFast;
+import gameObjects.Enemigos.EnemyFat;
+import gameObjects.Enemigos.EnemySlim;
+import gameObjects.Enemigos.EnemyStrong;
+import gameObjects.Estados.EstadoProtegidoCaminando;
+import gameObjects.ObjetosDelMapa.LagoMapa;
+import gameObjects.ObjetosDelMapa.MapObject;
+import gameObjects.ObjetosDelMapa.PiedraMapa;
+import gameObjects.ObjetosEspeciales.Barricada;
+import gameObjects.ObjetosEspeciales.BombaAtomica;
+import gameObjects.ObjetosEspeciales.BombaCongelante;
+import gameObjects.ObjetosEspeciales.Diente;
+import gameObjects.ObjetosEspeciales.EscudoProtector;
+import gameObjects.ObjetosEspeciales.Vendedor;
+import logicas.Hilos.HiloPrincipal;
+import logicas.Visitors.VisitorObserver;
 
 public class Generator {
 	

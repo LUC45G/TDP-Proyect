@@ -1,9 +1,9 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
 import java.awt.Rectangle;
 
 import logicas.Controller;
-import logicas.VisitorVendedor;
+import logicas.Visitors.VisitorVendedor;
 
 public class Vendedor extends ImmovableObject {
 	public Vendedor()

@@ -1,6 +1,14 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.*;
+import gameObjects.Aliados.Ally;
+import gameObjects.Disparos.Disparo;
+import gameObjects.Disparos.DisparoAliado;
+import gameObjects.Disparos.DisparoEnemigo;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.ObjetosDelMapa.LagoMapa;
+import gameObjects.ObjetosDelMapa.PiedraMapa;
+import gameObjects.ObjetosEspeciales.Barricada;
+import gameObjects.ObjetosEspeciales.Vendedor;
 
 public abstract class Visitor {
 	

@@ -1,8 +1,8 @@
-package gameObjects;
+package gameObjects.ObjetosEspeciales;
 
 import java.awt.Rectangle;
 
-import logicas.VisitorSquanchy;
+import logicas.Visitors.VisitorSquanchy;
 /**
  * Objeto que activa un power-up a los aliados
  * @author Pippig, Matias Gonsalez Lucas

@@ -1,11 +1,11 @@
-package gameObjects;
+package gameObjects.Disparos;
 
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-import logicas.Visitor;
-import logicas.VisitorEnemyShoot;
+import logicas.Visitors.Visitor;
+import logicas.Visitors.VisitorEnemyShoot;
 
 public class DisparoEnemigo extends Disparo{
 

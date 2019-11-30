@@ -1,9 +1,9 @@
-package logicas;
+package logicas.Visitors;
 
-import gameObjects.Ally;
-import gameObjects.Enemy;
-import gameObjects.EscudoProtector;
-import gameObjects.EstadoProtegidoCaminando;
+import gameObjects.Aliados.Ally;
+import gameObjects.Enemigos.Enemy;
+import gameObjects.Estados.EstadoProtegidoCaminando;
+import gameObjects.ObjetosEspeciales.EscudoProtector;
 
 public class VisitorProtector extends Visitor {
 	
